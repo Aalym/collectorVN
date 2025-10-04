@@ -5,6 +5,7 @@ import Scene from "./components/Scene";
 import MainMenu from "./components/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
 import scenes from "./data/scenes";
+import TestCollector from "../src/assets/chars/Test_collector.png";
 
 
 function App() {
@@ -108,10 +109,37 @@ function App() {
         >
           Загрузить сохранение
         </button>
-        <div className="dialogue-box">
-          {current.name && <div className="dialogue-name">{current.name}</div>}
-          <div className="dialogue-text">{current.text}</div>
-        </div>
+        <div className="dialogue-box" style={{
+  height: "175px",
+  background: "rgba(30,30,30,0.85)",
+  marginBottom: "2px",
+  display: "flex",
+  alignItems: "flex-end",
+  position: "absolute",
+  left: 0,
+  right: 0,
+  bottom: 0
+}}>
+  <div
+    className="character-box"
+    style={{
+      paddingTop: "20px",
+      width: "400px",
+      height: "650px",
+      background: "rgba(80,80,80,0.5)",
+      marginRight: "124px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}
+  >
+    {<img src={TestCollector} alt="Персонаж" style={{maxWidth:"100%",maxHeight:"100%"}} />}
+  </div>
+  <div style={{ flex: 1 }}>
+    {current.name && <div className="dialogue-name">{current.name}</div>}
+    <div className="dialogue-text">{current.text}</div>
+  </div>
+</div>
         <div className="choice-container">
           {current.choices.length > 0 ? (
             current.choices.map((choice, i) => (
