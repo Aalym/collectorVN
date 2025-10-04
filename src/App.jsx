@@ -11,11 +11,35 @@ const scenes = {
 };
 
 function App() {
+  const [showMenu, setShowMenu] = useState(true);
   const [scene, setScene] = useState("start");
   const current = scenes[scene];
 
-  
+  const handleStart = () => {
+    setShowMenu(false);
+    setScene("start");
+  };
+
+  const handleLoad = () => {
+    // Add load logic here
+    alert("Загрузка пока не реализована");
+  };
+
+  const handleExit = () => {
+    window.close();
+  };
+
+  if (showMenu) {
     return (
+      <MainMenu
+        onStart={handleStart}
+        onLoad={handleLoad}
+        onExit={handleExit}
+      />
+    );
+  }
+
+  return (
     <div style={{ position: "relative", height: "100vh", backgroundColor: "#000" }}>
       <div className="dialogue-box">
         {current.name && <div className="dialogue-name">{current.name}</div>}
