@@ -4,38 +4,45 @@ import Scene from "./components/Scene";
 import MainMenu from "./components/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
 
+
+const scenes = {
+  start: { name: "Арина", text: "Текст...", choices: [{ text: "Choice", next: "end" }] },
+  end: { name: "", text: "Конец.", choices: [] },
+};
+
 function App() {
-  const { scene, nextScene, goBack, saves, saveToSlot, loadFromSlot } = useGame();
-  const [started, setStarted] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [scene, setScene] = useState("start");
+  const current = scenes[scene];
 
-  if (!started)
-    return <MainMenu onStart={() => setStarted(true)} />;
-
-  return (
-    <div className="relative">
-      <Scene scene={scene} nextScene={nextScene} />
-
-      {/* Кнопки управления */}
-      <div className="absolute bottom-4 right-4 flex gap-2">
-        <button onClick={() => goBack()} className="bg-gray-700 px-3 py-1 rounded">
-          Назад
-        </button>
-        <button onClick={() => setShowMenu(true)} className="bg-gray-700 px-3 py-1 rounded">
-          Сохранить / Загрузить
-        </button>
+  
+    return (
+    <div style={{ position: "relative", height: "100vh", backgroundColor: "#000" }}>
+      <div className="dialogue-box">
+        {current.name && <div className="dialogue-name">{current.name}</div>}
+        <div className="dialogue-text">{current.text}</div>
       </div>
 
-      {showMenu && (
-        <SaveLoadMenu
-          saves={saves}
-          saveToSlot={saveToSlot}
-          loadFromSlot={loadFromSlot}
-          onClose={() => setShowMenu(false)}
-        />
-      )}
+      <div className="choice-container">
+        {current.choices.length > 0 ? (
+          current.choices.map((choice, i) => (
+            <button
+              key={i}
+              className="choice-btn"
+              onClick={() => setScene(choice.next)}
+            >
+              {choice.text}
+            </button>
+          ))
+        ) : (
+          <button className="choice-btn" onClick={() => setScene("start")}>
+            Играть снова
+          </button>
+        )}
+      </div>
     </div>
   );
 }
+
+  
 
 export default App;
