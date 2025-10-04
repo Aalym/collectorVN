@@ -73,10 +73,12 @@ export function saveGameToSlot(scene, slot) {
   let saves = JSON.parse(localStorage.getItem('vn_saves') || '[]');
   // Use scene.id and scene.text for display name
   let name = '';
-  if (scene.id) {
+  if (scene.id && scene.text) {
     name = `${scene.id}: ${scene.text.substring(0, 30)}`;
   } else if (scene.text) {
     name = scene.text.substring(0, 30);
+  } else if (scene.id) {
+    name = scene.id;
   } else {
     name = `Сцена ${slot+1}`;
   }
@@ -91,4 +93,8 @@ export function loadGameFromSlot(slot) {
 
 export function getAllSaves() {
   return JSON.parse(localStorage.getItem('vn_saves') || '[]');
+}
+
+export function clearAllSaves() {
+  localStorage.removeItem('vn_saves');
 }

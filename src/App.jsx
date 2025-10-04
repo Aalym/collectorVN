@@ -1,4 +1,4 @@
-import { saveGameToSlot, loadGameFromSlot, getAllSaves } from "./GameLogic";
+import { saveGameToSlot, loadGameFromSlot, getAllSaves, clearAllSaves } from "./GameLogic";
 import { useState } from "react";
 import { loadGame, saveGame } from "./GameLogic";
 import Scene from "./components/Scene";
@@ -30,6 +30,8 @@ function App() {
 
   const handleBackToMenu = () => {
     setShowMenu(true);
+    setShowLoadModal(false);
+    setShowSaveModal(false);
   };
 
   const handleSave = () => {
@@ -45,10 +47,15 @@ function App() {
   const handleLoadSlot = (slot) => {
     const loadedScene = loadGameFromSlot(slot);
     if (loadedScene) {
+      setScene(loadedScene.id || loadedScene);
       setShowMenu(false);
-      setScene(loadedScene);
       setShowLoadModal(false);
     }
+  };
+
+  const handleClearSaves = () => {
+    clearAllSaves();
+    setSaves(getAllSaves());
   };
 
   if (showMenu) {
@@ -56,7 +63,7 @@ function App() {
       <>
         <MainMenu
           onStart={handleStart}
-          onLoad={handleLoad}
+          onLoad={() => setShowLoadModal(true)}
           onExit={handleExit}
         />
         {showLoadModal && (
@@ -69,6 +76,7 @@ function App() {
                 </button>
               ))}
               <button style={{marginTop:16, width:'100%'}} className="choice-btn" onClick={()=>setShowLoadModal(false)}>Отмена</button>
+              <button style={{marginTop:8, width:'100%'}} className="choice-btn" onClick={handleClearSaves}>Очистить все сохранения</button>
             </div>
           </div>
         )}
@@ -89,9 +97,16 @@ function App() {
         <button
           className="choice-btn"
           onClick={handleSave}
-          style={{position: 'absolute', top: 60, right: 20, zIndex: 10}}
+          style={{position: 'absolute', top: 80, right: 20, zIndex: 10}}
         >
           Сохранить
+        </button>
+        <button
+          className="choice-btn"
+          onClick={() => setShowLoadModal(true)}
+          style={{position: 'absolute', top: 140, right: 20, zIndex: 10}}
+        >
+          Загрузить сохранение
         </button>
         <div className="dialogue-box">
           {current.name && <div className="dialogue-name">{current.name}</div>}
@@ -123,6 +138,21 @@ function App() {
               </button>
             ))}
             <button style={{marginTop:16, width:'100%'}} className="choice-btn" onClick={()=>setShowSaveModal(false)}>Отмена</button>
+            <button style={{marginTop:8, width:'100%'}} className="choice-btn" onClick={handleClearSaves}>Очистить все сохранения</button>
+          </div>
+        </div>
+      )}
+      {showLoadModal && (
+        <div style={{position: 'fixed', top:0, left:0, width:'100vw', height:'100vh', background:'rgba(0,0,0,0.7)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:100}}>
+          <div style={{background:'#222', padding:32, borderRadius:16, minWidth:300}}>
+            <h2 style={{color:'#fff', marginBottom:16}}>Загрузить сохранение</h2>
+            {[0,1,2,3].map(slot => (
+              <button key={slot} style={{margin:'8px', width:'100%'}} className="choice-btn" onClick={() => handleLoadSlot(slot)}>
+                {saves[slot]?.name ? `Слот ${slot+1}: ${saves[slot].name}` : `Слот ${slot+1}: (пусто)`}
+              </button>
+            ))}
+            <button style={{marginTop:16, width:'100%'}} className="choice-btn" onClick={()=>setShowLoadModal(false)}>Отмена</button>
+            <button style={{marginTop:8, width:'100%'}} className="choice-btn" onClick={handleClearSaves}>Очистить все сохранения</button>
           </div>
         </div>
       )}
