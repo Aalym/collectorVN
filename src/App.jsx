@@ -29,6 +29,10 @@ function App() {
     window.close();
   };
 
+  const handleBackToMenu = () => {
+    setShowMenu(true);
+  };
+
   if (showMenu) {
     return (
       <MainMenu
@@ -41,6 +45,13 @@ function App() {
 
   return (
     <div style={{ position: "relative", height: "100vh", backgroundColor: "#000" }}>
+      <button 
+        className="choice-btn" 
+        onClick={handleBackToMenu} 
+        style={{position: 'absolute', top: 20, right: 20, zIndex: 10}}
+      >
+        В главное меню
+      </button>
       <div className="dialogue-box">
         {current.name && <div className="dialogue-name">{current.name}</div>}
         <div className="dialogue-text">{current.text}</div>
