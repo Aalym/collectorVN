@@ -380,11 +380,121 @@ const scenes = {
     scenechather8: {
         id: "mansion", // разговор с ней 8/id
         name: "",
-        text: "Дальше будет продолжение...",
+        text: "Неподалеку послышались шорохи вероятно из прихожей…Это могло значить лишь одно.",
         bg: "/src/assets/bg/mansion_interior.jpg",
         choices: [
-            { text: "Продолжить", next: "scenechather8", type: "next" },
+            { text: "Продолжить", next: "scenechather9", type: "next" },
             { text: "Назад", next: "scenechather7", type: "back" },
+        ],
+    },
+    scenechather9: {
+        id: "mansion", // разговор с ней 9/id
+        name: "Девочка",
+        text: "(О нет, он вернулся...Надо сбежать отсюда как можно скорее.)",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather10", type: "next" },
+            { text: "Назад", next: "scenechather8", type: "back" },
+        ],
+    },
+    scenechather10: {
+        id: "mansion", // разговор с ней 10/id
+        name: "",
+        text: "Коллекционер выбегает и насильно ловит обоих девочек грубой хваткой своих рук.",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        choices: [
+            { text: "Продолжить", next: "scenechather11", type: "next" },
+            { text: "Назад", next: "scenechather9", type: "back" },
+        ],
+    },
+    scenechather11: {
+        id: "mansion", // разговор с ней 11/id
+        name: "Девочка",
+        text: "!",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather12", type: "next" },
+            { text: "Назад", next: "scenechather11", type: "back" },
+        ],
+    },
+    scenechather12: {
+        id: "mansion", // разговор с ней 12/id
+        name: "Коллекционер",
+        text: "Кто ты?! Что ты делаешь в моём доме и с моей дочерью?!",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/magician.png",
+        
+        choices: [
+            { text: "Продолжить", next: "scenechather13", type: "next" },
+            { text: "Назад", next: "scenechather11", type: "back" },
+        ],
+    },
+    scenechather13: {
+        id: "mansion", // разговор с ней 13/id
+        name: "",
+        text: "Коллекционер с помощью магии вышвыривает незнакомую девчонку из своего дома, пробивая все стены и потолки под давлением силы телекинеза",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather14", type: "next" },
+            { text: "Назад", next: "scenechather12", type: "back" },
+        ],
+    },
+    scenechather14: {
+        id: "mansion", // разговор с ней 14/id
+        name: "Коллекционер",
+        text: 'Успокаиваясь от адреналина, Коллекционер поворачивается к своей "дочери" с обеспокоенным лицом. \n Ты в порядке? Она с тобой ничего не сделала?',
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather15", type: "next" },
+            { text: "Назад", next: "scenechather13", type: "back" },
+        ],
+    },
+    scenechather15: {
+        id: "mansion", // разговор с ней 15/id
+        name: "Дочь",
+        text: "Папа, ты плохой. Ты убиваешь людей, мне с тобой опасно, поэтому я вынуждена отказаться быть твоей дочерью.",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "",
+        choices: [
+            { text: "Продолжить", next: "scenechather16", type: "next" },
+            { text: "Назад", next: "scenechather14", type: "back" },
+        ],
+    },
+    scenechather16: {
+        id: "mansion", // разговор с ней 16/id
+        name: "Коллекционер",
+        text: '...',
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather17", type: "next" },
+            { text: "Назад", next: "scenechather15", type: "back" },
+        ],
+    },
+    scenechather17: {
+        id: "manion", // разговор с ней 17/id
+        name: "Коллекционер",
+        text: ' Что? Что ты такое говоришь? Но я же твой отец..',
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather18", type: "next" },
+            { text: "Назад", next: "scenechather16", type: "back" },
+        ],
+    },
+    scenechather18: {
+        id: "manion", // разговор с ней 17/id
+        name: "Дочь",
+        text: ' Продолжить надо',
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "",
+        choices: [
+            { text: "Продолжить", next: "scenechather18", type: "next" },
+            { text: "Назад", next: "scenechather16", type: "back" },
         ],
     },
 
