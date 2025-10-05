@@ -140,35 +140,19 @@ function App() {
               ))}
           </div>
 
-{/* Слева — кнопка "Назад" */}
-{current.choices
-  ?.filter((c) => c.type === "back")
-  .map((choice, i) => (
-    <button
-      key={i}
-      className="back-btn"
-      onClick={() => setScene(choice.next)}
-    >
-      {choice.text}
-    </button>
-  ))}
-
-{/* Справа — кнопка "Продолжить" */}
-{current.choices
-  ?.filter((c) => c.type === "next")
-  .map((choice, i) => (
-    <button
-      key={i}
-      className="continue-btn"
-      onClick={() => setScene(choice.next)}
-    >
-      {choice.text}
-    </button>
-  ))}
-
+          {/* Справа — кнопка "Продолжить" */}
+          {current.choices
+            ?.filter((c) => c.type === "next")
+            .map((choice, i) => (
+              <button
+                key={i}
+                className="continue-btn"
+                onClick={() => setScene(choice.next)}
+              >
+                {choice.text}
+              </button>
+            ))}
           </div>
-
-      </div>
       {showSaveModal && (
         <div style={{position: 'fixed', top:0, left:0, width:'100vw', height:'100vh', background:'rgba(0,0,0,0.7)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:100}}>
           <div style={{background:'#222', padding:32, borderRadius:16, minWidth:300}}>
