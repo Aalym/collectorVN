@@ -1,15 +1,60 @@
-.DialogueBox{
-    position: absolute;
-    bottom: 0;
-    margin-left: 10%;
-    background-color: rgba(30, 30, 30, 0.7);
-    border: 1px solid #fff;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-sizing: border-box;
-    width: 75%;
-    height: 100%;
+.DialogueBox {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1200px;
+  height: 180px;
+
+  background: rgba(20, 20, 20, 0.75);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 40px;
+
+  box-sizing: border-box;
+  color: #fff;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  font-family: 'Noto Sans', sans-serif;
 }
+
+/* Имя персонажа */
+.dialogueName {
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Контейнер текста */
+.dialogueText {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Сам эффект “печати слева направо” */
+.textReveal {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(40, end) forwards;
+}
+
+/* Эффект "печатающегося" текста слева направо */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
