@@ -1,4 +1,4 @@
-import DialogueBox from "/src/components/DialogueBox";
+import DialogueBox from "/src/components/DialogueBox/DialogueBox.jsx";
 import ChoiceBtn from "/src/components/ChoiseBtn";
 
 export default function Scene({ scene, nextScene }) {

@@ -6,7 +6,7 @@ import MainMenu from "./components/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
 import scenes from "./data/scenes";
 import TestCollector from "../src/assets/chars/Test_collector.png";
-import DialogueBar from "./components/DialogueBar";
+import DialogueBar from "./components/Dialoguebox/DialogueBox";
 import CharacterBox from "./components/character-1/CharacterBox";
 
 

@@ -1,0 +1,15 @@
+.DialogueBox{
+    position: absolute;
+    bottom: 0;
+    margin-left: 10%;
+    background-color: rgba(30, 30, 30, 0.7);
+    border: 1px solid #fff;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 75%;
+    height: 100%;
+}
