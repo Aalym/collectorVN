@@ -91,21 +91,21 @@ function App() {
     <>
       <div style={{ position: "relative", height: "100vh", backgroundColor: "#000" }}>
         <button 
-          className="choice-btn" 
+          className="GameUI" 
           onClick={handleBackToMenu} 
           style={{position: 'absolute', top: 20, right: 20, zIndex: 10}}
         >
           В главное меню
         </button>
         <button
-          className="choice-btn"
+          className="GameUI"
           onClick={handleSave}
           style={{position: 'absolute', top: 80, right: 20, zIndex: 10}}
         >
           Сохранить
         </button>
         <button
-          className="choice-btn"
+          className="GameUI"
           onClick={() => setShowLoadModal(true)}
           style={{position: 'absolute', top: 140, right: 20, zIndex: 10}}
         >
@@ -130,14 +130,14 @@ function App() {
             current.choices.map((choice, i) => (
               <button
                 key={i}
-                className="choice-btn"
+                className="GameUI"
                 onClick={() => setScene(choice.next)}
               >
                 {choice.text}
               </button>
             ))
           ) : (
-            <button className="choice-btn" onClick={() => setScene("start")}>Играть снова</button>
+            <button className="GameUI" onClick={() => setScene("start")}>Играть снова</button>
           )}
         </div>
       </div>
