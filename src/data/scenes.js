@@ -1,10 +1,14 @@
-
+import goodEndingImg from "../assets/endings/ending4.jpg";
+import badEndingImg from "../assets/endings/ending1.jpg";
+import neutralEndingImg from "../assets/endings/ending2.jpg";
+import anotherEndingImg from "../assets/endings/ending3.jpg";
 const scenes = {
     start: {
         id: "start", // scene name/id
         name: "Девочка",
         text: "- Я самая обыкновенная юная девочка, что живет самой простой жизнью.В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
         bg: "/src/assets/bg/room.jpg",
+        char: "/src/assets/chars/girl.png",
         music: "",
         choices: [
             { text: "Продолжить", next: "scene2", type: "next" },
@@ -25,6 +29,7 @@ const scenes = {
         id: "park", // custom scene name/id
         name: "Девочка", 
         text: "- Мне надо пробраться в особняк.",
+        char: "/src/assets/chars/girl.png",
         bg: "src/assets/bg/mansion.png",
         choices: [
             { text: "подойти к особняку", next: "scene4", type: "normal" },
@@ -66,6 +71,7 @@ const scenes = {
         name: "Девочка",
         text: "- Мрачновато",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         music: "",
         choices: [
             { text: "осмотреться", next: "scene7", type: "normal" },
@@ -110,6 +116,7 @@ const scenes = {
         name: "Девочка",
         text: "- Что это за комната? Он практикует магию? ",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "sceneroommagic2", type: "next" },
             { text: "Назад", next: "scenedoorright", type: "back" },
@@ -120,6 +127,7 @@ const scenes = {
         name: "Девочка",
         text: "- Походу он является колдуном, раз у него есть способность красть души...",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Идти в правую дверь", next: "scenedoorright2", type: "normal" },
             { text: "Идти в левую дверь", next: "scenedoorleft", type: "normal" },
@@ -153,6 +161,7 @@ const scenes = {
         name: "Девочка",
         text: "- Здесь большая коллекция бабочек...",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Осмотреться", next: "scenelook", type: "normal" },
             { text: "Назад", next: "scenedoorright2", type: "back" },
@@ -173,6 +182,7 @@ const scenes = {
         name: "Девочка",
         text: "- Это коллекция душ людей?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Идти в дверь", next: "sceneroomvoid", type: "normal" },
             { text: "Назад", next: "scenelook", type: "back" },
@@ -183,6 +193,7 @@ const scenes = {
         name: "Девочка",
         text: "- Что это? Они выглядят как бездушные люди...Он прячет здесь своих жертв?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Осмотреться", next: "sceneroomvoidlook", type: "normal" },
             { text: "Назад", next: "scenelook2", type: "back" },
@@ -193,6 +204,7 @@ const scenes = {
         name: "Девочка",
         text: "(Находит фонарь:) \n - Это будет полезно для меня в будущем.",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Идти вперед", next: "sceneroomportrait", type: "normal" },
             { text: "Назад", next: "sceneroomvoid", type: "back" },
@@ -213,6 +225,7 @@ const scenes = {
         name: "Девочка",
         text: " - Это он и его семья? Но почему его жены и дочери в особняке нет?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "sceneroomportrait3", type: "next" },
             { text: "Назад", next: "sceneroomportrait", type: "back" },
@@ -233,6 +246,7 @@ const scenes = {
         name: "Девочка",
         text: " - Ты кто? Что ты здесь делаешь?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "sceneroomportrait5", type: "next" },
             { text: "Назад", next: "sceneroomportrait3", type: "back" },
@@ -253,6 +267,7 @@ const scenes = {
         name: "Девочка",
         text: " (Это дочь Коллекционера? Она выглядит очень странно...Возможно она состоит из этих душ. Значит он собирает себе дочь из чужих душ?) \n  У тебя есть имя?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "sceneroomportrait7", type: "next" },
             { text: "Назад", next: "sceneroomportrait5", type: "back" },
@@ -273,6 +288,7 @@ const scenes = {
         name: "Девочка",
         text: "(Она совершенно ничего не понимает...)",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Оставить ее", next: "sceneleaverher", type: "normal" },
             { text: "Продолжить разговор с ней", next: "scenechather", type: "normal" },
@@ -293,6 +309,7 @@ const scenes = {
         name: "Девочка",
         text: " Ты знаешь кем является твой папа?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "scenechather2", type: "next" },
             { text: "Назад", next: "sceneroomportrait8", type: "back" },
@@ -313,6 +330,7 @@ const scenes = {
         name: "Девочка",
         text: "... \n А ты знаешь, что он убивает людей?",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "scenechather4", type: "next" },
             { text: "Назад", next: "scenechather2", type: "back" },
@@ -333,6 +351,7 @@ const scenes = {
         name: "Девочка",
         text: "Да, он очень плохой человек. Тебе не стоит с ним оставаться, это опасно. Пойдем вместе со мной, я тебя выведу отсюда!",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/girl.png",
         choices: [
             { text: "Продолжить", next: "scenechather6", type: "next" },
             { text: "Назад", next: "scenechather4", type: "back" },

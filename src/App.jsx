@@ -12,6 +12,7 @@ import { AudioManager } from "./audioManager";
 import menuMusicFile from "/src/assets/audio/menu.ogg";
 
 
+
 function App() {
   const [showMenu, setShowMenu] = useState(true);
   const [scene, setScene] = useState("start");
@@ -20,6 +21,7 @@ function App() {
   const [saves, setSaves] = useState(getAllSaves());
   const current = scenes[scene];
   const [isMuted, setIsMuted] = useState(AudioManager.getMuted ? AudioManager.getMuted() : false);
+  const [showEnding, setShowEnding] = useState(false);
 
   const toggleMute = () => {
     // AudioManager.toggleMute() должен возвращать новое состояние (true/false)
@@ -38,12 +40,48 @@ function App() {
     }
     }, [scene, showMenu, current]);
 
-  const handleBackToMenu = () => {
+      const handleBackToMenu = () => {
   AudioManager.stopMusic(); // 🆕 останавливаем текущую музыку
   setShowMenu(true);
   setShowLoadModal(false);
   setShowSaveModal(false);
-  };
+  setScene("mainmenu"); // 👈 важно, чтобы реально вернуло к сцене меню
+  setShowEnding(false); // 👈 если есть состояние окончания — убираем
+};  
+
+  if (current && current.end) {
+  return (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        backgroundImage: `url(${current.bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          padding: "40px 80px",
+          borderRadius: "20px",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{ color: "white", marginBottom: "20px" }}>{current.text}</h1>
+        <button className="choice-btn" onClick={handleBackToMenu}>
+          Вернуться в меню
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
   const handleStart = () => {
     AudioManager.stopMusic(); // выключаем музыку меню
     setShowMenu(false);
@@ -130,7 +168,9 @@ function App() {
         }}
       >
 
-          <CharacterBox src={TestCollector} alt="Персонаж" />
+          {current.char && (
+            <CharacterBox src={current.char} alt={current.name || "Персонаж"} />
+          )}
           <DialogueBar name={current.name} text={current.text} />
         </div>
           <div>
@@ -204,9 +244,21 @@ function App() {
           </div>
         </div>
       )}
-    </>
+
+      {showEnding && (
+        <EndingScreen
+          background={current.bg}
+          text={current.text}
+          onBackToMenu={() => {
+          setShowEnding(false);
+          handleBackToMenu();
+        }}
+      />
+    )}
+  </>
   );
 }
+
 
   
 
