@@ -22,13 +22,14 @@
 
 .choice-container {
     position: absolute;
-    bottom: 150px;
-    left: 50%;
+    bottom: 70px;
+    left: 1280px;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     gap: 10px;
     z-index: 3;
+    max-width: 175px;
 }
 
 .choice-btn {
@@ -50,4 +51,22 @@ body, html, #root {
     font-family: "Forum", serif;    
     font-weight: 400;
     font-style: normal;
+}
+
+.continueBtn {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.continueBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

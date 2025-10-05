@@ -8,6 +8,7 @@ import scenes from "./data/scenes";
 import TestCollector from "../src/assets/chars/Test_collector.png";
 import DialogueBar from "./components/Dialoguebox/DialogueBox";
 import CharacterBox from "./components/character-1/CharacterBox";
+import GameUI from "./UI/GameUI";
 
 
 function App() {
@@ -90,27 +91,11 @@ function App() {
   return (
     <>
       <div style={{ position: "relative", height: "100vh", backgroundColor: "#000" }}>
-        <button 
-          className="choice-btn" 
-          onClick={handleBackToMenu} 
-          style={{position: 'absolute', top: 20, right: 20, zIndex: 10}}
-        >
-          В главное меню
-        </button>
-        <button
-          className="choice-btn"
-          onClick={handleSave}
-          style={{position: 'absolute', top: 80, right: 20, zIndex: 10}}
-        >
-          Сохранить
-        </button>
-        <button
-          className="choice-btn"
-          onClick={() => setShowLoadModal(true)}
-          style={{position: 'absolute', top: 140, right: 20, zIndex: 10}}
-        >
-          Загрузить сохранение
-        </button>
+        <GameUI
+          onBackToMenu={handleBackToMenu}
+          onSave={handleSave}
+          onLoad={() => setShowLoadModal(true)}
+        />
         <div style={{
           position: "absolute",
           left: 0,
@@ -123,7 +108,7 @@ function App() {
           marginBottom: "2px"
         }}>
           <CharacterBox src={TestCollector} alt="Персонаж" />
-          <DialogueBar name={current.name} text={current.text} />
+          <DialogueBar text={current.text} />
         </div>
         <div className="choice-container">
           {current.choices.length > 0 ? (

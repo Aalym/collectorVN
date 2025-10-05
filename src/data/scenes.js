@@ -1,30 +1,48 @@
 const scenes = {
     start: {
         id: "start", // scene name/id
-        text: "Добро пожаловать в игру!",
+        text: "- Я самая обыкновенная юная девочка, что живет самой простой жизнью.",
         bg: "/src/assets/bg/room.jpg",
         choices: [
-            { text: "Продолжить", next: "scene2" },
+            { text: "Продолжить", next: "scene1" },
         ],
     },
     scene2: {
         id: "street", // custom scene name/id
-        text: "Это вторая сцена.",
+        text: "В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают.",
         bg: "/src/assets/bg/street.jpg",
         choices: [
             { text: "Назад", next: "start" },
-            { text: "Вперёд", next: "scene3" },
+            { text: "Продолжить", next: "scene3" },
         ],
     },
     scene3: {
         id: "park", // custom scene name/id
-        text: "Это третья сцена.",
+        text: "Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
         bg: "/src/assets/bg/park.jpg",
         choices: [
-            { text: "Назад", next: "start" },
+            { text: "Исследовать особняк", next: "scene4" },
+            { text: "Назад", next: "scene2" },
         ],
     },
-    // Add more scenes with unique id
+    scene4: {
+        id: "mansion", // custom scene name/id
+        text: "- Мне надо пробраться в особняк.",
+        bg: "/src/assets/bg/mansion.jpg",
+        choices: [
+            { text: "Продолжить", next: "scene5" },
+            { text: "Назад", next: "scene3" },
+        ],
+    },
+    scene5: {
+        id: "mansion_interior", // custom scene name/id
+        text: "Внутри особняка было темно и тихо. Я чувствовала, как сердце колотится в груди.",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        choices: [
+            { text: "Осмотреться", next: "scene6" },
+            { text: "Уйти", next: "scene4" },
+        ],
+    },
 };
 
 export default scenes;
