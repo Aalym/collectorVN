@@ -9,7 +9,7 @@ import TestCollector from "../src/assets/chars/Test_collector.png";
 import DialogueBar from "./components/Dialoguebox/DialogueBox";
 import CharacterBox from "./components/character-1/CharacterBox";
 import GameUI from "./UI/GameUI";
-
+import { useEffect, useRef } from "react";
 
 function App() {
   const [showMenu, setShowMenu] = useState(true);
@@ -18,6 +18,73 @@ function App() {
   const [showLoadModal, setShowLoadModal] = useState(false);
   const [saves, setSaves] = useState(getAllSaves());
   const current = scenes[scene];
+
+  // --- АУДИО ---
+  const audioRef = useRef(null);
+  const currentMusicRef = useRef(null);
+
+  useEffect(() => {
+    // 🎵 Если мы в главном меню — выключаем музыку полностью
+    if (showMenu) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+        currentMusicRef.current = null;
+      }
+      return; // ничего больше не делаем
+    }
+
+    if (!current) return;
+    const newMusic = current.music;
+
+    // 🔇 Если сцена не задаёт музыку — просто оставляем текущую
+    if (!newMusic) return;
+
+    // 🔕 Если в сцене явно указано "none" — выключаем звук
+    if (newMusic === "none") {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+        currentMusicRef.current = null;
+      }
+      return;
+    }
+
+    // 🟢 Если музыка не изменилась — ничего не делаем
+    if (currentMusicRef.current === newMusic) return;
+
+    // 🔄 Если другая — плавно сменим
+    const fadeOutAndPlayNew = async () => {
+      if (audioRef.current) {
+        for (let i = 0.5; i >= 0; i -= 0.1) {
+          audioRef.current.volume = i;
+          await new Promise((r) => setTimeout(r, 100));
+        }
+        audioRef.current.pause();
+      }
+
+      const newAudio = new Audio(newMusic);
+      newAudio.loop = true;
+      newAudio.volume = 0.5;
+
+      const playPromise = newAudio.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          console.log("⏸️ Автовоспроизведение заблокировано, ждём клика пользователя");
+          const resume = () => {
+            newAudio.play();
+            document.removeEventListener("click", resume);
+          };
+          document.addEventListener("click", resume);
+        });
+      }
+
+      audioRef.current = newAudio;
+      currentMusicRef.current = newMusic;
+    };
+
+    fadeOutAndPlayNew();
+  }, [scene, showMenu]);
 
   const handleStart = () => {
     setShowMenu(false);

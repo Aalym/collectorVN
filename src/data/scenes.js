@@ -5,6 +5,7 @@ const scenes = {
         name: "Девочка",
         text: "- Я самая обыкновенная юная девочка, что живет самой простой жизнью.В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
         bg: "/src/assets/bg/room.jpg",
+        music: "/src/assets/audio/Intro.ogg",
         choices: [
             { text: "Продолжить", next: "scene2", type: "next" },
         ],
@@ -14,6 +15,7 @@ const scenes = {
         name: "",
         text: "Яркий особняк красуется в темном лесу, что так и манит к себе… ",
         bg: "src/assets/bg/mansion.png",
+        music: "",
         choices: [
             { text: "Назад", next: "start", type: "back" },
             { text: "Продолжить", next: "scene3", type: "next" },
@@ -64,6 +66,7 @@ const scenes = {
         name: "Девочка",
         text: "- Мрачновато",
         bg: "/src/assets/bg/mansion_interior.jpg",
+        music: "/src/assets/audio/theme.mp3",
         choices: [
             { text: "осмотреться", next: "scene7", type: "normal" },
             { text: "Назад", next: "scene5", type: "back" },
