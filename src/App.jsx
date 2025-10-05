@@ -97,16 +97,17 @@ function App() {
           onLoad={() => setShowLoadModal(true)}
         />
         <div style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: "flex",
-          alignItems: "flex-end",
-          height: "175px",
-          background: "rgba(30,30,30,0.85)",
-          marginBottom: "2px"
-        }}>
+          position: "relative",
+          height: "100vh",
+          backgroundImage: `url(${current.bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#000",
+          transition: "background-image 0.5s ease-in-out",
+        }}
+      >
+
           <CharacterBox src={TestCollector} alt="Персонаж" />
           <DialogueBar name={current.name} text={current.text} />
         </div>
