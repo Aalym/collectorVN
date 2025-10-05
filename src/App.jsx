@@ -123,17 +123,17 @@ function App() {
   <div
     className="character-box"
     style={{
-      paddingTop: "20px",
-      width: "400px",
-      height: "650px",
-      background: "rgba(80,80,80,0.5)",
+      paddingTop: "21px",
+      width: "1920px",
+      height: "1080px",
       marginRight: "124px",
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      marginBottom: "-240px"
     }}
   >
-    {<img src={TestCollector} alt="Персонаж" style={{maxWidth:"100%",maxHeight:"100%"}} />}
+    {<img src="../src/assets/chars/Test_collector.png" alt="Персонаж" style={{maxWidth:"1066px",maxHeight:"955px"}} />}
   </div>
   <div style={{ flex: 1 }}>
     {current.name && <div className="dialogue-name">{current.name}</div>}
