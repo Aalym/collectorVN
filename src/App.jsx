@@ -2,7 +2,7 @@ import { saveGameToSlot, loadGameFromSlot, getAllSaves, clearAllSaves } from "./
 import { useState } from "react";
 import { loadGame, saveGame } from "./GameLogic";
 import Scene from "./components/Scene";
-import MainMenu from "./components/MainMenu";
+import MainMenu from "./components/MainMenu/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
 import scenes from "./data/scenes";
 import TestCollector from "../src/assets/chars/Test_collector.png";

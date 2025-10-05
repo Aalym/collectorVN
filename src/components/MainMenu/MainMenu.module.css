@@ -1,0 +1,43 @@
+.mainMenuBg {
+	min-height: 100vh;
+	min-width: 100vw;
+	background: linear-gradient(135deg, #000000 0%, #000000 100%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.mainMenuTitle {
+	font-size: 3rem;
+	font-family: 'Forum', serif;
+	color: #1b2c43;
+	margin-bottom: 2rem;
+	letter-spacing: 2px;
+	text-shadow: 0 2px 8px #000;
+}
+
+.mainMenuButtons {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	align-items: center;
+	width: 100%;
+}
+
+.mainMenuBtn {
+	background: rgba(40, 40, 40, 0.85);
+	color: #fff;
+	border: 2px solid #0b34a2;
+	padding: 16px 40px;
+	border-radius: 12px;
+	font-size: 1.25rem;
+	font-family: inherit;
+	cursor: pointer;
+	transition: background 0.2s, border 0.2s;
+}
+.mainMenuBtn:hover {
+	background: #828ada;
+	color: #232526;
+	border-color: #fff;
+}
