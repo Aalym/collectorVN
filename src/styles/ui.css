@@ -55,8 +55,8 @@ body, html, #root {
 
 .continue-btn {
   position: absolute;
-  bottom: 40px;
-  right: 60px;
+  bottom: 45px;
+  right: 170px;
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid #fff;
   color: white;
@@ -67,5 +67,23 @@ body, html, #root {
   transition: 0.2s;
 }
 .continue-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* кнопка "Назад" */
+.back-btn {
+  position: absolute;
+  bottom: 160px;
+  left: 170px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid #fff;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.back-btn:hover {
   background: rgba(255, 255, 255, 0.3);
 }

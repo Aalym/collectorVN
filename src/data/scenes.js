@@ -14,7 +14,7 @@ const scenes = {
         text: "2сцена",
         bg: "/src/assets/bg/street.jpg",
         choices: [
-            { text: "Назад", next: "start", type: "normal" },
+            { text: "Назад", next: "start", type: "back" },
             { text: "Продолжить", next: "scene3", type: "next" },
         ],
     },

@@ -111,33 +111,61 @@ function App() {
           <DialogueBar name={current.name} text={current.text} />
         </div>
           <div>
-            {/* Обычные варианты выбора */}
+            {/* Центр — обычные варианты выбора */}
             <div className="choice-container">
               {current.choices
-              ?.filter((c) => c.type !== "next")
+                ?.filter((c) => c.type === "normal")
+                .map((choice, i) => (
+                  <button
+                    key={i}
+                    className="choice-btn"
+                    onClick={() => setScene(choice.next)}
+                  >
+                    {choice.text}
+                  </button>
+                ))}
+            </div>
+
+            {/* Слева — кнопка "Назад" */}
+            {current.choices
+              ?.filter((c) => c.type === "back")
               .map((choice, i) => (
                 <button
                   key={i}
-                  className="choice-btn"
+                  className="back-btn"
                   onClick={() => setScene(choice.next)}
                 >
-                {choice.text}
+                  {choice.text}
                 </button>
               ))}
           </div>
 
-          {/* Кнопка "Продолжить" — отдельно внизу справа */}
-          {current.choices
-            ?.filter((c) => c.type === "next")
-            .map((choice, i) => (
-              <button
-                key={i}
-                className="continue-btn"
-                onClick={() => setScene(choice.next)}
-              >
-              {choice.text}
-              </button>
-            ))}
+{/* Слева — кнопка "Назад" */}
+{current.choices
+  ?.filter((c) => c.type === "back")
+  .map((choice, i) => (
+    <button
+      key={i}
+      className="back-btn"
+      onClick={() => setScene(choice.next)}
+    >
+      {choice.text}
+    </button>
+  ))}
+
+{/* Справа — кнопка "Продолжить" */}
+{current.choices
+  ?.filter((c) => c.type === "next")
+  .map((choice, i) => (
+    <button
+      key={i}
+      className="continue-btn"
+      onClick={() => setScene(choice.next)}
+    >
+      {choice.text}
+    </button>
+  ))}
+
           </div>
 
       </div>
