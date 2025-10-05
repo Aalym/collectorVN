@@ -1,6 +1,8 @@
 import styles from "./MainMenu.module.css";
+import { AudioManager } from "D:/Project/collectorVN/src/audioManager.js";
 
-export default function MainMenu({ onStart, onLoad, onExit }) {
+
+export default function MainMenu({ onStart, onLoad, onExit, onToggleMute, isMuted,  }) {
   return (
     <div className={styles.mainMenuBg}>
       <h1 className={styles.mainMenuTitle}>Collector VN</h1>
@@ -22,6 +24,15 @@ export default function MainMenu({ onStart, onLoad, onExit }) {
           className={styles.mainMenuBtn}
         >
           Выйти
+        </button>
+        <button
+          onClick={() => {
+            const muted = AudioManager.toggleMute();
+            (muted ? "🔇 Музыка выключена" : "🔊 Музыка включена");
+            }}
+            className={styles.mainMenuBtn}
+        >
+            {AudioManager.getMuted() ? "🔇 Включить музыку" : "🔊 Выключить музыку"}
         </button>
       </div>
     </div>

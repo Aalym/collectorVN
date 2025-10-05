@@ -1,6 +1,4 @@
-import { saveGameToSlot, loadGameFromSlot, getAllSaves, clearAllSaves } from "./GameLogic";
-import { useState } from "react";
-import { loadGame, saveGame } from "./GameLogic";
+import { saveGameToSlot, loadGameFromSlot, getAllSaves, clearAllSaves, loadGame, saveGame } from "./GameLogic";
 import Scene from "./components/Scene";
 import MainMenu from "./components/MainMenu/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
@@ -9,8 +7,10 @@ import TestCollector from "../src/assets/chars/Test_collector.png";
 import DialogueBar from "./components/Dialoguebox/DialogueBox";
 import CharacterBox from "./components/character-1/CharacterBox";
 import GameUI from "./UI/GameUI";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { AudioManager } from "./audioManager";
 import menuMusicFile from "/src/assets/audio/menu.ogg";
+
 
 function App() {
   const [showMenu, setShowMenu] = useState(true);
@@ -19,133 +19,33 @@ function App() {
   const [showLoadModal, setShowLoadModal] = useState(false);
   const [saves, setSaves] = useState(getAllSaves());
   const current = scenes[scene];
+  const [isMuted, setIsMuted] = useState(AudioManager.getMuted ? AudioManager.getMuted() : false);
 
-   // --- АУДИО ---
-  const audioRef = useRef(null);
-  const currentMusicRef = useRef(null);
-  const fadeTokenRef = useRef(0); // токен для отмены/сериализации фейдов
-
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-  const fadeOutAndPlayNew = async (newMusic) => {
-    // Отменяем предыдущие фейды — фиксируем текущий токен
-    const myToken = ++fadeTokenRef.current;
-
-    // Плавное затухание текущей (если есть). Берём локальную ссылку.
-    const oldAudio = audioRef.current;
-    if (oldAudio) {
-      // плавно уменьшаем громкость от текущей до 0
-      for (let v = oldAudio.volume; v > 0.01; v -= 0.05) {
-        if (fadeTokenRef.current !== myToken) return; // кто-то отменил
-        oldAudio.volume = Math.max(0, v);
-        await sleep(60);
-      }
-      oldAudio.pause();
-      // не затираем audioRef.current сразу — дождёмся успешного запуска нового аудио ниже
-    }
-
-    if (fadeTokenRef.current !== myToken) return; // отмена после паузы
-
-    // Если не нужно играть новую музыку — полностью остановим и очистим
-    if (!newMusic) {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-      audioRef.current = null;
-      currentMusicRef.current = null;
-      return;
-    }
-
-    // Если уже играет та же музыка — ничего не делаем
-    if (currentMusicRef.current === newMusic && audioRef.current) {
-      // возможно старый уже играет, просто возвращаемся
-      return;
-    }
-
-    // Создаём новый аудиоплеер
-    const newAudio = new Audio(newMusic);
-    newAudio.loop = true;
-    newAudio.volume = 0.0;
-
-    // Попытка play (может быть заблокировано браузером)
-    try {
-      const p = newAudio.play();
-      if (p) {
-        await p.catch(() => { /* поймали блок автозапуска */ });
-      }
-    } catch (e) {
-      /* ignore */
-    }
-
-    // Если токен изменился — отменяем и не ставим этот newAudio в audioRef
-    if (fadeTokenRef.current !== myToken) {
-      try { newAudio.pause(); } catch (e) {}
-      return;
-    }
-
-    // Плавное появление громкости
-    for (let v = 0; v <= 0.5; v += 0.05) {
-      if (fadeTokenRef.current !== myToken) {
-        try { newAudio.pause(); } catch (e) {}
-        return;
-      }
-      newAudio.volume = v;
-      await sleep(60);
-    }
-
-    // Успешно установили новый аудио
-    // старый, если остался, уже был поставлен на pause выше
-    audioRef.current = newAudio;
-    currentMusicRef.current = newMusic;
+  const toggleMute = () => {
+    // AudioManager.toggleMute() должен возвращать новое состояние (true/false)
+    const muted = AudioManager.toggleMute ? AudioManager.toggleMute() : !isMuted;
+    setIsMuted(muted);
   };
 
-  // useEffect: реагируем только на showMenu и scene
+  // если у тебя есть эффект, который слушает isMuted
   useEffect(() => {
-    // если в меню — включаем музыку меню
     if (showMenu) {
-      fadeOutAndPlayNew(menuMusicFile); // menuMusicFile — импортированный файл
-      return;
+      AudioManager.fadeOutAndPlayNew(menuMusicFile);
+    } else if (current?.music === "none") {
+      AudioManager.stopMusic();
+    } else if (current?.music) {
+      AudioManager.fadeOutAndPlayNew(current.music);
     }
-
-    // если в игре — смотрим на сцену
-    if (!current) return;
-    const newMusic = current.music;
-
-    // если явно "none" — выключаем
-    if (newMusic === "none") {
-      fadeOutAndPlayNew(null);
-      return;
-    }
-
-    // если нет поля music — не трогаем текущий трек (он продолжит играть)
-    if (!newMusic) return;
-
-    // если трек другой — переключаем
-    if (currentMusicRef.current !== newMusic) {
-      fadeOutAndPlayNew(newMusic);
-    }
-  }, [scene, showMenu, current]);
-
-  // Останавливаем музыку и отменяем фейды при ручных переходах
-  const stopMusicImmediately = () => {
-    // инкремент токена — отменит все текущие/запланированные фейды
-    fadeTokenRef.current++;
-    if (audioRef.current) {
-      try { audioRef.current.pause(); } catch (e) {}
-    }
-    audioRef.current = null;
-    currentMusicRef.current = null;
-  };
+    }, [scene, showMenu, current]);
 
   const handleBackToMenu = () => {
-    stopMusicImmediately();
-    setShowMenu(true);
-    setShowLoadModal(false);
-    setShowSaveModal(false);
+  AudioManager.stopMusic(); // 🆕 останавливаем текущую музыку
+  setShowMenu(true);
+  setShowLoadModal(false);
+  setShowSaveModal(false);
   };
-
   const handleStart = () => {
-    stopMusicImmediately();
+    AudioManager.stopMusic(); // выключаем музыку меню
     setShowMenu(false);
     setScene("start");
   };
@@ -170,6 +70,7 @@ function App() {
   const handleLoadSlot = (slot) => {
     const loadedScene = loadGameFromSlot(slot);
     if (loadedScene) {
+      AudioManager.stopMusic(); // 🆕 останавливаем музыку меню
       setScene(loadedScene.id || loadedScene);
       setShowMenu(false);
       setShowLoadModal(false);
@@ -188,6 +89,8 @@ function App() {
           onStart={handleStart}
           onLoad={() => setShowLoadModal(true)}
           onExit={handleExit}
+          onToggleMute={toggleMute}
+          isMuted={isMuted}
         />
         {showLoadModal && (
           <div style={{position: 'fixed', top:0, left:0, width:'100vw', height:'100vh', background:'rgba(0,0,0,0.7)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:100}}>

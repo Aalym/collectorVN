@@ -1,6 +1,7 @@
 
 import React from "react";
 import styles from "./GameUI.module.css";
+import { AudioManager } from "D:/Project/collectorVN/src/audioManager.js";
 export default function GameUI({ onBackToMenu, onSave, onLoad }) {
 	return (
 		<div style={{ position: 'absolute', top: 30, right: 20, zIndex: 10, display: 'flex', flexDirection: 'column', gap: '24px' }}>

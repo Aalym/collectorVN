@@ -251,7 +251,7 @@ const scenes = {
     sceneroomportrait6: {
         id: "mansion", // комната портретов6 /id
         name: "Девочка",
-        text: " Это дочь Коллекционера? Она выглядит очень странно...Возможно она состоит из этих душ. Значит он собирает себе дочь из чужих душ?) \n - У тебя есть имя?",
+        text: " (Это дочь Коллекционера? Она выглядит очень странно...Возможно она состоит из этих душ. Значит он собирает себе дочь из чужих душ?) \n  У тебя есть имя?",
         bg: "/src/assets/bg/mansion_interior.jpg",
         choices: [
             { text: "Продолжить", next: "sceneroomportrait7", type: "next" },
@@ -371,4 +371,4 @@ const scenes = {
 
 };
 
-export default scenes;
+export default scenes;  
