@@ -21,9 +21,11 @@
 }
 
 .choice-container {
+    background-color: black;
     position: absolute;
     top: 300px;
-    left: 700px;
+    left: 750px;
+    border-radius: 8px;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;

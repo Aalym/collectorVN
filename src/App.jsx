@@ -10,6 +10,7 @@ import DialogueBar from "./components/Dialoguebox/DialogueBox";
 import CharacterBox from "./components/character-1/CharacterBox";
 import GameUI from "./UI/GameUI";
 import { useEffect, useRef } from "react";
+import menuMusicFile from "/src/assets/audio/menu.ogg";
 
 function App() {
   const [showMenu, setShowMenu] = useState(true);
@@ -19,90 +20,141 @@ function App() {
   const [saves, setSaves] = useState(getAllSaves());
   const current = scenes[scene];
 
-  // --- АУДИО ---
+   // --- АУДИО ---
   const audioRef = useRef(null);
   const currentMusicRef = useRef(null);
+  const fadeTokenRef = useRef(0); // токен для отмены/сериализации фейдов
 
-  useEffect(() => {
-    // 🎵 Если мы в главном меню — выключаем музыку полностью
-    if (showMenu) {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-        currentMusicRef.current = null;
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  const fadeOutAndPlayNew = async (newMusic) => {
+    // Отменяем предыдущие фейды — фиксируем текущий токен
+    const myToken = ++fadeTokenRef.current;
+
+    // Плавное затухание текущей (если есть). Берём локальную ссылку.
+    const oldAudio = audioRef.current;
+    if (oldAudio) {
+      // плавно уменьшаем громкость от текущей до 0
+      for (let v = oldAudio.volume; v > 0.01; v -= 0.05) {
+        if (fadeTokenRef.current !== myToken) return; // кто-то отменил
+        oldAudio.volume = Math.max(0, v);
+        await sleep(60);
       }
-      return; // ничего больше не делаем
+      oldAudio.pause();
+      // не затираем audioRef.current сразу — дождёмся успешного запуска нового аудио ниже
     }
 
-    if (!current) return;
-    const newMusic = current.music;
+    if (fadeTokenRef.current !== myToken) return; // отмена после паузы
 
-    // 🔇 Если сцена не задаёт музыку — просто оставляем текущую
-    if (!newMusic) return;
-
-    // 🔕 Если в сцене явно указано "none" — выключаем звук
-    if (newMusic === "none") {
+    // Если не нужно играть новую музыку — полностью остановим и очистим
+    if (!newMusic) {
       if (audioRef.current) {
         audioRef.current.pause();
-        audioRef.current = null;
-        currentMusicRef.current = null;
       }
+      audioRef.current = null;
+      currentMusicRef.current = null;
       return;
     }
 
-    // 🟢 Если музыка не изменилась — ничего не делаем
-    if (currentMusicRef.current === newMusic) return;
+    // Если уже играет та же музыка — ничего не делаем
+    if (currentMusicRef.current === newMusic && audioRef.current) {
+      // возможно старый уже играет, просто возвращаемся
+      return;
+    }
 
-    // 🔄 Если другая — плавно сменим
-    const fadeOutAndPlayNew = async () => {
-      if (audioRef.current) {
-        for (let i = 0.5; i >= 0; i -= 0.1) {
-          audioRef.current.volume = i;
-          await new Promise((r) => setTimeout(r, 100));
-        }
-        audioRef.current.pause();
+    // Создаём новый аудиоплеер
+    const newAudio = new Audio(newMusic);
+    newAudio.loop = true;
+    newAudio.volume = 0.0;
+
+    // Попытка play (может быть заблокировано браузером)
+    try {
+      const p = newAudio.play();
+      if (p) {
+        await p.catch(() => { /* поймали блок автозапуска */ });
       }
+    } catch (e) {
+      /* ignore */
+    }
 
-      const newAudio = new Audio(newMusic);
-      newAudio.loop = true;
-      newAudio.volume = 0.5;
+    // Если токен изменился — отменяем и не ставим этот newAudio в audioRef
+    if (fadeTokenRef.current !== myToken) {
+      try { newAudio.pause(); } catch (e) {}
+      return;
+    }
 
-      const playPromise = newAudio.play();
-      if (playPromise) {
-        playPromise.catch(() => {
-          console.log("⏸️ Автовоспроизведение заблокировано, ждём клика пользователя");
-          const resume = () => {
-            newAudio.play();
-            document.removeEventListener("click", resume);
-          };
-          document.addEventListener("click", resume);
-        });
+    // Плавное появление громкости
+    for (let v = 0; v <= 0.5; v += 0.05) {
+      if (fadeTokenRef.current !== myToken) {
+        try { newAudio.pause(); } catch (e) {}
+        return;
       }
+      newAudio.volume = v;
+      await sleep(60);
+    }
 
-      audioRef.current = newAudio;
-      currentMusicRef.current = newMusic;
-    };
+    // Успешно установили новый аудио
+    // старый, если остался, уже был поставлен на pause выше
+    audioRef.current = newAudio;
+    currentMusicRef.current = newMusic;
+  };
 
-    fadeOutAndPlayNew();
-  }, [scene, showMenu]);
+  // useEffect: реагируем только на showMenu и scene
+  useEffect(() => {
+    // если в меню — включаем музыку меню
+    if (showMenu) {
+      fadeOutAndPlayNew(menuMusicFile); // menuMusicFile — импортированный файл
+      return;
+    }
+
+    // если в игре — смотрим на сцену
+    if (!current) return;
+    const newMusic = current.music;
+
+    // если явно "none" — выключаем
+    if (newMusic === "none") {
+      fadeOutAndPlayNew(null);
+      return;
+    }
+
+    // если нет поля music — не трогаем текущий трек (он продолжит играть)
+    if (!newMusic) return;
+
+    // если трек другой — переключаем
+    if (currentMusicRef.current !== newMusic) {
+      fadeOutAndPlayNew(newMusic);
+    }
+  }, [scene, showMenu, current]);
+
+  // Останавливаем музыку и отменяем фейды при ручных переходах
+  const stopMusicImmediately = () => {
+    // инкремент токена — отменит все текущие/запланированные фейды
+    fadeTokenRef.current++;
+    if (audioRef.current) {
+      try { audioRef.current.pause(); } catch (e) {}
+    }
+    audioRef.current = null;
+    currentMusicRef.current = null;
+  };
+
+  const handleBackToMenu = () => {
+    stopMusicImmediately();
+    setShowMenu(true);
+    setShowLoadModal(false);
+    setShowSaveModal(false);
+  };
 
   const handleStart = () => {
+    stopMusicImmediately();
     setShowMenu(false);
     setScene("start");
   };
-
   const handleLoad = () => {
     setShowLoadModal(true);
   };
 
   const handleExit = () => {
     window.close();
-  };
-
-  const handleBackToMenu = () => {
-    setShowMenu(true);
-    setShowLoadModal(false);
-    setShowSaveModal(false);
   };
 
   const handleSave = () => {
