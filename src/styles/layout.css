@@ -23,11 +23,4 @@ body {
     filter: brightness(0.8);
 }
 
-.character {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 85vh;
-    z-index: 1;
-}
+
