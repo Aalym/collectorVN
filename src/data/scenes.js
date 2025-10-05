@@ -26,7 +26,7 @@ const scenes = {
         bg: "src/assets/bg/mansion.png",
         choices: [
             { text: "подойти к особняку", next: "scene4", type: "normal" },
-            { text: "Назад", next: "scene2" },
+            { text: "Назад", next: "scene2", type: "back"    },
         ],
     },
     scene4: {
@@ -36,7 +36,7 @@ const scenes = {
         bg: "/src/assets/bg/mansion.jpg",
         choices: [
             { text: "далее", next: "scene5", type: "next" },
-            { text: "Назад", next: "scene3" },
+            { text: "Назад", next: "scene3", type: "back" },
         ],
     },
     scene5: {
@@ -46,17 +46,27 @@ const scenes = {
         bg: "/src/assets/bg/mansion_interior.jpg",
         choices: [
             { text: "Войти в особняк", next: "scene6", type: "normal" },
-            { text: "Уйти", next: "scene4" },
+            { text: "Уйти", next: "sceneleave", type: "normal" },
+            { text: "Назад", next: "scene4", type: "back" },
+        ],
+    },
+    sceneleave: {
+        id: "leave", // custom scene name/id
+        name: "",
+        text: "Вы решили уйти.",
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        choices: [
+            { text: "Назад", next: "scene5", type: "back" },
         ],
     },
     scene6: {
         id: "mansion", // custom scene name/id
         name: "Девочка",
-        text: "Мрачновато",
+        text: "- Мрачновато",
         bg: "/src/assets/bg/mansion_interior.jpg",
         choices: [
             { text: "осмотреться", next: "scene7", type: "normal" },
-            { text: "Уйти", next: "scene4" },
+            { text: "Назад", next: "scene5", type: "back" },
         ],
     },
     scene7: {
@@ -66,9 +76,10 @@ const scenes = {
         bg: "/src/assets/bg/mansion_interior.jpg",
         choices: [
             { text: "осмотреться", next: "scene8" },
-            { text: "Уйти", next: "scene4" },
+            { text: "Назад", next: "scene6", type: "back" },
         ],
     },
+    
 };
 
 export default scenes;
