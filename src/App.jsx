@@ -108,23 +108,38 @@ function App() {
           marginBottom: "2px"
         }}>
           <CharacterBox src={TestCollector} alt="Персонаж" />
-          <DialogueBar text={current.text} />
+          <DialogueBar name={current.name} text={current.text} />
         </div>
-        <div className="choice-container">
-          {current.choices.length > 0 ? (
-            current.choices.map((choice, i) => (
+          <div>
+            {/* Обычные варианты выбора */}
+            <div className="choice-container">
+              {current.choices
+              ?.filter((c) => c.type !== "next")
+              .map((choice, i) => (
+                <button
+                  key={i}
+                  className="choice-btn"
+                  onClick={() => setScene(choice.next)}
+                >
+                {choice.text}
+                </button>
+              ))}
+          </div>
+
+          {/* Кнопка "Продолжить" — отдельно внизу справа */}
+          {current.choices
+            ?.filter((c) => c.type === "next")
+            .map((choice, i) => (
               <button
                 key={i}
-                className="choice-btn"
+                className="continue-btn"
                 onClick={() => setScene(choice.next)}
               >
-                {choice.text}
+              {choice.text}
               </button>
-            ))
-          ) : (
-            <button className="choice-btn" onClick={() => setScene("start")}>Играть снова</button>
-          )}
-        </div>
+            ))}
+          </div>
+
       </div>
       {showSaveModal && (
         <div style={{position: 'fixed', top:0, left:0, width:'100vw', height:'100vh', background:'rgba(0,0,0,0.7)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:100}}>

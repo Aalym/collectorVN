@@ -2,21 +2,42 @@ import React, { useEffect, useState } from "react";
 import styles from "../Dialoguebox/DialogueBox.module.css";
 
 export default function DialogueBar({ name, text }) {
-  const [key, setKey] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [finished, setFinished] = useState(false);
 
-  // Каждый раз, когда текст меняется — обновляем ключ
   useEffect(() => {
-    setKey((prev) => prev + 1);
+    setDisplayedText("");
+    setFinished(false);
+
+    let i = 0;
+    const speed = 25; // скорость печати
+    const interval = setInterval(() => {
+      i++;
+      setDisplayedText(text.slice(0, i));
+      if (i >= text.length) {
+        clearInterval(interval);
+        setFinished(true);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
   }, [text]);
 
+  const handleClick = () => {
+    // по клику показываем весь текст сразу
+    if (!finished) {
+      setDisplayedText(text);
+      setFinished(true);
+    }
+  };
+
   return (
-    <div className={styles.DialogueBox}>
+    <div className={styles.DialogueBox} onClick={handleClick}>
       {name && <div className={styles.dialogueName}>{name}</div>}
       <div className={styles.dialogueText}>
-        {/* 👇 key заставляет React пересоздать элемент, перезапуская анимацию */}
-        <span key={key} className={styles.textReveal}>
-          {text}
-        </span>
+        {displayedText.split("\n").map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
       </div>
     </div>
   );
