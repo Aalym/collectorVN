@@ -6,6 +6,8 @@ import MainMenu from "./components/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
 import scenes from "./data/scenes";
 import TestCollector from "../src/assets/chars/Test_collector.png";
+import DialogueBar from "./components/DialogueBar";
+import CharacterBox from "./components/character-1/CharacterBox";
 
 
 function App() {
@@ -109,37 +111,20 @@ function App() {
         >
           Загрузить сохранение
         </button>
-        <div className="dialogue-box" style={{
-  height: "175px",
-  background: "rgba(30,30,30,0.85)",
-  marginBottom: "2px",
-  display: "flex",
-  alignItems: "flex-end",
-  position: "absolute",
-  left: 0,
-  right: 0,
-  bottom: 0
-}}>
-  <div
-    className="character-box"
-    style={{
-      paddingTop: "21px",
-      width: "1920px",
-      height: "1080px",
-      marginRight: "124px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      marginBottom: "-240px"
-    }}
-  >
-    {<img src="../src/assets/chars/Test_collector.png" alt="Персонаж" style={{maxWidth:"1066px",maxHeight:"955px"}} />}
-  </div>
-  <div style={{ flex: 1 }}>
-    {current.name && <div className="dialogue-name">{current.name}</div>}
-    <div className="dialogue-text">{current.text}</div>
-  </div>
-</div>
+        <div style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: "flex",
+          alignItems: "flex-end",
+          height: "175px",
+          background: "rgba(30,30,30,0.85)",
+          marginBottom: "2px"
+        }}>
+          <CharacterBox src={TestCollector} alt="Персонаж" />
+          <DialogueBar name={current.name} text={current.text} />
+        </div>
         <div className="choice-container">
           {current.choices.length > 0 ? (
             current.choices.map((choice, i) => (
