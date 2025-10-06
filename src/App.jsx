@@ -99,14 +99,19 @@ useEffect(() => {
 
   const handleLoadSlot = (slot) => {
     const loadedData = loadGameFromSlot(slot);
-    if (loadedData?.scene) {
+    if (loadedData && loadedData.id) {
       AudioManager.stopMusic();
-      setScene(loadedData.scene.id || loadedData.scene);
-      if (loadedData.playerState) setPlayerState(loadedData.playerState); // 🟢 восстановление предметов
+      setScene(loadedData.id); // <-- ключ сцены
+      if (loadedData.playerState) {
+        setPlayerState(loadedData.playerState);
+      }
       setShowMenu(false);
       setShowLoadModal(false);
+    } else {
+      console.warn("⚠️ Пустой или битый слот:", loadedData);
     }
   };
+
 
   const handlePickupItem = (item) => {
     setPlayerState((prev) => ({

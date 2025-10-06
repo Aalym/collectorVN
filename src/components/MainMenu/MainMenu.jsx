@@ -1,11 +1,15 @@
 import styles from "./MainMenu.module.css";
 import { AudioManager } from "/src/audioManager.js";
-
+import Title from "/src/components/MainMenu/TitleBg.JPG"
 
 export default function MainMenu({ onStart, onLoad, onExit, onToggleMute, isMuted,  }) {
   return (
     <div className={styles.mainMenuBg}>
-      <h1 className={styles.mainMenuTitle}>Collector VN</h1>
+      <img
+        src={Title}
+        alt="Collector VN Title"
+        className={styles.mainMenuTitle}
+      />
       <div className={styles.mainMenuButtons}>
         <button
           onClick={onStart}
