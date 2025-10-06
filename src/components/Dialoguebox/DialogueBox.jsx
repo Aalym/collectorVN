@@ -5,14 +5,14 @@ export default function DialogueBar({ name, text }) {
   const safeText = text || "";
   const [displayedText, setDisplayedText] = useState("");
   const [finished, setFinished] = useState(false);
-  const intervalRef = useRef(null); // 🔹 сохраняем интервал сюда
+  const intervalRef = useRef(null); 
 
   useEffect(() => {
     setDisplayedText("");
     setFinished(false);
 
     let i = 0;
-    const speed = 25; // скорость печати
+    const speed = 25; 
     intervalRef.current = setInterval(() => {
       i++;
       setDisplayedText((text || "").slice(0, i));
@@ -27,8 +27,8 @@ export default function DialogueBar({ name, text }) {
 
   const handleClick = () => {
     if (!finished) {
-      clearInterval(intervalRef.current); // 🔹 остановить печать
-      setDisplayedText(text); // 🔹 показать весь текст
+      clearInterval(intervalRef.current); 
+      setDisplayedText(text); 
       setFinished(true);
     }
   };

@@ -32,12 +32,12 @@ function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   const toggleMute = () => {
-    // AudioManager.toggleMute() должен возвращать новое состояние (true/false)
+    
     const muted = AudioManager.toggleMute ? AudioManager.toggleMute() : !isMuted;
     setIsMuted(muted);
   };
 
-  // если у тебя есть эффект, который слушает isMuted
+  
   useEffect(() => {
     if (showMenu) {
       AudioManager.fadeOutAndPlayNew(menuMusicFile);
@@ -49,13 +49,13 @@ function App() {
     }, [scene, showMenu, current]);
 
       const handleBackToMenu = () => {
-  AudioManager.stopMusic(); // 🆕 останавливаем текущую музыку
+  AudioManager.stopMusic(); 
   setShowMenu(true);
   setShowLoadModal(false);
   setShowSaveModal(false);
-  setScene("start"); // 👈 важно, чтобы реально вернуло к сцене меню
-  setShowEnding(false); // 👈 если есть состояние окончания — убираем
-  setPlayerState({ hasFlashlight: false }); // 🧹 сбрасываем предметы
+  setScene("start"); 
+  setShowEnding(false); 
+  setPlayerState({ hasFlashlight: false }); 
 
 };  
 
@@ -64,7 +64,7 @@ function App() {
 useEffect(() => {
   if (!current) return;
 
-  // если сцена помечена как концовка
+  
   if (current.ending) {
     setShowEnding(true);
     return;
@@ -75,7 +75,7 @@ useEffect(() => {
 
 
   const handleStart = () => {
-    AudioManager.stopMusic(); // выключаем музыку меню
+    AudioManager.stopMusic(); 
     setShowMenu(false);
     setScene("start");
   };
@@ -101,7 +101,7 @@ useEffect(() => {
     const loadedData = loadGameFromSlot(slot);
     if (loadedData && loadedData.id) {
       AudioManager.stopMusic();
-      setScene(loadedData.id); // <-- ключ сцены
+      setScene(loadedData.id); 
       if (loadedData.playerState) {
         setPlayerState(loadedData.playerState);
       }
@@ -190,28 +190,28 @@ useEffect(() => {
           <DialogueBar name={current.name} text={current.text} />
         </div>
           <div>
-            {/* Центр — обычные варианты выбора */}
+            
             <div className="choice-container">
               {current.choices
                 ?.filter((c) => c.type === "normal")
-                .filter((c) => !c.requiredItem || playerState[c.requiredItem]) // 🔹 показываем, если предмет есть
+                .filter((c) => !c.requiredItem || playerState[c.requiredItem]) 
                 .map((choice, i) => (
                   <button
                     key={i}
                     className="choice-btn"
                     onClick={() => {
-                      // ✅ если выбор даёт предмет — записываем его в playerState
+                      
                       if (choice.giveItem) handlePickupItem(choice.giveItem);
-                      // ✅ переходим к следующей сцене
+                      
                       setScene(choice.next);
                     }}
                   >
-                    {choice.text} {/* ✅ не забываем вставить текст кнопки */}
+                    {choice.text} 
                   </button>
                 ))}
             </div>
 
-            {/* 👇 Добавляешь сюда */}
+            
             {current.hotspots && (
               <HotspotLayer
                 hotspots={current.hotspots}
@@ -249,7 +249,7 @@ useEffect(() => {
             )}
 
 
-            {/* Слева — кнопка "Назад" */}
+            
             {current.choices
               ?.filter((c) => c.type === "back")
               .map((choice, i) => (
@@ -263,7 +263,7 @@ useEffect(() => {
               ))}
           </div>
 
-          {/* Справа — кнопка "Продолжить" */}
+          
           {current.choices
             ?.filter((c) => c.type === "next")
             .map((choice, i) => (

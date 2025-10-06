@@ -5,7 +5,7 @@ import anotherEndingImg from "../assets/endings/ending3.jpg";
 import girl from "/src/assets/chars/girl.png";
 const scenes = {
     start: {
-        id: "start", // scene name/id
+        id: "start", 
         name: "Девочка",
         text: " Я самая обыкновенная юная девочка, что живет самой простой жизнью. В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
         bg: "/src/assets/bg/intro.jpeg",
@@ -16,7 +16,7 @@ const scenes = {
         ],
     },
     scene2: {
-        id: "mansion", // custom scene name/id
+        id: "mansion", 
         name: "",
         text: "Яркий особняк красуется в темном лесу, что так и манит к себе… ",
         bg: "src/assets/bg/mansion.png",
@@ -52,7 +52,7 @@ const scenes = {
     },
 
     scene3: {
-        id: "park", // custom scene name/id
+        id: "park", 
         name: "Девочка", 
         text: " Мне надо пробраться в особняк.",
         char: "/src/assets/chars/girl.png",
@@ -63,7 +63,7 @@ const scenes = {
         ],
     },
     scene4: {
-        id: "park", // custom scene name/id
+        id: "park", 
         name: "",
         text: "Тихий хруст травы под ногами девчонки, стремящейся ко входу в особняк.",
         bg: "/src/assets/bg/mansion.jpg",
@@ -73,7 +73,7 @@ const scenes = {
         ],
     },
     scene5: {
-        id: "mansion", // custom scene name/id
+        id: "mansion", 
         name: "",
         text: "Подойдя к особняку девочка увидела, что дверь была открыта",
         bg: "/src/assets/bg/mansion_interior.jpg",
@@ -84,7 +84,7 @@ const scenes = {
         ],
     },
     sceneleave: {
-        id: "leave", // custom scene name/id
+        id: "leave", 
         name: "",
         text: "Вы решили уйти.",
         bg: "/src/assets/bg/mansion_interior.jpg",
@@ -93,7 +93,7 @@ const scenes = {
         ],
     },
     scene6: {
-        id: "mansion", // custom scene name/id
+        id: "mansion", 
         name: "Девочка",
         text: " Мрачновато",
         bg: "/src/assets/bg/hallway.jpeg",
@@ -446,7 +446,7 @@ const scenes = {
         id: "photoRoom", 
         name: "Девочка",
         text: " фото семьи",
-        bg: "/src/assets/bg/photo.jpeg",
+        bg: "/src/assets/bg/photo1.jpg",
         char: "",
         music: "",
         choices: [
