@@ -6,8 +6,8 @@ const scenes = {
     start: {
         id: "start", // scene name/id
         name: "Девочка",
-        text: "- Я самая обыкновенная юная девочка, что живет самой простой жизнью.В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
-        bg: "/src/assets/bg/room.jpg",
+        text: " Я самая обыкновенная юная девочка, что живет самой простой жизнью.В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
+        bg: "/src/assets/bg/intro.jpeg",
         char: "/src/assets/chars/girl.png",
         music: "",
         choices: [
@@ -32,7 +32,7 @@ const scenes = {
         char: "/src/assets/chars/girl.png",
         bg: "src/assets/bg/mansion.png",
         choices: [
-            { text: "подойти к особняку", next: "scene4", type: "normal" },
+            { text: "подойти к особняку", next: "scene4", type: "next" },
             { text: "Назад", next: "scene2", type: "back"    },
         ],
     },
@@ -69,12 +69,12 @@ const scenes = {
     scene6: {
         id: "mansion", // custom scene name/id
         name: "Девочка",
-        text: "- Мрачновато",
-        bg: "/src/assets/bg/mansion_interior.jpg",
+        text: " Мрачновато",
+        bg: "/src/assets/bg/corridor.jpg",
         char: "/src/assets/chars/girl.png",
         music: "",
         choices: [
-            { text: "осмотреться", next: "scene7", type: "normal" },
+            { text: "осмотреться", next: "scene7", type: "next" },
             { text: "Назад", next: "scene5", type: "back" },
         ],
     },
@@ -82,23 +82,25 @@ const scenes = {
     id: "doors_room",
     name: "",
     text: "В комнате стояло две двери: одна слева, другая справа. Куда пойти?",
-    bg: "/src/assets/bg/doorsRoom.webp",
+    bg: "/src/assets/bg/doors.jpg",
     hotspots: [
         {
             id: "leftDoor",
-            x: "35%",
-            y: "60%",
-            width: "15%",
-            height: "40%",
+            x: "36.3%",
+            y: "52%",
+            width: "30%",
+            height: "70%",
             next: "scene8_left",
+            label: "Левая дверь"
         },
         {
             id: "rightDoor",
-            x: "65%",
-            y: "60%",
-            width: "15%",
-            height: "40%",
+            x: "88%",
+            y: "52%",
+            width: "30%",
+            height: "70%",
             next: "scene8_right",
+            label: "Правая дверь"
         },
     ],
     choices: [{ text: "Назад", next: "scene6", type: "back" }],

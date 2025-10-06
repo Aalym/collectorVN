@@ -10,6 +10,7 @@ export default function HotspotLayer({
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [progress, setProgress] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState(null);
+  const [hoveredHotspot, setHoveredHotspot] = useState(null); // 🆕
   const intervalRef = useRef(null);
 
   const updateCursor = (e) => {
@@ -65,16 +66,45 @@ export default function HotspotLayer({
         <div
           key={spot.id}
           onMouseDown={(e) => handleMouseDown(e, spot)}
+          onMouseEnter={() => setHoveredHotspot(spot)}
+          onMouseLeave={() => setHoveredHotspot(null)}
           style={{
             position: "absolute",
             left: spot.x,
             top: spot.y,
             width: spot.width,
             height: spot.height,
-            transform: "translate(-50%, -50%)",
+            transform: "translate(-90%, -50%)",
             cursor: "pointer",
+            border:
+              hoveredHotspot === spot
+                ? "2px solid rgba(255,255,255,0.6)"
+                : "2px solid transparent",
+            transition: "border 0.2s ease",
           }}
-        />
+        >
+          {/* 🆕 Подсказка при наведении */}
+          {hoveredHotspot === spot && spot.label && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: "110%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "rgba(0,0,0,0.75)",
+                color: "#fff",
+                padding: "6px 10px",
+                borderRadius: "8px",
+                fontSize: "14px",
+                whiteSpace: "nowrap",
+                pointerEvents: "none",
+                zIndex: 9999,
+              }}
+            >
+              {spot.label}
+            </div>
+          )}
+        </div>
       ))}
 
       {activeHotspot && progress > 0 && (
