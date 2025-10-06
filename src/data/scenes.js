@@ -354,14 +354,14 @@ const scenes = {
     text: "Из комнаты с бабочками в коридор ",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
-        { text: "Идти дальше", next: "scenerun4", type: "normal" },
+        { text: "Бежать дальше", next: "scenerun4", type: "normal" },
         { text: "Назад", next: "scenerun2", type: "back" }
     ],
     },
     scenerun4: {
     id: "doors_room",
     name: "",
-    text: "Вы возвращаетесь к дверям лаймового цвета",
+    text: "Из коридора к дверям лаймового цвета",
     bg: "/src/assets/bg/doors3.jpg",
     hotspots: [
         {
