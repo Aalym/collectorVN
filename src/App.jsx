@@ -10,6 +10,7 @@ import GameUI from "./UI/GameUI";
 import { useEffect, useRef, useState } from "react";
 import { AudioManager } from "./audioManager";
 import menuMusicFile from "/src/assets/audio/menu.ogg";
+import EndingScreen from "./components/EndingScreen/EndingScreen";
 
 
 
@@ -19,7 +20,7 @@ function App() {
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showLoadModal, setShowLoadModal] = useState(false);
   const [saves, setSaves] = useState(getAllSaves());
-  const current = scenes[scene];
+  const current = scenes[scene] || { bg: "", name: "", text: "", choices: [] };
   const [isMuted, setIsMuted] = useState(AudioManager.getMuted ? AudioManager.getMuted() : false);
   const [showEnding, setShowEnding] = useState(false);
 
@@ -45,41 +46,23 @@ function App() {
   setShowMenu(true);
   setShowLoadModal(false);
   setShowSaveModal(false);
-  setScene("mainmenu"); // 👈 важно, чтобы реально вернуло к сцене меню
+  setScene("start"); // 👈 важно, чтобы реально вернуло к сцене меню
   setShowEnding(false); // 👈 если есть состояние окончания — убираем
 };  
 
-  if (current && current.end) {
-  return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        backgroundImage: `url(${current.bg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          padding: "40px 80px",
-          borderRadius: "20px",
-          textAlign: "center",
-        }}
-      >
-        <h1 style={{ color: "white", marginBottom: "20px" }}>{current.text}</h1>
-        <button className="choice-btn" onClick={handleBackToMenu}>
-          Вернуться в меню
-        </button>
-      </div>
-    </div>
-  );
-}
+
+
+useEffect(() => {
+  if (!current) return;
+
+  // если сцена помечена как концовка
+  if (current.ending) {
+    setShowEnding(true);
+    return;
+  }
+
+  setShowEnding(false);
+}, [current]);
 
 
   const handleStart = () => {
@@ -120,6 +103,16 @@ function App() {
     setSaves(getAllSaves());
   };
 
+  if (showEnding && current.bg && current.text) {
+  return (
+    <EndingScreen
+      background={current.bg}
+      text={current.text}
+      onBackToMenu={handleBackToMenu}
+    />
+  );
+}
+
   if (showMenu) {
     return (
       <>
@@ -159,7 +152,7 @@ function App() {
         <div style={{
           position: "relative",
           height: "100vh",
-          backgroundImage: `url(${current.bg})`,
+          backgroundImage: current?.bg ? `url(${current.bg})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

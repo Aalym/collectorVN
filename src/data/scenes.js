@@ -487,14 +487,84 @@ const scenes = {
         ],
     },
     scenechather18: {
-        id: "manion", // разговор с ней 17/id
+        id: "manion", // разговор с ней 18/id
         name: "Дочь",
-        text: ' Продолжить надо',
+        text: '  Я не желаю быть твоей дочерью.',
         bg: "/src/assets/bg/mansion_interior.jpg",
         char: "",
         choices: [
-            { text: "Продолжить", next: "scenechather18", type: "next" },
-            { text: "Назад", next: "scenechather16", type: "back" },
+            { text: "Продолжить", next: "scenechather19", type: "next" },
+            { text: "Назад", next: "scenechather17", type: "back" },
+        ],
+    },
+    scenechather19: {
+        id: "manion", // разговор с ней 19/id
+        name: "Коллекционер",
+        text: '  ...',
+        bg: "/src/assets/bg/mansion_interior.jpg",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather20", type: "next" },
+            { text: "Назад", next: "scenechather18", type: "back" },
+        ],
+    },
+    scenechather20: {
+        bg: "/src/assets/endings/ending2.JPG",
+        choices: [
+            { text: "Продолжить", next: "scenechather21", type: "next" },
+            { text: "Назад", next: "scenechather19", type: "back" },
+        ],
+    },
+    scenechather21: {
+        id: "manion", // разговор с ней 21/id
+        name: "Коллекционер",
+        text: '  ...',
+        bg: "/src/assets/endings/ending2.JPG",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather22", type: "next" },
+            { text: "Назад", next: "scenechather19", type: "back" },
+        ],
+    },
+    scenechather22: {
+        id: "manion", // разговор с ней 22/id
+        name: "Коллекционер",
+        text: '  Неужели это конец? Такова...моя судьба?',
+        bg: "/src/assets/endings/ending2.JPG",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather23", type: "next" },
+            { text: "Назад", next: "scenechather20", type: "back" },
+        ],
+    },
+    scenechather23: {
+        id: "manion", // разговор с ней 21/id
+        name: "Коллекционер",
+        text: '  ...',
+        bg: "/src/assets/endings/ending2.JPG",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "endingVoid", type: "next" },
+            { text: "Назад", next: "scenechather20", type: "back" },
+        ],
+    },
+    endingVoid: {
+        text: '  С тех пор Мистера Коллекционера больше не видели. \nНо а я... так и осталась пустой оболочкой без души.',
+        bg: "black",
+        ending: true,
+        choices: [
+            {text: "Назад", next: "scenechather23", type: "back" },
+        ],
+    },
+    scenechather25: {
+        id: "manion", // разговор с ней 21/id
+        name: "",
+        text: '  ...',
+        bg: "/src/assets/endings/ending2.JPG",
+        char: "/src/assets/chars/magician.png",
+        choices: [
+            { text: "Продолжить", next: "scenechather25", type: "next" },
+            { text: "Назад", next: "scenechather22", type: "back" },
         ],
     },
 

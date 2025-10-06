@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../Dialoguebox/DialogueBox.module.css";
 
 export default function DialogueBar({ name, text }) {
+  const safeText = text || "";
   const [displayedText, setDisplayedText] = useState("");
   const [finished, setFinished] = useState(false);
 
@@ -13,7 +14,7 @@ export default function DialogueBar({ name, text }) {
     const speed = 25; // скорость печати
     const interval = setInterval(() => {
       i++;
-      setDisplayedText(text.slice(0, i));
+      setDisplayedText((text|| "").slice(0, i));
       if (i >= text.length) {
         clearInterval(interval);
         setFinished(true);
