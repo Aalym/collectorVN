@@ -301,7 +301,7 @@ const scenes = {
     scene19: {
     id: "Room19",
     name: "Девочка",
-    text: "черный экран",
+    text: "Вы спускаетесь в подвал",
     bg: "/src/assets/bg/black.png",
     choices: [
         { text: "Далее", next: "scene20", type: "next" },
@@ -311,21 +311,21 @@ const scenes = {
     scene20: {
     id: "Room20",
     name: "Девочка",
-    text: "Подвал",
+    text: "Вы вошли в подвал",
     bg: "/src/assets/bg/basement.jpeg",
     choices: [
-        { text: "идти дальше", next: "scenerun", type: "normal" },
-        { text: "Вернуться", next: "scene19", type: "back" }
+        { text: "Идти дальше", next: "scenerun", type: "normal" },
+        { text: "Назад", next: "scene19", type: "back" }
     ],
     },
     scenerun: {
     id: "Room18_back",
     name: "Девочка",
-    text: "дверь в подвал побег",
+    text: "Дверь в подвал",
     bg: "/src/assets/bg/basementdoor.jpg",
     choices: [
-        { text: "идти дальше", next: "scenerun2", type: "normal" },
-        { text: "Вернуться", next: "scene20", type: "back" }
+        { text: "Идти дальше(убежать)", next: "scenerun2", type: "normal" },
+        { text: "Назад", next: "scene20", type: "back" }
     ],
     },
     scenerun2: {
@@ -334,8 +334,8 @@ const scenes = {
     text: "Ты вернулась в комнату с бабочками побег",
     bg: "/src/assets/bg/collectorroom.jpeg",
     choices: [
-        { text: "идти дальше", next: "scenerun3", type: "normal" },
-        { text: "Вернуться", next: "scenerun", type: "back" }
+        { text: "Идти дальше", next: "scenerun3", type: "normal" },
+        { text: "Назад", next: "scenerun", type: "back" }
     ],
     },
     scenerun3: {
