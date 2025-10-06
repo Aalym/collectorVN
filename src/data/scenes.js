@@ -70,7 +70,7 @@ const scenes = {
         id: "mansion", // custom scene name/id
         name: "Девочка",
         text: " Мрачновато",
-        bg: "/src/assets/bg/corridor.jpg",
+        bg: "/src/assets/bg/hallway.jpeg",
         char: "/src/assets/chars/girl.png",
         music: "",
         choices: [
@@ -110,7 +110,7 @@ const scenes = {
     id: "leftRoom",
     name: "Девочка",
     text: "Ты вошла в левую дверь. Холодный воздух ударил в лицо...",
-    bg: "/src/assets/bg/left_room.jpg",
+    bg: "/src/assets/bg/kitchen.jpg",
     choices: [{ text: "Вернуться", next: "scene7", type: "back" }],
     },
 
@@ -118,8 +118,24 @@ const scenes = {
     id: "rightRoom",
     name: "Девочка",
     text: "Ты открыла правую дверь — внутри тихо, лишь слышно капли воды.",
-    bg: "/src/assets/bg/right_room.jpg",
-    choices: [{ text: "Вернуться", next: "scene7", type: "back" }],
+    bg: "/src/assets/bg/livingroom.jpeg",
+    choices: [
+            { text: "идти дальше", next: "scene9", type: "next" },
+            { text: "Назад", next: "scene7", type: "back" },
+        ],
+    },
+    scene9: {
+        id: "corridor", 
+        name: "Девочка",
+        text: " Мрачновато",
+        bg: "/src/assets/bg/corridor.jpg",
+        char: "/src/assets/chars/girl.png",
+        music: "",
+        choices: [
+            { text: "осмотреться", next: "scene10", type: "normal" },
+            { text: "идти дальше", next: "scene12", type: "normal" },
+            { text: "Назад", next: "scene9", type: "back" },
+        ],
     },
 };
 
