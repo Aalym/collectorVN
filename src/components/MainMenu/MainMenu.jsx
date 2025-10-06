@@ -2,6 +2,7 @@ import styles from "./MainMenu.module.css";
 import { AudioManager } from "/src/audioManager.js";
 import Title from "/src/components/MainMenu/TitleBg.png"
 
+
 export default function MainMenu({ onStart, onLoad, onExit, onToggleMute, isMuted,  }) {
   return (
     <div className={styles.mainMenuBg}>
