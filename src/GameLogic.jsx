@@ -69,23 +69,6 @@ export function saveGame(scene) {
   localStorage.setItem("vn_save", JSON.stringify({ scene }));
 }
 
-export function saveGameToSlot(scene, slot) {
-  let saves = JSON.parse(localStorage.getItem('vn_saves') || '[]');
-  // Use scene.id and scene.text for display name
-  let name = '';
-  if (scene.id && scene.text) {
-    name = `${scene.id}: ${scene.text.substring(0, 30)}`;
-  } else if (scene.text) {
-    name = scene.text.substring(0, 30);
-  } else if (scene.id) {
-    name = scene.id;
-  } else {
-    name = `Сцена ${slot+1}`;
-  }
-  saves[slot] = { scene, name };
-  localStorage.setItem('vn_saves', JSON.stringify(saves));
-}
-
 export function loadGameFromSlot(slot) {
   let saves = JSON.parse(localStorage.getItem('vn_saves') || '[]');
   return saves[slot]?.scene || null;
@@ -97,4 +80,15 @@ export function getAllSaves() {
 
 export function clearAllSaves() {
   localStorage.removeItem('vn_saves');
+}
+
+export function saveGameToSlot(scene, slot, playerState = {}) {
+  const saves = getAllSaves();
+  saves[slot] = {
+    id: scene,
+    name: scene,
+    playerState, // 🟢 сохраняем состояние игрока
+    timestamp: Date.now(),
+  };
+  localStorage.setItem("gameSaves", JSON.stringify(saves));
 }
