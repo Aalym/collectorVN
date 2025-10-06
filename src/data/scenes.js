@@ -159,7 +159,7 @@ const scenes = {
     scene12: {
     id: "doors_room2",
     name: "",
-    text: "В комнате стояло две двери",
+    text: "В комнате стояло две двери бер.зового цвета",
     bg: "/src/assets/bg/doors2.jpg",
     hotspots: [
         {
@@ -230,7 +230,7 @@ const scenes = {
     scene16: {
     id: "doors_room3",
     name: "",
-    text: "В комнате стояло две двери",
+    text: "В комнате стояло две двери лаймового цвета",
     bg: "/src/assets/bg/doors3.jpg",
     hotspots: [
         {
@@ -344,15 +344,15 @@ const scenes = {
     text: "Ты вернулась в коридор побег",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
-        { text: "идти дальше", next: "scenerun4", type: "normal" },
-        { text: "Вернуться", next: "scenerun2", type: "back" }
+        { text: "Идти дальше", next: "scenerun4", type: "normal" },
+        { text: "Назад", next: "scenerun2", type: "back" }
     ],
     },
     scenerun4: {
     id: "doors_room",
     name: "",
-    text: "В комнате стояло две двери: одна слева, другая справа. Куда пойти?",
-    bg: "/src/assets/bg/doors.jpg",
+    text: "Вы возвращаетесь к дверям лаймового цвета",
+    bg: "/src/assets/bg/doors3.jpg",
     hotspots: [
         {
             id: "leftDoor",
@@ -392,13 +392,13 @@ const scenes = {
     bg: "/src/assets/bg/lab.jpeg",
     choices: [
         { text: "Идти дальше", next: "scenerun6", type: "normal" },
-        { text: "Вернуться", next: "scenerun4", type: "back" }
+        { text: "Назад", next: "scenerun4", type: "back" }
     ],
     },
     scenerun6: {
         id: "corridor", 
         name: "Девочка",
-        text: " Коридор",
+        text: " Вы прибежали в коридор",
         bg: "/src/assets/bg/corridor.jpg",
         choices: [
             { text: "Осмотреться", next: "scenephotorun", type: "normal" },
@@ -421,8 +421,8 @@ const scenes = {
     scenerun7: {
     id: "doors_room4",
     name: "Девочка",
-    text: "Ты видишь две двери",
-    bg: "/src/assets/bg/doors.jpg",
+    text: "Ты вернулся к дверям берюзового цвета",
+    bg: "/src/assets/bg/doors2.jpg",
     hotspots: [
         {
             id: "leftDoor",
@@ -458,17 +458,17 @@ const scenes = {
     scenerun8_left: {
     id: "leftRoom13",
     name: "Девочка",
-    text: "Ты вошла в гостиную",
-    bg: "/src/assets/bg/living_room.jpg",
+    text: "Ты вернулась в гостинную",
+    bg: "/src/assets/bg/livingroom.jpeg",
     choices: [
-        {text: "Идти дальше", next: "scenerun9", type: "normal" },
+        {text: "Бежать в коридор", next: "scenerun9", type: "normal" },
         { text: "Назад", next: "scenerun7", type: "back" },
     ],
     },
     scenerun9: {
     id: "Room14_back",
     name: "Девочка",
-    text: "Ты вошла в коридор",
+    text: "Ты прибежала в коридор",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
         { text: "идти дальше", next: "scenerun10", type: "normal" },
@@ -481,7 +481,7 @@ const scenes = {
     text: "Ты вошла в прихожую",
     bg: "/src/assets/bg/livingroom.jpeg",
     choices: [
-        { text: "Посветить в лицо фонариком", next: "scenerun11", type: "normal", requireItem: "hasFlashlight" },
+        { text: "Посветить в лицо фонариком ", next: "scenerun11", type: "normal", requireItem: "hasFlashlight" },
         { text: "концовка 1", next: "sceneEnding1", type: "normal" },
         { text: "концовка 2", next: "sceneEnding2", type: "normal" },
         { text: "Назад", next: "scenerun9", type: "back" },
@@ -502,17 +502,17 @@ const scenes = {
     scenerun11: {
     id: "Room17_back",
     name: "Девочка",
-    text: "черный экран",
+    text: "Вы посветили в лицо",
     bg: "/src/assets/bg/black.png",
     choices: [
-        { text: "идти дальше", next: "scenerun12", type: "normal" },
+        { text: "Выбежать из особняка", next: "scenerun12", type: "normal" },
         { text: "Назад", next: "scenerun10", type: "back" },
     ],
     },
     scenerun12: {
     id: "Room18_back",
     name: "Девочка",
-    text: "Ты вышла из особняка и побежала домой",
+    text: "Ты выбежала из особняка и побежала домой",
     bg: "/src/assets/bg/mansion.jpg",
     choices: [
         { text: "идти дальше", next: "sceneForest", type: "normal" },
@@ -535,6 +535,7 @@ const scenes = {
         name: "Концовка 3",
         bg: anotherEndingImg,
         end: true,
+        
     },
     sceneending4: {
         id: "ending4",

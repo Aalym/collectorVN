@@ -23,7 +23,7 @@
 .choice-container {
     background-color: black;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     border-radius: 8px;
     transform: translateX(-50%);
