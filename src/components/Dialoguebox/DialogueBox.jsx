@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "../Dialoguebox/DialogueBox.module.css";
 
 export default function DialogueBar({ name, text }) {
   const safeText = text || "";
   const [displayedText, setDisplayedText] = useState("");
   const [finished, setFinished] = useState(false);
+  const intervalRef = useRef(null); // 🔹 сохраняем интервал сюда
 
   useEffect(() => {
     setDisplayedText("");
@@ -12,22 +13,22 @@ export default function DialogueBar({ name, text }) {
 
     let i = 0;
     const speed = 25; // скорость печати
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       i++;
-      setDisplayedText((text|| "").slice(0, i));
+      setDisplayedText((text || "").slice(0, i));
       if (i >= text.length) {
-        clearInterval(interval);
+        clearInterval(intervalRef.current);
         setFinished(true);
       }
     }, speed);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(intervalRef.current);
   }, [text]);
 
   const handleClick = () => {
-    // по клику показываем весь текст сразу
     if (!finished) {
-      setDisplayedText(text);
+      clearInterval(intervalRef.current); // 🔹 остановить печать
+      setDisplayedText(text); // 🔹 показать весь текст
       setFinished(true);
     }
   };
