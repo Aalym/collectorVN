@@ -2,8 +2,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw; /* растянуть на весь экран */
+  width: 100vw; 
   height: 100vh;
-  object-fit: contain; /* сохраняем пропорции персонажа */
-  pointer-events: none; /* клики проходят сквозь персонажа */ 
+  object-fit: contain; 
+  pointer-events: none;  
 }

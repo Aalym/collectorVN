@@ -83,7 +83,7 @@ export default function HotspotLayer({
             transition: "border 0.2s ease",
           }}
         >
-          {/* 🆕 Подсказка при наведении */}
+          
           {hoveredHotspot === spot && spot.label && (
             <div
               style={{
