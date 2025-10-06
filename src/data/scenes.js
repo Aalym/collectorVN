@@ -8,7 +8,7 @@ const scenes = {
         name: "Девочка",
         text: " Я самая обыкновенная юная девочка, что живет самой простой жизнью.В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
         bg: "/src/assets/bg/intro.jpeg",
-        char: "/src/assets/chars/girl.png",
+        char: "",
         music: "",
         choices: [
             { text: "Продолжить", next: "scene2", type: "next" },
@@ -28,7 +28,7 @@ const scenes = {
     scene3: {
         id: "park", // custom scene name/id
         name: "Девочка", 
-        text: "- Мне надо пробраться в особняк.",
+        text: " Мне надо пробраться в особняк.",
         char: "/src/assets/chars/girl.png",
         bg: "src/assets/bg/mansion.png",
         choices: [
@@ -112,30 +112,34 @@ const scenes = {
     text: "Ты вошла на кухню",
     char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/kitchen.jpg",
-    choices: [{ text: "Вернуться", next: "scene7", type: "back" }],
+    choices: [
+        {text: "Вернуться назад", next: "scene7", type: "normal" },
+        { text: "Назад", next: "scene7", type: "back" }
+    ],
     },
 
     scene8_right: {
     id: "rightRoom",
-    name: "Девочка",
+    name: "",
     text: "Ты открыла правую дверь и попала в гостинную",
     char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/livingroom.jpeg",
     choices: [
-            { text: "идти дальше", next: "scene9", type: "next" },
+            {text: "Вернуться назад", next: "scene7", type: "normal" },
+            { text: "Идти дальше в коридор", next: "scene9", type: "normal" },
             { text: "Назад", next: "scene7", type: "back" },
         ],
     },
     scene9: {
         id: "corridor", 
-        name: "Девочка",
-        text: " Коридор",
+        name: "",
+        text: " Вы из гостиной прошли в коридор",
         bg: "/src/assets/bg/corridor.jpg",
         char: "/src/assets/chars/girl.png",
         music: "",
         choices: [
             { text: "осмотреться", next: "scenephoto", type: "normal" },
-            { text: "идти дальше", next: "scene12", type: "normal" },
+            { text: "идти дальше по коридору", next: "scene12", type: "normal" },
             { text: "Назад", next: "scene8_right", type: "back" },
         ],
     },
@@ -147,6 +151,7 @@ const scenes = {
         char: "",
         music: "",
         choices: [
+            { text: "Вернутся назад", next: "scene9", type: "normal" },
             { text: "Назад", next: "scene9", type: "back" },
         ],
     },
@@ -155,7 +160,7 @@ const scenes = {
     id: "doors_room2",
     name: "",
     text: "В комнате стояло две двери",
-    bg: "/src/assets/bg/doors.jpg",
+    bg: "/src/assets/bg/doors2.jpg",
     hotspots: [
         {
             id: "leftDoor",
@@ -176,7 +181,7 @@ const scenes = {
             label: "Правая дверь"
         },
     ],
-    choices: [{ text: "Назад", next: "scene6", type: "back" }],
+    choices: [{ text: "Назад", next: "scene9", type: "back" }],
     },
     scene13_left: {
     id: "leftRoom13",
@@ -185,8 +190,8 @@ const scenes = {
     char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/lab.jpeg",
     choices: [
-        { text: "идти дальше", next: "scene14", type: "normal" },
-        { text: "Вернуться", next: "scene13", type: "back" },
+        { text: "Идти дальше в коридор", next: "scene14", type: "normal" },
+        { text: "Назад", next: "scene12", type: "back" },
     ],
     },
     scene13_right: {
@@ -195,7 +200,10 @@ const scenes = {
     char: "/src/assets/chars/girl.png",
     text: "Ты вошла в ванную",
     bg: "/src/assets/bg/bathroom.jpeg",
-    choices: [{ text: "Вернуться", next: "scene13", type: "back" }],
+    choices: [
+        { text: "Вернуться", next: "scene12", type: "normal" },
+        { text: "Назад", next: "scene12", type: "back" }
+    ],
     },
     scene14: {
     id: "Room14",
@@ -204,8 +212,8 @@ const scenes = {
     char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
-        { text: "идти дальше", next: "scene15", type: "normal" },
-        { text: "Вернуться", next: "scene13_left", type: "back" }
+        { text: "Идти дальше в комнату с бабочками", next: "scene15", type: "normal" },
+        { text: "Назад", next: "scene13_left", type: "back" }
     ],
     },
     scene15: {
@@ -215,15 +223,15 @@ const scenes = {
     char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/collectorroom.jpeg",
     choices: [
-        { text: "идти дальше", next: "scene16", type: "normal" },
-        { text: "Вернуться", next: "scene14", type: "back" }
+        { text: "Идти дальше по комнате с бабочками", next: "scene16", type: "normal" },
+        { text: "Назад", next: "scene14", type: "back" }
     ],
     },
     scene16: {
     id: "doors_room3",
     name: "",
     text: "В комнате стояло две двери",
-    bg: "/src/assets/bg/doors.jpg",
+    bg: "/src/assets/bg/doors3.jpg",
     hotspots: [
         {
             id: "leftDoor",
@@ -254,8 +262,8 @@ const scenes = {
     bg: "/src/assets/bg/ghostroom.jpeg",
     choices: [
         { text: "осмотреться", next: "scene17_left_look", type: "normal" },
-        { text: "идти дальше", next: "scene18", type: "normal" },
-        { text: "Вернуться", next: "scene16", type: "back" }
+        { text: "Идти дальше в подвал", next: "scene18", type: "normal" },
+        { text: "Назад", next: "scene16", type: "back" }
     ],
     },
     scene17_left_look: {
@@ -264,27 +272,30 @@ const scenes = {
     text: "Ты осмотрела комнату и нашла фонарик",
     bg: "/src/assets/bg/ghostroom.jpeg",
     choices: [
-        { text: "Подобрать фонарик", next: "scene17_left", type: "normal", giveItem: "hasFlashlight" },
+        { text: "Подобрать фонарик", next: "scene17_left2", type: "normal", giveItem: "hasFlashlight" },
+        { text: "Назад", next: "scene17_left", type: "back" }
     ],
     },
-    scene17_right: {
-    id: "rightRoom17",
+    scene17_left2: {
+    id: "leftRoom17.2",
     name: "Девочка",
-    text: "Ты вошла в комнату с призраками",
+    text: "Ты в комнате с призраками",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/ghostroom.jpeg",
     choices: [
-        { text: "идти дальше", next: "scene18", type: "normal" },
-        { text: "Вернуться", next: "scene16", type: "back" }
+        { text: "Идти дальше в подвал", next: "scene17_right", type: "normal" },
+        { text: "Назад", next: "scene17_left_look", type: "back" }
     ],
     },
-    scene18: {
-    id: "Room18",
+
+    scene17_right: {
+    id: "rightRoom17",
     name: "Девочка",
     text: "Ты видишь дверь в подвал",
     bg: "/src/assets/bg/basementdoor.jpg",
     choices: [
-        { text: "идти дальше", next: "scene19", type: "normal" },
-        { text: "Вернуться", next: "scene17_right", type: "back" }
+        { text: "Идти в подвал", next: "scene19", type: "normal" },
+        { text: "Назад", next: "scene16", type: "back" }
     ],
     },
     scene19: {
@@ -294,7 +305,7 @@ const scenes = {
     bg: "/src/assets/bg/black.png",
     choices: [
         { text: "Далее", next: "scene20", type: "next" },
-        { text: "Вернуться", next: "scene18", type: "back" }
+        { text: "Назад", next: "scene17_right", type: "back" }
     ],
     },
     scene20: {
@@ -303,41 +314,41 @@ const scenes = {
     text: "Подвал",
     bg: "/src/assets/bg/basement.jpeg",
     choices: [
-        { text: "идти дальше", next: "scene18_back", type: "normal" },
+        { text: "идти дальше", next: "scenerun", type: "normal" },
         { text: "Вернуться", next: "scene19", type: "back" }
     ],
     },
-    scene18_back: {
+    scenerun: {
     id: "Room18_back",
     name: "Девочка",
     text: "дверь в подвал побег",
     bg: "/src/assets/bg/basementdoor.jpg",
     choices: [
-        { text: "идти дальше", next: "scene15_back", type: "normal" },
+        { text: "идти дальше", next: "scenerun2", type: "normal" },
         { text: "Вернуться", next: "scene20", type: "back" }
     ],
     },
-    scene15_back: {
+    scenerun2: {
     id: "Room15_back",
     name: "Девочка",
     text: "Ты вернулась в комнату с бабочками побег",
     bg: "/src/assets/bg/collectorroom.jpeg",
     choices: [
-        { text: "идти дальше", next: "scene14_back", type: "normal" },
-        { text: "Вернуться", next: "scene18_back", type: "back" }
+        { text: "идти дальше", next: "scenerun3", type: "normal" },
+        { text: "Вернуться", next: "scenerun", type: "back" }
     ],
     },
-    scene14_back: {
+    scenerun3: {
     id: "Room14_back",
     name: "Девочка",
     text: "Ты вернулась в коридор побег",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
-        { text: "идти дальше", next: "scene13_back", type: "normal" },
-        { text: "Вернуться", next: "scene15_back", type: "back" }
+        { text: "идти дальше", next: "scenerun4", type: "normal" },
+        { text: "Вернуться", next: "scenerun2", type: "back" }
     ],
     },
-    scene13_back: {
+    scenerun4: {
     id: "doors_room",
     name: "",
     text: "В комнате стояло две двери: одна слева, другая справа. Куда пойти?",
@@ -349,7 +360,7 @@ const scenes = {
             y: "52%",
             width: "30%",
             height: "70%",
-            next: "scene8_left_back",
+            next: "scenerun5_left",
             label: "Левая дверь"
         },
         {
@@ -358,41 +369,44 @@ const scenes = {
             y: "52%",
             width: "30%",
             height: "70%",
-            next: "scene8_right_back",
+            next: "scenerun5_right",
             label: "Правая дверь"
         },
     ],
-    choices: [{ text: "Назад", next: "scene14_back", type: "back" }],
+    choices: [{ text: "Назад", next: "scenerun3", type: "back" }],
     },
-    scene8_left_back: {
+    scenerun5_left: {
     id: "leftRoom",
     name: "Девочка",
     text: "Ты вошла на кухню",
     bg: "/src/assets/bg/kitchen.jpg",
-    choices: [{ text: "Вернуться", next: "scene13_back", type: "back" }],
+    choices: [
+        {text: "Вернуться назад", next: "scenerun4", type: "normal" },
+        { text: "Назад", next: "scenerun4", type: "back" }
+    ],
     },
-    scene8_right_back: {
+    scenerun5_right: {
     id: "rightRoom",
     name: "Девочка",
     text: "Ты вошла в лабораторию",
     bg: "/src/assets/bg/lab.jpeg",
     choices: [
-        { text: "Идти дальше", next: "scene9_back", type: "normal" },
-        { text: "Вернуться", next: "scene13_back", type: "back" }
+        { text: "Идти дальше", next: "scenerun6", type: "normal" },
+        { text: "Вернуться", next: "scenerun4", type: "back" }
     ],
     },
-    scene9_back: {
+    scenerun6: {
         id: "corridor", 
         name: "Девочка",
         text: " Коридор",
         bg: "/src/assets/bg/corridor.jpg",
         choices: [
-            { text: "Осмотреться", next: "scenephoto_back", type: "normal" },
-            { text: "Идти дальше", next: "scene12_back", type: "normal" },
-            { text: "Назад", next: "scene8_right_back", type: "back" },
+            { text: "Осмотреться", next: "scenephotorun", type: "normal" },
+            { text: "Идти дальше", next: "scenerun7", type: "normal" },
+            { text: "Назад", next: "scenerun5_right", type: "back" },
         ],
     },
-    scenephoto_back: {
+    scenephotorun: {
         id: "photoRoom", 
         name: "Девочка",
         text: " фото семьи",
@@ -400,10 +414,11 @@ const scenes = {
         char: "",
         music: "",
         choices: [
-            { text: "Назад", next: "scene9_back", type: "back" },
+            { text: "Вернутся назад", next: "scenerun6", type: "normal" },
+            { text: "Назад", next: "scenerun6", type: "back" },
         ],
     },
-    scene12_back: {
+    scenerun7: {
     id: "doors_room4",
     name: "Девочка",
     text: "Ты видишь две двери",
@@ -415,7 +430,7 @@ const scenes = {
             y: "52%",
             width: "30%",
             height: "70%",
-            next: "scene13_left_back",
+            next: "scenerun8_left",
             label: "Левая дверь"
         },
         {
@@ -424,51 +439,52 @@ const scenes = {
             y: "52%",
             width: "30%",
             height: "70%",
-            next: "scene13_right_back",
+            next: "scenerun8_right",
             label: "Правая дверь"
         },
     ],
-    choices: [{ text: "Назад", next: "scene9_back", type: "back" }],
+    choices: [{ text: "Назад", next: "scenerun6", type: "back" }],
     },
-    scene13_right_back: {
+    scenerun8_right: {
     id: "rightRoom13",
     name: "Девочка",
     text: "Ты вошла на кухню",
     bg: "/src/assets/bg/kitchen.jpg",
     choices: [
-        { text: "Назад", next: "scene12_back", type: "back" },
+        {text: "Вернуться", next: "scenerun7", type: "normal" },
+        { text: "Назад", next: "scenerun7", type: "back" },
     ],
     },
-    scene13_left_back: {
+    scenerun8_left: {
     id: "leftRoom13",
     name: "Девочка",
     text: "Ты вошла в гостиную",
     bg: "/src/assets/bg/living_room.jpg",
     choices: [
-        {text: "идти дальше", next: "scene14_back", type: "normal" },
-        { text: "Назад", next: "scene12_back", type: "back" },
+        {text: "Идти дальше", next: "scenerun9", type: "normal" },
+        { text: "Назад", next: "scenerun7", type: "back" },
     ],
     },
-    scene14_back: {
+    scenerun9: {
     id: "Room14_back",
     name: "Девочка",
     text: "Ты вошла в коридор",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
-        { text: "идти дальше", next: "scene15_back", type: "normal" },
-        { text: "Назад", next: "scene13_left_back", type: "back" },
+        { text: "идти дальше", next: "scenerun10", type: "normal" },
+        { text: "Назад", next: "scenerun8_left", type: "back" },
     ],
     },
-    scene15_back: {
+    scenerun10: {
     id: "Room15_back",
     name: "Девочка",
     text: "Ты вошла в прихожую",
     bg: "/src/assets/bg/livingroom.jpeg",
     choices: [
-        { text: "Посветить в лицо фонариком", next: "scene17_back", type: "normal", requireItem: "hasFlashlight" },
+        { text: "Посветить в лицо фонариком", next: "scenerun11", type: "normal", requireItem: "hasFlashlight" },
         { text: "концовка 1", next: "sceneEnding1", type: "normal" },
         { text: "концовка 2", next: "sceneEnding2", type: "normal" },
-        { text: "Назад", next: "scene14_back", type: "back" },
+        { text: "Назад", next: "scenerun9", type: "back" },
     ],
     },
     sceneEnding1: {
@@ -483,24 +499,24 @@ const scenes = {
         bg: neutralEndingImg,
         end: true,
     },
-    scene17_back: {
+    scenerun11: {
     id: "Room17_back",
     name: "Девочка",
     text: "черный экран",
     bg: "/src/assets/bg/black.png",
     choices: [
-        { text: "идти дальше", next: "scene18_back", type: "normal" },
-        { text: "Назад", next: "scene15_back", type: "back" },
+        { text: "идти дальше", next: "scenerun12", type: "normal" },
+        { text: "Назад", next: "scenerun10", type: "back" },
     ],
     },
-    scene18_back: {
+    scenerun12: {
     id: "Room18_back",
     name: "Девочка",
     text: "Ты вышла из особняка и побежала домой",
     bg: "/src/assets/bg/mansion.jpg",
     choices: [
         { text: "идти дальше", next: "sceneForest", type: "normal" },
-        { text: "Назад", next: "scene17_back", type: "back" },
+        { text: "Назад", next: "scenerun11", type: "back" },
     ],
     },
     sceneForest: {
@@ -511,7 +527,7 @@ const scenes = {
         choices: [
             { text: "концовка 3", next: "sceneending3", type: "normal" },
             { text: "концовка 4", next: "sceneending4", type: "normal" },
-            { text: "Назад", next: "scene18_back", type: "back" },
+            { text: "Назад", next: "scenerun12", type: "back" },
         ],
     },
     sceneending3: {
