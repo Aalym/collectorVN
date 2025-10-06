@@ -1,5 +1,5 @@
 .gameuibtn {
-    background-color: rgba(92, 79, 79, 0.1);
+    background-color: rgba(7, 190, 144, 0.408);
     color: #fff;
     border: 1px solid #fff;
     padding: 10px 16px;
@@ -10,5 +10,5 @@
 }
 
 .gameuibtn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 255, 200, 0.879);
 }
