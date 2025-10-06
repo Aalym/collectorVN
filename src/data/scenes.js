@@ -110,6 +110,7 @@ const scenes = {
     id: "leftRoom",
     name: "Девочка",
     text: "Ты вошла на кухню",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/kitchen.jpg",
     choices: [{ text: "Вернуться", next: "scene7", type: "back" }],
     },
@@ -118,6 +119,7 @@ const scenes = {
     id: "rightRoom",
     name: "Девочка",
     text: "Ты открыла правую дверь и попала в гостинную",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/livingroom.jpeg",
     choices: [
             { text: "идти дальше", next: "scene9", type: "next" },
@@ -180,6 +182,7 @@ const scenes = {
     id: "leftRoom13",
     name: "Девочка",
     text: "Ты вошла в лабороторию",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/lab.jpeg",
     choices: [
         { text: "идти дальше", next: "scene14", type: "normal" },
@@ -189,6 +192,7 @@ const scenes = {
     scene13_right: {
     id: "rightRoom13",
     name: "Девочка",
+    char: "/src/assets/chars/girl.png",
     text: "Ты вошла в ванную",
     bg: "/src/assets/bg/bathroom.jpeg",
     choices: [{ text: "Вернуться", next: "scene13", type: "back" }],
@@ -197,6 +201,7 @@ const scenes = {
     id: "Room14",
     name: "Девочка",
     text: "ты вошла в коридор",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
         { text: "идти дальше", next: "scene15", type: "normal" },
@@ -207,6 +212,7 @@ const scenes = {
     id: "Room15",
     name: "Девочка",
     text: "ты вошла в комнату с бабочками",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/collectorroom.jpeg",
     choices: [
         { text: "идти дальше", next: "scene16", type: "normal" },
@@ -244,6 +250,7 @@ const scenes = {
     id: "leftRoom17",
     name: "Девочка",
     text: "Ты вошла в комнату с призраками",
+    char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/ghostroom.jpeg",
     choices: [
         { text: "осмотреться", next: "scene17_left_look", type: "normal" },
