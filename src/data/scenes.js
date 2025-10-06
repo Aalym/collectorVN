@@ -90,7 +90,7 @@ const scenes = {
         name: "", 
         text: "Дом выглядел пустым и мрачным. Он явно угрожал девочке своей внешностью, но её это не пугало. Надо было продвинуться дальше...",
         char: "",
-        bg: "src/assets/bg/hallway.jpeg",
+        bg: hallway,
         char: girl,
         choices: [
             { text: "Продолжить", next: "scene3a", type: "next" },
@@ -102,10 +102,10 @@ const scenes = {
         name: "", 
         text: "Девочка сделала свои первые шаги по особняку Коллекционера, внимательно осматриваясь вокруг.",
         char: girl,
-        bg: "src/assets/bg/hallway.jpeg",
+        bg: hallway,
         choices: [
             { text: "подойти к особняку", next: "scene4", type: "next" },
-            { text: "Назад", next: "scene3a", type: "back"  },
+            { text: "Назад", next: "scene3", type: "back"  },
         ],
     },
 
@@ -125,7 +125,7 @@ const scenes = {
         id: "door s2", 
         name: "",
         text: "Перед тобой 2 двери",
-        bg: "doors",
+        bg: doors,
         hotspots: [
         {
             id: "leftDoor",
@@ -496,7 +496,7 @@ const scenes = {
     bg: basement,
     choices: [
         { text: "Продолжить", next: "scenepodvalname", type: "next" },
-        { text: "Назад", next: "scenepodvalch", type: "back" }
+        { text: "Назад", next: "scenepodvalch1", type: "back" }
     ],
     },
     scenepodvalch2: {
@@ -562,8 +562,7 @@ const scenes = {
     char: prototype, 
     bg: basement,
     choices: [
-        { text: "Идти дальше",next: "scenepodvalleave2", type: "normal" },
-        { text: "Назад", next: "scenepodvalch1a", type: "back" }
+        { text: "Назад", next: "scenepodvalname3", type: "back" }
     ],
     },
     scenepodvalchat: {
@@ -574,7 +573,7 @@ const scenes = {
     bg: basement,
     choices: [
         { text: "Продолжить",next: "scenepodvalchat2", type: "next" },
-        { text: "Назад", next: "scenepodvalleave", type: "back" }
+        { text: "Назад", next: "scenepodvalname3", type: "back" }
     ],
     },
         scenepodvalchat2: {
@@ -687,6 +686,7 @@ const scenes = {
         bg: basement,
         choices: [
             { text: "Продолжить", next: "scenecollectorCatch", type: "next" },
+            { text: "Использовать фонарик", next: "sceneflashlight", type: "normal", requiredItem: "hasFlashlight"  },
             { text: "Назад", next: "scenecollectorAppears", type: "back"}
         ],
     },
@@ -834,55 +834,165 @@ const scenes = {
     ],
 },
 
-sceneFinal11: {
-    id: "final11",
-    name: "Коллекционер",
-    text: "- ...",
-    char: collector,
-    bg: black,
-    choices: [
-        { text: "Продолжить", next: "sceneFinal12", type: "next" },
-        { text: "Назад", next: "sceneFinal10", type: "back" }
-    ],
-},
+    sceneFinal11: {
+        id: "final11",
+        name: "Коллекционер",
+        text: "- ...",
+        char: collector,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal12", type: "next" },
+            { text: "Назад", next: "sceneFinal10", type: "back" }
+        ],
+    },
 
-sceneFinal12: {
-    id: "final12",
-    name: "",
-    text: "...",
-    char: null,
-    bg: black,
-    choices: [
-        { text: "Продолжить", next: "sceneFinal13", type: "next" },
-        { text: "Назад", next: "sceneFinal11", type: "back" }
-    ],
-},
+    sceneFinal12: {
+        id: "final12",
+        name: "",
+        text: "...",
+        char: null,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal13", type: "next" },
+            { text: "Назад", next: "sceneFinal11", type: "back" }
+        ],
+    },
 
-sceneFinal13: {
-    id: "final13",
-    name: "Девочка",
-    text: "- С тех пор Мистера Коллекционера больше не видели. Но а я... так и осталась пустой оболочкой без души. Одной из множеств.",
-    char: null,
-    bg: black,
-    choices: [
-        { text: "Продолжить", next: "sceneFinal14", type: "next" },
-        { text: "Назад", next: "sceneFinal12", type: "back" }
-    ],
-},
+    sceneFinal13: {
+        id: "final13",
+        name: "Девочка",
+        text: "- С тех пор Мистера Коллекционера больше не видели. Но а я... так и осталась пустой оболочкой без души. Одной из множеств.",
+        char: null,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal14", type: "next" },
+            { text: "Назад", next: "sceneFinal12", type: "back" }
+        ],
+    },
 
-sceneFinal14: {
-    id: "final14",
-    name: "",
-    text: "Концовка: Пустота",
-    char: null,
-    bg: black,
-    end: true,
-    choices: [
-        { text: "Назад", next: "sceneFinal13", type: "back" }
-    ],
-},
+    sceneFinal14: {
+        id: "final14",
+        name: "",
+        text: "Концовка: Пустота",
+        char: null,
+        bg: black,
+        end: true,
+        choices: [
+            { text: "Назад", next: "sceneFinal13", type: "back" }
+        ],
+    },
 
+    sceneflashlight: {
+        id: "flashlight",
+        name: "Коллекционер",
+        text: "Арргх!",
+        char: collector,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "sceneflashlight2", type: "next" },
+            { text: "Назад", next: "scenecollectorAppears2", type: "back" }
+        ],
+    },
 
+    sceneflashlight2: {
+        id: "flashlight",
+        name: "",
+        text: "Коллекционер от света фонаря оглушительно падает на скрипящий пол. Раздался грохот. Те смогли выиграть для себя время, и девочка отрывает куклу от её цепей. Они берутся за руки, вместе выбегая из особняка Коллекционера. ",
+        char: null,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "sceneforest", type: "next" },
+            { text: "Назад", next: "sceneflashlight", type: "back" }
+        ],
+    },
+    sceneforest: {
+        id: "flashlight",
+        name: "",
+        text: "Тяжелое дыхание, быстро-сменяющиеся изображения леса пробегают мимо глаз. Они бежали прямо без остановки, пока особняк сзади не превратился в мутный силуэт.  ",
+        char: null,
+        bg: forest,
+        choices: [
+            { text: "Продолжить", next: "sceneforest2", type: "next" },
+            { text: "Назад", next: "sceneflashlight2", type: "back" }
+        ],
+    },
+    sceneforest2: {
+        id: "flashlight",
+        name: "Девочка",
+        text: "Фухх! Нам удалось!",
+        char: girl,
+        bg: forest,
+        choices: [
+            { text: "Продолжить", next: "sceneforest3", type: "next" },
+            { text: "Назад", next: "sceneforest", type: "back" }
+        ],
+    },
+    sceneforest3: {
+        id: "flashlight",
+        name: "Прототип дочери",
+        text: "Теперь куда?",
+        char: prototype,
+        bg: forest,
+        choices: [
+            { text: "Продолжить", next: "sceneforest4", type: "next" },
+            { text: "Назад", next: "sceneforest2", type: "back" }
+        ],
+    },
+    sceneforest4: {
+        id: "flashlight",
+        name: "Девочка",
+        text: "...",
+        char: girl,
+        bg: forest,
+        choices: [
+            { text: "Продолжить", next: "sceneforest5", type: "next" },
+            { text: "Назад", next: "sceneforest3", type: "back" }
+        ],
+    },
+    sceneforest5: {
+        id: "flashlight",
+        name: "",
+        text: "*Девочка внезапно хватает прототип дочери*  ",
+        char: null,
+        bg: anotherEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneforest6", type: "next" },
+            { text: "Назад", next: "sceneforest4", type: "back" }
+        ],
+    },
+    sceneforest6: {
+        id: "flashlight",
+        name: "Девочка",
+        text: "Теперь...наконец-то у меня будет душа... ",
+        char: null,
+        bg: anotherEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneforest7", type: "next" },
+            { text: "Назад", next: "sceneforest5", type: "back" }
+        ],
+    },
+    sceneforest7: {
+        id: "flashlight",
+        name: "Девочка",
+        text: "Девочка поглощает душу прототипа дочери в себя.",
+        char: null,
+        bg: anotherEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneforest8", type: "next" },
+            { text: "Назад", next: "sceneforest6", type: "back" }
+        ],
+    },
+    sceneforest8: {
+        id: "flashlight",
+        name: "",
+        text: "Концовка: Прототип Дочери",
+        char: null,
+        bg: anotherEndingImg,
+        end: true,
+        choices: [
+            { text: "Назад", next: "sceneforest7", type: "back" }
+        ],
+    },
 
 };
 export default scenes;  
