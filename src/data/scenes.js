@@ -2,6 +2,7 @@ import goodEndingImg from "../assets/endings/ending4.jpg";
 import badEndingImg from "../assets/endings/ending2.jpg";
 import neutralEndingImg from "../assets/endings/ending1.jpg";
 import anotherEndingImg from "../assets/endings/ending3.jpg";
+import girl from "/src/assets/chars/girl.png";
 const scenes = {
     start: {
         id: "start", // scene name/id
@@ -22,9 +23,34 @@ const scenes = {
         music: "",
         choices: [
             { text: "Назад", next: "start", type: "back" },
-            { text: "Продолжить", next: "scene3", type: "next" },
+            { text: "Продолжить", next: "scene2a", type: "next" },
         ],
     },
+
+    scene2a: {
+        id: "mansion2a", // custom scene name/id
+        name: "Девочка",
+        text: "Мне надо пробраться в особняк.",
+        char: girl,
+        bg: "src/assets/bg/mansion.png",
+        music: "",
+        choices: [
+            { text: "Назад", next: "start", type: "back" },
+            { text: "Продолжить", next: "scene2b", type: "next" },
+        ],
+    },
+    scene2b: {
+        id: "mansion2b", // custom scene name/id
+        name: "Девочка",
+        text: "Тихий хруст травы под ногами девчонки, стремящейся ко входу в особняк.",
+        bg: "src/assets/bg/mansion.png",
+        music: "",
+        choices: [
+            { text: "Назад", next: "start", type: "back" },
+            { text: "Продолжить", next: "scene2b", type: "next" },
+        ],
+    },
+
     scene3: {
         id: "park", // custom scene name/id
         name: "Девочка", 
