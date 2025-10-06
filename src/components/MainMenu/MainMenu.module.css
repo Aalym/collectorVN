@@ -18,6 +18,7 @@
 }
 
 .mainMenuButtons {
+	
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
@@ -26,17 +27,19 @@
 }
 
 .mainMenuBtn {
-	background: rgba(40, 40, 40, 0.85);
+	background: url('./menuButtonBg.PNG') no-repeat center center;
+  background-size: cover; /* или contain */
 	color: #fff;
 	border: 2px solid #0b34a2;
 	padding: 16px 40px;
-	border-radius: 12px;
+	border-radius: 30px;
 	font-size: 1.25rem;
 	font-family: inherit;
 	cursor: pointer;
 	transition: background 0.2s, border 0.2s;
 }
 .mainMenuBtn:hover {
+	/* background: url('./menuButtonBg.PNG'); */
 	background: #828ada;
 	color: #232526;
 	border-color: #fff;
