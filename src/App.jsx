@@ -15,7 +15,9 @@ import HotspotLayer from "./components/HotspotLayer";
 
 
 
+
 function App() {
+  const [playerState, setPlayerState] = useState({hasFlashlight: false,});
   const [showMenu, setShowMenu] = useState(true);
   const [scene, setScene] = useState("start");
   const [showSaveModal, setShowSaveModal] = useState(false);
@@ -24,7 +26,7 @@ function App() {
   const current = scenes[scene] || { bg: "", name: "", text: "", choices: [] };
   const [isMuted, setIsMuted] = useState(AudioManager.getMuted ? AudioManager.getMuted() : false);
   const [showEnding, setShowEnding] = useState(false);
-  
+
   const [isHolding, setIsHolding] = useState(false);
   const [progress, setProgress] = useState(0);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -53,6 +55,8 @@ function App() {
   setShowSaveModal(false);
   setScene("start"); // 👈 важно, чтобы реально вернуло к сцене меню
   setShowEnding(false); // 👈 если есть состояние окончания — убираем
+  setPlayerState({ hasFlashlight: false }); // 🧹 сбрасываем предметы
+
 };  
 
 
@@ -88,20 +92,29 @@ useEffect(() => {
   };
 
   const handleSaveSlot = (slot) => {
-    saveGameToSlot(scene, slot);
+    saveGameToSlot(scene, slot, playerState);
     setSaves(getAllSaves());
     setShowSaveModal(false);
   };
 
   const handleLoadSlot = (slot) => {
-    const loadedScene = loadGameFromSlot(slot);
-    if (loadedScene) {
-      AudioManager.stopMusic(); // 🆕 останавливаем музыку меню
-      setScene(loadedScene.id || loadedScene);
+    const loadedData = loadGameFromSlot(slot);
+    if (loadedData?.scene) {
+      AudioManager.stopMusic();
+      setScene(loadedData.scene.id || loadedData.scene);
+      if (loadedData.playerState) setPlayerState(loadedData.playerState); // 🟢 восстановление предметов
       setShowMenu(false);
       setShowLoadModal(false);
     }
   };
+
+  const handlePickupItem = (item) => {
+    setPlayerState((prev) => ({
+      ...prev,
+      [item]: true,
+    }));
+  };
+
 
   const handleClearSaves = () => {
     clearAllSaves();
@@ -176,16 +189,23 @@ useEffect(() => {
             <div className="choice-container">
               {current.choices
                 ?.filter((c) => c.type === "normal")
+                .filter((c) => !c.requiredItem || playerState[c.requiredItem]) // 🔹 показываем, если предмет есть
                 .map((choice, i) => (
                   <button
                     key={i}
                     className="choice-btn"
-                    onClick={() => setScene(choice.next)}
+                    onClick={() => {
+                      // ✅ если выбор даёт предмет — записываем его в playerState
+                      if (choice.giveItem) handlePickupItem(choice.giveItem);
+                      // ✅ переходим к следующей сцене
+                      setScene(choice.next);
+                    }}
                   >
-                    {choice.text}
+                    {choice.text} {/* ✅ не забываем вставить текст кнопки */}
                   </button>
                 ))}
             </div>
+
             {/* 👇 Добавляешь сюда */}
             {current.hotspots && (
               <HotspotLayer
