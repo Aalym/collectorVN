@@ -4,13 +4,26 @@ import neutralEndingImg from "../assets/endings/ending1.jpg";
 import anotherEndingImg from "../assets/endings/ending3.jpg";
 import girl from "/src/assets/chars/girl.png";
 import intro from "/src/assets/bg/intro.jpeg";
-import mansion from "src/assets/bg/mansion.png";
-import basement from "src/assets/bg/basement.jpeg";
-import basementdoor from "src/assets/bg/basementdoor.jpg";
-import bathroom from "src/assets/bg/bathroom.jpeg";
-import black from "src/assets/bg/black.png";
-import collectorroom from "src/assets/bg/collectorroom.jpeg";
-import corridor from "src/assets/bg/corridor.jpg";
+import mansion from "/src/assets/bg/mansion.png";
+import basement from "/src/assets/bg/basement.jpeg";
+import basementdoor from "/src/assets/bg/basementdoor.jpg";
+import bathroom from "/src/assets/bg/bathroom.jpeg";
+import black from "/src/assets/bg/black.png";
+import collectorroom from "/src/assets/bg/collectorroom.jpeg";
+import corridor from "/src/assets/bg/corridor.jpg";
+import prototype from "/src/assets/chars/Prototype.png";
+import collector from "/src/assets/chars/magician.png";
+import doors from "/src/assets/bg/doors.jpg";
+import doors2 from "/src/assets/bg/doors2.jpg";
+import doors3 from "/src/assets/bg/doors3.jpg";
+import ghostroom from "/src/assets/bg/ghostroom.jpeg";
+import hallway from "/src/assets/bg/hallway.jpeg";
+import forest from "/src/assets/bg/forest.jpeg";
+import kitchen from "/src/assets/bg/kitchen.jpg";
+import lab from "/src/assets/bg/lab.jpeg";
+import livingroom from "/src/assets/bg/livingroom.jpeg";
+import photo from "/src/assets/bg/photo.jpeg";
+import photo1 from "/src/assets/bg/photo1.jpg";
 
 const scenes = {
     start: {
@@ -52,7 +65,7 @@ const scenes = {
         id: "mansion2b", // custom scene name/id
         name: "",
         text: "Тихий хруст травы под ногами девчонки, стремящейся ко входу в особняк.",
-        bg: "mansion",
+        bg: mansion,
         music: "",
         choices: [
             { text: "Назад", next: "scene2a", type: "back" },
@@ -101,50 +114,244 @@ const scenes = {
         name: "",
         char: girl,
         text: "Коридоры зловещего особняка не пугали девочку своим видом,Хоть свет есть только в избраных комнатах особняк гниёт и выглядит заброшенным, а пол где-то проваливается, где-то он целый. На самом деле ей он даже приглянулся...",
-        bg: "/src/assets/bg/corridor.jpg",
+        bg: corridor,
         choices: [
-            { text: "далее", next: "scene5", type: "next" },
+            { text: "Продолжить", next: "scene5", type: "next" },
             { text: "Назад", next: "scene3", type: "back" },
         ],
     },
 
     scene5: {
-        id: "mansion", 
-        name: " ",
-        text: " ",
-        bg: "/src/assets/bg/mansion_interior.jpg",
+        id: "door s2", 
+        name: "",
+        text: "Перед тобой 2 двери",
+        bg: "doors",
+        hotspots: [
+        {
+            id: "leftDoor",
+            x: "36.3%",
+            y: "52%",
+            width: "30%",
+            height: "70%",
+            next: "scenekitchen",
+            label: "Кухня"
+        },
+        {
+            id: "rightDoor",
+            x: "88%",
+            y: "52%",
+            width: "30%",
+            height: "70%",
+            next: "scenelivingroom",
+            label: "Гостинная"
+        },
+        ],
         choices: [
-            { text: "Войти в особняк", next: "scene6", type: "normal" },
             { text: "Назад", next: "scene4", type: "back" },
         ],
     },
-
-    scene6: {
-        id: "mansion", 
-        name: "Девочка",
-        text: " Мрачновато",
-        bg: "/src/assets/bg/hallway.jpeg",
-        char: "/src/assets/chars/girl.png",
-        music: "",
+    scenekitchen: {
+        id: "kitchen s2", 
+        name: "",
+        char: girl,
+        text: "Девочка смотрит на совершенно пустую кухню, где не было даже еды.",
+        bg: kitchen,
         choices: [
-            { text: "осмотреться", next: "scene7", type: "next" },
+            { text: "Продолжить", next: "scenekitchen2", type: "next" },
             { text: "Назад", next: "scene5", type: "back" },
         ],
     },
-    scene7: {
-    id: "doors_room",
-    name: "",
-    text: "В комнате стояло две двери: одна слева, другая справа. Куда пойти?",
-    bg: "/src/assets/bg/doors.jpg",
-    hotspots: [
+    scenekitchen2: {
+        id: "kitchen s2", 
+        name: "Девочка",
+        char: girl,
+        text: " Он ей совершенно не пользуется...Вот досада, у него нет времени даже не еду.",
+        bg: kitchen,
+        choices: [
+            { text: "Вернутся", next: "scene5", type: "normal" },
+            { text: "Назад", next: "scene5", type: "back" },
+        ],
+    },
+    scenelivingroom: {
+        id: "corridor s2", 
+        name: "",
+        char: girl,
+        text: "Девочка осматривает гостинную и видит везде бардак и суету. У коллекционера нет времени ухаживать за своим домом. Он занят всегда чем то другим...",
+        bg: livingroom,
+        choices: [
+            { text: "Продолжить", next: "sceneportrait", type: "next" },
+            { text: "Назад", next: "scene5", type: "back" },
+        ],
+    },
+    sceneportrait: {
+        id: "portrait s2", 
+        name: "",
+        char: girl,
+        text: "Портрет с Коллекционером, неизвестной женщиной и маленькой девочкой между ними…",
+        bg: photo,
+        choices: [
+            { text: "Продолжить", next: "sceneportrait2", type: "next" },
+            { text: "Назад", next: "scenelivingroom", type: "back" },
+        ],
+    },
+    sceneportrait2: {
+        id: "portrait2 s2", 
+        name: "Девочка",
+        char: girl,
+        text: "Это он и его семья? Но почему его жены и дочери нет в этом особняке?",
+        bg: photo,
+        choices: [
+            { text: "Продолжить", next: "sceneportrait3", type: "next" },
+            { text: "Назад", next: "sceneportrait", type: "back" },
+        ],
+    },
+    sceneportrait3: {
+        id: "portrait3 s2", 
+        name: "Девочка",
+        char: girl,
+        text: "А может...он их украл и их души?",
+        bg: photo,
+        choices: [
+            { text: "Идти в коридор", next: "scenecorridor", type: "next" },
+            { text: "Назад", next: "sceneportrait2", type:  "back" },
+        ],
+    },
+    scenecorridor: {
+        id: "portrait3 s2", 
+        name: "",
+        char: girl,
+        text: "Вы в коридоре",
+        bg: corridor,
+        choices: [
+            { text: "Идти дальше", next: "scenemagic", type: "next" },
+            { text: "Назад", next: "sceneportrait3", type:  "back" },
+        ],
+    },
+    scenemagic: {
+        id: "magic s3", 
+        name: "Девочка",
+        char: girl,
+        text: "Что это за комната? Он практикует магию? ",
+        bg: lab,
+        choices: [
+            { text: "Продолжить", next: "scenemagic2", type: "next" },
+            { text: "Назад", next: "scenecorridor", type:  "back" },
+        ],
+    },
+    scenemagic2: {
+        id: "magic2 s3", 
+        name: "Девочка",
+        char: girl,
+        text: " Может он колдун? Раз него есть способность красть души... ",
+        bg: lab,
+        choices: [
+            { text: "Продолжить", next: "scenemagic3", type: "next" },
+            { text: "Назад", next: "scenemagic", type:  "back" },
+        ],
+    },
+    scenemagic3: {
+        id: "magic2 s3", 
+        name: "",
+        char: girl,
+        text: ' Девочка осматривает шкафы и полочки, читая каждое мимолетное название книг: "Основы магии", "Душа человека", "Магия и химия", "Жизнь из магии" ',
+        bg: lab,
+        choices: [
+            { text: "Продолжить", next: "scenemagic4", type: "next" },
+            { text: "Назад", next: "scenemagic2", type:  "back" },
+        ],
+    },
+    scenemagic4: {
+        id: "magic2 s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Судя по этим названиям, он крадет души не ради веселья.',
+        bg: lab,
+        choices: [
+            { text: "Продолжить", next: "scenecollector", type: "next" },
+            { text: "Назад", next: "scenemagic3", type:  "back" },
+        ],
+    },
+    scenecollector: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Такая большая коллекция бабочек...',
+        bg: collectorroom,
+        choices: [
+            { text: "Оглянуться", next: "scenelook", type: "normal" },
+            { text: "Назад", next: "scenemagic4", type:  "back" },
+        ],
+    },
+    scenelook: {
+        id: "collector s3", 
+        name: "",
+        char: girl,
+        text: ' Девочка оглядывается, и находит рядом надпись "души людей"...',
+        bg: collectorroom,
+        choices: [
+            { text: "Продолжить", next: "scenelook2", type: "next" },
+            { text: "Назад", next: "scenecollector", type:  "back" },
+        ],
+    },
+    scenelook2: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Это коллекции душ?',
+        bg: collectorroom,
+        choices: [
+            { text: "Продолжить", next: "scenelook3", type: "next" },
+            { text: "Назад", next: "scenelook", type:  "back" },
+        ],
+    },
+    scenelook3: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Значит вот как они выглядят...',
+        bg: collectorroom,
+        choices: [
+            { text: "Продолжить", next: "scenelook4", type: "next" },
+            { text: "Назад", next: "scenelook2", type:  "back" },
+        ],
+    },
+    scenelook4: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Красиво. Бабочки за стеклом, даже рамки есть. Будто и не люди вовсе.',
+        bg: collectorroom,
+        choices: [
+            { text: "Идти дальше", next: "scenelook5", type: "next" },
+            { text: "Назад", next: "scenelook3", type:  "back" },
+        ],
+    },
+    scenelook5: {
+        id: "collector s3", 
+        name: "",
+        char: girl,
+        text: ' Вы в коридоре',
+        bg: corridor,
+        choices: [
+            { text: "Продолжить", next: "scenedoors", type: "next" },
+            { text: "Назад", next: "scenelook4", type:  "back" },
+        ],
+    },
+    scenedoors: {
+        id: "collector s3", 
+        name: "",
+        char: "",
+        text: ' Вы видите 2 двери',
+        bg: doors2,
+        hotspots: [
         {
             id: "leftDoor",
             x: "36.3%",
             y: "52%",
             width: "30%",
             height: "70%",
-            next: "scene8_left",
-            label: "Левая дверь"
+            next: "sceneghost",
+            label: "Комната с призраками"
         },
         {
             id: "rightDoor",
@@ -152,459 +359,530 @@ const scenes = {
             y: "52%",
             width: "30%",
             height: "70%",
-            next: "scene8_right",
-            label: "Правая дверь"
+            next: "scenepodval",
+            label: "Дверь в подвал"
         },
+        ],
+        choices: [
+            { text: "Назад", next: "scenelook5", type:  "back" },
+        ],
+    },
+    sceneghost: {
+        id: "collector s3", 
+        name: "Девочка",
+        text: "Что это? Манекены?",
+        char: "/src/assets/chars/girl.png",
+        bg: ghostroom,
+        choices: [
+            { text: "Продолжить", next: "sceneghostlook", type: "next" },
+            { text: "Назад", next: "scenedoors", type: "back" }
+        ],
+    },
+    sceneghostlook: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Бездушные тела... Он прячет здесь своих жертв?',
+        bg: ghostroom,
+        choices: [
+            { text: "Продолжить", next: "sceneghostlook2", type: "next" },
+            { text: "Назад", next: "sceneghost", type:  "back" },
+        ],
+    },
+    sceneghostlook2: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Видимо это то, что осталось от всех предыдущих жертв.',
+        bg: ghostroom,
+        choices: [
+            { text: "Продолжить", next: "sceneghostlook3", type: "next" },
+            { text: "Назад", next: "sceneghostlook", type:  "back" },
+        ],
+    },
+    sceneghostlook3: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Оболочка, которая теперь странствует в поисках своих внутренностей...  ',
+        bg: ghostroom,
+        choices: [
+            { text: "Продолжить", next: "sceneghostlook4", type: "next" },
+            { text: "Назад", next: "sceneghostlook2", type:  "back" },
+        ],
+    },
+    sceneghostlook4: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: ' Выглядит жалко.',
+        bg: ghostroom,
+        choices: [
+            { text: "осмотреться", next: "sceneghostlook5", type: "normal" },
+            { text: "Идти дальше ", next: "scenepodval", type: "normal" },
+            { text: "Назад", next: "sceneghostlook3", type:  "back" },
+        ],
+    },
+    sceneghostlook5: {
+        id: "collector s3", 
+        name: "",
+        char: girl,
+        text: ' Находит фонарик',
+        bg: ghostroom,
+        choices: [
+        { text: "Подобрать фонарик", next: "sceneghostlook6", type: "normal", giveItem: "hasFlashlight" },
+        { text: "Назад", next: "sceneghostlook4", type: "back" }
+        ],
+    },
+    sceneghostlook6: {
+        id: "collector s3", 
+        name: "Девочка",
+        char: girl,
+        text: 'Это будет полезно для меня в будущем.',
+        bg: ghostroom,
+        choices: [
+        { text: "Идти дальше", next: "scenepodval", type: "normal"},
+        { text: "Назад", next: "sceneghostlook5", type: "back" }
+        ],
+    },
+    scenepodval: {
+    id: "podval",
+    name: "",
+    text: "Девочка находит темную загадочную лестницу вниз.  Вероятнее всего, это был подвал.  Героиня сложила всю свою волю в кулак и направилась вниз по хрупким деревянным ступенькам, ожидая нечто страшное внизу...  ",
+    bg: basementdoor,
+    choices: [
+        { text: "Продолжить", next: "scenepodval2", type: "next" },
+        { text: "Назад", next: "scenedoors", type: "back" }
     ],
-    choices: [{ text: "Назад", next: "scene6", type: "back" }],
+    },
+    scenepodval2: {
+    id: "podval",
+    name: "",
+    text: "Спустившись в подвал, она ничего не обнаружила. Кроме одной единственной сырой комнаты, что была подозрительно пуста...",
+    bg: basement,
+    choices: [
+        { text: "Подойти ближе", next: "scenepodval3", type: "normal" },
+        { text: "Назад", next: "scenepodval", type: "back" }
+    ],
+    },
+    scenepodval3: {
+    id: "podval",
+    name: "",
+    text: "Посередине комнаты лежала странная кукла, тяжело дышащая и неестественно выглядящая…  ",
+    char: prototype, 
+    bg: basement,
+    choices: [
+        { text: "Ты кто?", next: "scenepodvalch1", type: "normal" },
+        { text: "Что ты здесь делаешь?", next: "scenepodvalch2", type: "normal" },
+        { text: "Назад", next: "scenepodval2", type: "back" }
+    ],
+    },
+    scenepodvalch1: {
+    id: "podval",
+    name: "Кукла",
+    text: "Кто я? Я - дочь моего папы!",
+    char: prototype, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить", next: "scenepodvalch1a", type: "next" },
+        { text: "Назад", next: "scenepodval3", type: "back" }
+    ],
+    },
+    scenepodvalch1a: {
+    id: "podval",
+    name: "Девочка",
+    text: "(Это дочь Коллекционера? Она выглядит очень странно... Может ли она быть его целью? То, ради чего он их коллекционирует?)",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить", next: "scenepodvalname", type: "next" },
+        { text: "Назад", next: "scenepodvalch", type: "back" }
+    ],
+    },
+    scenepodvalch2: {
+    id: "podval",
+    name: "Кукла",
+    text: "Жду папу. Его долго нет сегодня.",
+    char: prototype, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить", next: "scenepodvalch2a", type: "next" },
+        { text: "Назад", next: "scenepodval3", type: "back" }
+    ],
+    },
+    scenepodvalch2a: {
+    id: "podval",
+    name: "Девочка",
+    text: "(Это дочь Коллекционера? Она выглядит очень странно... Может ли она быть его целью - то, ради чего он их коллекционирует?)",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить", next: "scenepodvalname", type: "next" },
+        { text: "Назад", next: "scenepodval3", type: "back" }
+    ],
+    },
+    scenepodvalname: {
+    id: "podval",
+    name: "Девочка",
+    text: "У тебя есть имя?",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить", next: "scenepodvalname2", type: "next" },
+        { text: "Назад", next: "scenepodvalch1a", type: "back" }
+    ],
+    },
+    scenepodvalname2: {
+    id: "podval",
+    name: "Кукла",
+    text: "Что такое имя?",
+    char: prototype, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить", next: "scenepodvalname3", type: "next" },
+        { text: "Назад", next: "scenepodvalname", type: "back" }
+    ],
+    },
+    scenepodvalname3: {
+    id: "podval",
+    name: "Девочка",
+    text: "(Она совершенно ничего не понимает...)",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text: "Оставить её",next: "scenepodvalleave", type: "normal" },
+        { text: "Продолжить разговор", next: "scenepodvalchat", type: "normal" },
+        { text: "Назад", next: "scenepodvalname2", type: "back" }
+    ],
+    },
+    scenepodvalleave: {
+    id: "podval",
+    name: "",
+    text: "Она очень странная и подозрительная. ",
+    char: prototype, 
+    bg: basement,
+    choices: [
+        { text: "Идти дальше",next: "scenepodvalleave2", type: "normal" },
+        { text: "Назад", next: "scenepodvalch1a", type: "back" }
+    ],
+    },
+    scenepodvalchat: {
+    id: "podval",
+    name: "Девочка",
+    text: "Ты знаешь кем является твой папа? ",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text: "Продолжить",next: "scenepodvalchat2", type: "next" },
+        { text: "Назад", next: "scenepodvalleave", type: "back" }
+    ],
+    },
+        scenepodvalchat2: {
+        id: "podval",
+        name: "Кукла",
+        text: "Да. Он является папой!",
+        char: prototype,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenepodvalchat3", type: "next" },
+            { text: "Назад", next: "scenepodvalchat", type: "back" }
+        ],
+    },
+
+    scenepodvalchat3: {
+        id: "podval",
+        name: "Девочка",
+        text: "А ты знаешь, что он убивает людей?",
+        char: girl,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenepodvalchat4", type: "next" },
+            { text: "Назад", next: "scenepodvalchat2", type: "back" }
+        ],
+    },
+
+    scenepodvalchat4: {
+        id: "podval",
+        name: "Кукла",
+        text: "Что? Он убивает людей? Это ужасно!",
+        char: prototype,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenepodvalchat5", type: "next" },
+            { text: "Назад", next: "scenepodvalchat3", type: "back" }
+        ],
+    },
+
+    scenepodvalchat5: {
+        id: "podval",
+        name: "Девочка",
+        text: "Да, он очень плохой человек. Тебе не стоит с ним оставаться, это опасно.",
+        char: girl,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenepodvalchat6", type: "next" },
+            { text: "Назад", next: "scenepodvalchat4", type: "back" }
+        ],
+    },
+    scenepodvalchat6: {
+        id: "podval",
+        name: "Девочка",
+        text: "Пойдем вместе со мной, я тебя выведу отсюда!",
+        char: girl,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenepodvalchat7", type: "next" },
+            { text: "Назад", next: "scenepodvalchat5", type: "back" }
+        ],
+    },
+        scenepodvalchat7: {
+        id: "podval",
+        name: "Кукла",
+        text: "Хорошо! ",
+        char: prototype,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "sceneescapeTogether", type: "next" },
+            { text: "Назад", next: "scenepodvalchat6", type: "back" }
+        ],
+    },
+    sceneescapeTogether: {
+        id: "escape",
+        name: "",
+        text: "Девочка берет куклу за ручку. Теперь отныне они шли вместе, и их новая цель была найти выход отсюда как можно скорее… ",
+        char: "",
+        bg: "black",
+        choices: [
+            { text: "Продолжить", next: "sceneescapeTogether2", type: "next" },
+            { text: "Назад", next: "scenepodvalchat7", type: "back" }
+        ],
+    },
+    sceneescapeTogether2: {
+        id: "escape",
+        name: "",
+        text: "Неподалеку послышались шорохи. Вероятно, из прихожей… Это могло значить лишь одно.",
+        char: "",
+        bg: "black",
+        choices: [
+            { text: "Продолжить", next: "scenecollectorAppears", type: "next" },
+            { text: "Назад", next: "scenepodvalchat7", type: "back" }
+        ],
+    },
+    scenecollectorAppears: {
+        id: "escape",
+        name: "Девочка",
+        text: "(О нет, Он вернулся... Надо сбежать отсюда как можно скорее.)",
+        char: girl,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenecollectorAppears2", type: "next" },
+            { text: "Назад", next: "sceneescapeTogether2", type: "back"}
+        ],
+    },
+    scenecollectorAppears2: {
+        id: "escape",
+        name: "Девочка",
+        text: "Побежали",
+        char: girl,
+        bg: basement,
+        choices: [
+            { text: "Продолжить", next: "scenecollectorCatch", type: "next" },
+            { text: "Назад", next: "scenecollectorAppears", type: "back"}
+        ],
+    },
+    scenecollectorCatch: {
+        id: "escape",
+        name: "",
+        text: "Коллекционер выбегает и насильно ловит обеих девочек грубой хваткой своих рук.",
+        char: collector,
+        bg: "/src/assets/bg/black.jpeg",
+        choices: [
+            { text: "Продолжить", next: "scenecollectorCatch2", type: "next" },
+            { text: "Назад", next: "scenecollectorAppears2", type: "back"}
+        ],
+    },
+    scenecollectorCatch2: {
+        id: "escape",
+        name: "Девочка",
+        text: "!",
+        char: girl,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "scenecollectorCatch3", type: "next" },
+            { text: "Назад", next: "scenecollectorCatch", type: "back"}
+        ],
+    },
+    scenecollectorCatch3: {
+        id: "escape",
+        name: "Девочка",
+        text: "Кто ты?! Что ты делаешь в моём доме? С моей дочерью?!",
+        char: collector,
+        bg: black,
+        choices: [
+            { text: "Продолжить", next: "scenecollectorThrow", type: "next" },
+            { text: "Назад", next: "scenecollectorCatch2", type: "back"}
+        ],
+    },
+    scenecollectorThrow: {
+        id: "escape",
+        name: "",
+        text: "Коллекционер вышвыривает незнакомую девчонку вспышкой света из своего дома, пробивая все стены и потолки под давлением силы телекинеза. ",
+        char: collector,
+        bg: "/src/assets/bg/white_flash.jpeg",
+        choices: [
+            { text: "Продолжить", next: "scenecollectorEnd", type: "next" },
+            { text: "Назад", next: "scenecollectorCatch3", type: "back"}
+        ],
+    },
+    scenecollectorEnd: {
+        id: "final",
+        name: "Коллекционер",
+        text: "Ты в порядке? Она с тобой ничего не сделала?",
+        char: collector,
+        bg: "/src/assets/bg/black.jpeg",
+        choices: [
+            { text: "Продолжить", next: "scenedaughterFinal", type: "next" },
+            { text: "Назад", next: "scenecollectorThrow", type: "back"}
+        ],
+    },
+    scenedaughterFinal: {
+        id: "final",
+        name: "Кукла",
+        text: "Папа, ты плохой. Ты убиваешь людей. Мне с тобой опасно, поэтому я вынуждена отказаться быть твоей дочерью.",
+        char: prototype,
+        bg: "/src/assets/bg/black.jpeg",
+        choices: [
+            { text: "Продолжить", next: "sceneFinal3", type: "next" },
+            { text: "Назад", next: "scenecollectorEnd", type: "back"}
+        ],
+    },
+    sceneFinal3: {
+    id: "final3",
+    name: "Коллекционер",
+    text: "- ...",
+    char: collector,
+    bg: "/src/assets/bg/black.jpg",
+    choices: [
+            { text: "Далее", next: "sceneFinal4", type: "next" },
+            { text: "Назад", next: "scenedaughterFinal", type: "back"}
+        ],
+    },
+    sceneFinal4: {
+        id: "final4",
+        name: "Коллекционер",
+        text: "- Что? Что ты такое говоришь? Я твой отец...",
+        char: collector,
+        bg: "/src/assets/bg/black.jpg",
+        choices: [
+            { text: "Далее", next: "sceneFinal5", type: "next" },
+            { text: "Назад", next: "sceneFinal3", type: "back"}
+        ],
+    },
+    sceneFinal5: {
+        id: "final5",
+        name: "Дочь",
+        text: "- Я не желаю быть твоей дочерью.",
+        char: prototype,
+        bg: "/src/assets/bg/black.jpg",
+        choices: [
+            { text: "Далее", next: "sceneFinal6", type: "next" },
+            { text: "Назад", next: "sceneFinal4", type: "back"}
+        ],
+    },
+    sceneFinal6: {
+        id: "final6",
+        name: "Коллекционер",
+        text: "...",
+        char: "",
+        bg: "/src/assets/bg/black.jpg",
+        choices: [
+            { text: "Далее", next: "sceneFinal7", type: "next" },
+            { text: "Назад", next: "sceneFinal5", type: "back"}
+        ],
+    },
+    sceneFinal7: {
+        id: "final7",
+        name: "",
+        text: "",
+        char: "",
+        bg: badEndingImg,
+        choices: [
+            { text: "Далее", next: "sceneFinal8", type: "next" },
+            { text: "Назад", next: "sceneFinal6", type: "back"}
+        ],
+    },
+    sceneFinal8: {
+        id: "final8",
+        name: "Коллекционер",
+        text: "- ...",
+        char: collector,
+        bg: "/src/assets/bg/collector_kill.jpg",
+        choices: [
+            { text: "Далее", next: "sceneFinal10", type: "next" },
+            { text: "Назад", next: "sceneFinal7", type: "back"}
+        ],
+    },
+    sceneFinal10: {
+    id: "final10",
+    name: "Коллекционер",
+    text: "- Неужели это конец? Такова...моя судьба?",
+    char: collector,
+    bg: black,
+    choices: [
+        { text: "Продолжить", next: "sceneFinal11", type: "next" },
+        { text: "Назад", next: "sceneFinal9", type: "back" }
+    ],
 },
 
-    scene8_left: {
-    id: "leftRoom",
-    name: "Девочка",
-    text: "Ты вошла на кухню",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/kitchen.jpg",
+sceneFinal11: {
+    id: "final11",
+    name: "Коллекционер",
+    text: "- ...",
+    char: collector,
+    bg: black,
     choices: [
-        {text: "Вернуться назад", next: "scene7", type: "normal" },
-        { text: "Назад", next: "scene7", type: "back" }
+        { text: "Продолжить", next: "sceneFinal12", type: "next" },
+        { text: "Назад", next: "sceneFinal10", type: "back" }
     ],
-    },
+},
 
-    scene8_right: {
-    id: "rightRoom",
+sceneFinal12: {
+    id: "final12",
     name: "",
-    text: "Ты открыла правую дверь и попала в гостинную",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/livingroom.jpeg",
+    text: "...",
+    char: null,
+    bg: black,
     choices: [
-            {text: "Вернуться назад", next: "scene7", type: "normal" },
-            { text: "Идти дальше в коридор", next: "scene9", type: "normal" },
-            { text: "Назад", next: "scene7", type: "back" },
-        ],
-    },
-    scene9: {
-        id: "corridor", 
-        name: "",
-        text: " Вы из гостиной прошли в коридор",
-        bg: "/src/assets/bg/corridor.jpg",
-        char: "/src/assets/chars/girl.png",
-        music: "",
-        choices: [
-            { text: "осмотреться", next: "scenephoto", type: "normal" },
-            { text: "идти дальше по коридору", next: "scene12", type: "normal" },
-            { text: "Назад", next: "scene8_right", type: "back" },
-        ],
-    },
-    scenephoto: {
-        id: "photoRoom", 
-        name: "Девочка",
-        text: " фото семьи",
-        bg: "/src/assets/bg/photo.jpeg",
-        char: "",
-        music: "",
-        choices: [
-            { text: "Вернутся назад", next: "scene9", type: "normal" },
-            { text: "Назад", next: "scene9", type: "back" },
-        ],
-    },
+        { text: "Продолжить", next: "sceneFinal13", type: "next" },
+        { text: "Назад", next: "sceneFinal11", type: "back" }
+    ],
+},
 
-    scene12: {
-    id: "doors_room2",
-    name: "",
-    text: "В комнате стояло две двери бер.зового цвета",
-    bg: "/src/assets/bg/doors2.jpg",
-    hotspots: [
-        {
-            id: "leftDoor",
-            x: "36.3%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scene13_left",
-            label: "Левая дверь"
-        },
-        {
-            id: "rightDoor",
-            x: "88%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scene13_right",
-            label: "Правая дверь"
-        },
-    ],
-    choices: [{ text: "Назад", next: "scene9", type: "back" }],
-    },
-    scene13_left: {
-    id: "leftRoom13",
+sceneFinal13: {
+    id: "final13",
     name: "Девочка",
-    text: "Ты вошла в лабороторию",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/lab.jpeg",
+    text: "- С тех пор Мистера Коллекционера больше не видели. Но а я... так и осталась пустой оболочкой без души. Одной из множеств.",
+    char: null,
+    bg: black,
     choices: [
-        { text: "Идти дальше в коридор", next: "scene14", type: "normal" },
-        { text: "Назад", next: "scene12", type: "back" },
+        { text: "Продолжить", next: "sceneFinal14", type: "next" },
+        { text: "Назад", next: "sceneFinal12", type: "back" }
     ],
-    },
-    scene13_right: {
-    id: "rightRoom13",
-    name: "Девочка",
-    char: "/src/assets/chars/girl.png",
-    text: "Ты вошла в ванную",
-    bg: "/src/assets/bg/bathroom.jpeg",
-    choices: [
-        { text: "Вернуться", next: "scene12", type: "normal" },
-        { text: "Назад", next: "scene12", type: "back" }
-    ],
-    },
-    scene14: {
-    id: "Room14",
-    name: "Девочка",
-    text: "ты вошла в коридор",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/corridor.jpg",
-    choices: [
-        { text: "Идти дальше в комнату с бабочками", next: "scene15", type: "normal" },
-        { text: "Назад", next: "scene13_left", type: "back" }
-    ],
-    },
-    scene15: {
-    id: "Room15",
-    name: "Девочка",
-    text: "ты вошла в комнату с бабочками",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/collectorroom.jpeg",
-    choices: [
-        { text: "Идти дальше по комнате с бабочками", next: "scene16", type: "normal" },
-        { text: "Назад", next: "scene14", type: "back" }
-    ],
-    },
-    scene16: {
-    id: "doors_room3",
-    name: "",
-    text: "В комнате стояло две двери лаймового цвета",
-    bg: "/src/assets/bg/doors3.jpg",
-    hotspots: [
-        {
-            id: "leftDoor",
-            x: "36.3%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scene17_left",
-            label: "Левая дверь"
-        },
-        {
-            id: "rightDoor",
-            x: "88%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scene17_right",
-            label: "Правая дверь"
-        },
-    ],
-    choices: [{ text: "Назад", next: "scene15", type: "back" }],
-    },
-    scene17_left: {
-    id: "leftRoom17",
-    name: "Девочка",
-    text: "Ты вошла в комнату с призраками",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/ghostroom.jpeg",
-    choices: [
-        { text: "осмотреться", next: "scene17_left_look", type: "normal" },
-        {text: "Идти дальше по комнате с призраками", next: "scene17_right2", type: "normal" },
-        { text: "Назад", next: "scene16", type: "back" }
-    ],
-    },
-    scene17_right2: {
-    id: "rightRoom17",
-    name: "Девочка",
-    text: "Ты видишь дверь в подвал",
-    bg: "/src/assets/bg/basementdoor.jpg",
-    choices: [
-        { text: "Идти в подвал", next: "scene19", type: "normal" },
-        { text: "Назад", next: "scene17_left", type: "back" }
-    ],
-    },
-    scene17_left_look: {
-    id: "leftRoom17_look",
-    name: "Девочка",
-    text: "Ты осмотрела комнату и нашла фонарик",
-    bg: "/src/assets/bg/ghostroom.jpeg",
-    choices: [
-        { text: "Подобрать фонарик", next: "scene17_left2", type: "normal", giveItem: "hasFlashlight" },
-        { text: "Назад", next: "scene17_left", type: "back" }
-    ],
-    },
-    scene17_left2: {
-    id: "leftRoom17.2",
-    name: "Девочка",
-    text: "Ты в комнате с призраками",
-    char: "/src/assets/chars/girl.png",
-    bg: "/src/assets/bg/ghostroom.jpeg",
-    choices: [
-        { text: "Идти дальше по комнате с призраками", next: "scene17_right2", type: "normal" },
-        { text: "Назад", next: "scene17_left_look", type: "back" }
-    ],
-    },
+},
 
-    scene17_right: {
-    id: "rightRoom17",
-    name: "Девочка",
-    text: "Ты видишь дверь в подвал",
-    bg: "/src/assets/bg/basementdoor.jpg",
-    choices: [
-        { text: "Идти в подвал", next: "scene19", type: "normal" },
-        { text: "Назад", next: "scene16", type: "back" }
-    ],
-    },
-    scene19: {
-    id: "Room19",
-    name: "Девочка",
-    text: "Вы спускаетесь в подвал",
-    bg: "/src/assets/bg/black.png",
-    choices: [
-        { text: "Далее", next: "scene20", type: "next" },
-        { text: "Назад", next: "scene17_right", type: "back" }
-    ],
-    },
-    scene20: {
-    id: "Room20",
-    name: "Девочка",
-    text: "Вы вошли в подвал",
-    bg: "/src/assets/bg/basement.jpeg",
-    choices: [
-        { text: "Бежать", next: "scenerun", type: "normal" },
-        { text: "Назад", next: "scene19", type: "back" }
-    ],
-    },
-    scenerun: {
-    id: "Room18_back",
-    name: "Девочка",
-    text: "Из  подвала в Дверь в подвал",
-    bg: "/src/assets/bg/basementdoor.jpg",
-    choices: [
-        { text: "Бежать дальше", next: "scenerun2", type: "normal" },
-        { text: "Назад", next: "scene20", type: "back" }
-    ],
-    },
-    scenerun2: {
-    id: "Room15_back",
-    name: "Девочка",
-    text: "Из дверь в подвал в комнату с бабочками",
-    bg: "/src/assets/bg/collectorroom.jpeg",
-    choices: [
-        { text: "Бежать дальше", next: "scenerun3", type: "normal" },
-        { text: "Назад", next: "scenerun", type: "back" }
-    ],
-    },
-    scenerun3: {
-    id: "Room14_back",
-    name: "Девочка",
-    text: "Из комнаты с бабочками в коридор ",
-    bg: "/src/assets/bg/corridor.jpg",
-    choices: [
-        { text: "Бежать дальше", next: "scenerun4", type: "normal" },
-        { text: "Назад", next: "scenerun2", type: "back" }
-    ],
-    },
-    scenerun4: {
-    id: "doors_room",
+sceneFinal14: {
+    id: "final14",
     name: "",
-    text: "Из коридора к дверям лаймового цвета",
-    bg: "/src/assets/bg/doors3.jpg",
-    hotspots: [
-        {
-            id: "leftDoor",
-            x: "36.3%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scenerun5_left",
-            label: "Левая дверь"
-        },
-        {
-            id: "rightDoor",
-            x: "88%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scenerun5_right",
-            label: "Правая дверь"
-        },
-    ],
-    choices: [{ text: "Назад", next: "scenerun3", type: "back" }],
-    },
-    scenerun5_left: {
-    id: "leftRoom",
-    name: "Девочка",
-    text: "Ты вошла на кухню",
-    bg: "/src/assets/bg/kitchen.jpg",
+    text: "Концовка: Пустота",
+    char: null,
+    bg: black,
+    end: true,
     choices: [
-        {text: "Вернуться назад", next: "scenerun4", type: "normal" },
-        { text: "Назад", next: "scenerun4", type: "back" }
+        { text: "Назад", next: "sceneFinal13", type: "back" }
     ],
-    },
-    scenerun5_right: {
-    id: "rightRoom",
-    name: "Девочка",
-    text: "Ты вошла в лабораторию",
-    bg: "/src/assets/bg/lab.jpeg",
-    choices: [
-        { text: "Идти дальше", next: "scenerun6", type: "normal" },
-        { text: "Назад", next: "scenerun4", type: "back" }
-    ],
-    },
-    scenerun6: {
-        id: "corridor", 
-        name: "Девочка",
-        text: " Вы прибежали в коридор",
-        bg: "/src/assets/bg/corridor.jpg",
-        choices: [
-            { text: "Осмотреться", next: "scenephotorun", type: "normal" },
-            { text: "Идти дальше", next: "scenerun7", type: "normal" },
-            { text: "Назад", next: "scenerun5_right", type: "back" },
-        ],
-    },
-    scenephotorun: {
-        id: "photoRoom", 
-        name: "Девочка",
-        text: " фото семьи",
-        bg: "/src/assets/bg/photo1.jpg",
-        char: "",
-        music: "",
-        choices: [
-            { text: "Вернутся назад", next: "scenerun6", type: "normal" },
-            { text: "Назад", next: "scenerun6", type: "back" },
-        ],
-    },
-    scenerun7: {
-    id: "doors_room4",
-    name: "Девочка",
-    text: "Ты вернулся к дверям берюзового цвета",
-    bg: "/src/assets/bg/doors2.jpg",
-    hotspots: [
-        {
-            id: "leftDoor",
-            x: "36.3%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scenerun8_left",
-            label: "Левая дверь"
-        },
-        {
-            id: "rightDoor",
-            x: "88%",
-            y: "52%",
-            width: "30%",
-            height: "70%",
-            next: "scenerun8_right",
-            label: "Правая дверь"
-        },
-    ],
-    choices: [{ text: "Назад", next: "scenerun6", type: "back" }],
-    },
-    scenerun8_right: {
-    id: "rightRoom13",
-    name: "Девочка",
-    text: "Ты вошла на кухню",
-    bg: "/src/assets/bg/kitchen.jpg",
-    choices: [
-        {text: "Вернуться", next: "scenerun7", type: "normal" },
-        { text: "Назад", next: "scenerun7", type: "back" },
-    ],
-    },
-    scenerun8_left: {
-    id: "leftRoom13",
-    name: "Девочка",
-    text: "Ты вернулась в гостинную",
-    bg: "/src/assets/bg/livingroom.jpeg",
-    choices: [
-        {text: "Бежать в коридор", next: "scenerun9", type: "normal" },
-        { text: "Назад", next: "scenerun7", type: "back" },
-    ],
-    },
-    scenerun9: {
-    id: "Room14_back",
-    name: "Девочка",
-    text: "Ты прибежала в коридор",
-    bg: "/src/assets/bg/corridor.jpg",
-    choices: [
-        { text: "идти дальше", next: "scenerun10", type: "normal" },
-        { text: "Назад", next: "scenerun8_left", type: "back" },
-    ],
-    },
-    scenerun10: {
-    id: "Room15_back",
-    name: "Девочка",
-    text: "Ты вошла в прихожую",
-    bg: "/src/assets/bg/livingroom.jpeg",
-    choices: [
-        { text: "Посветить в лицо фонариком ", next: "scenerun11", type: "normal", requireItem: "hasFlashlight" },
-        { text: "концовка 1", next: "sceneEnding1", type: "normal" },
-        { text: "концовка 2", next: "sceneEnding2", type: "normal" },
-        { text: "Назад", next: "scenerun9", type: "back" },
-    ],
-    },
-    sceneEnding1: {
-        id: "ending1",
-        name: "Концовка 1",
-        bg: badEndingImg,
-        end: true,
-    },
-    sceneEnding2: {
-        id: "ending2",
-        name: "Концовка 2",
-        bg: neutralEndingImg,
-        end: true,
-    },
-    scenerun11: {
-    id: "Room17_back",
-    name: "Девочка",
-    text: "Вы посветили в лицо",
-    bg: "/src/assets/bg/black.png",
-    choices: [
-        { text: "Выбежать из особняка", next: "scenerun12", type: "normal" },
-        { text: "Назад", next: "scenerun10", type: "back" },
-    ],
-    },
-    scenerun12: {
-    id: "Room18_back",
-    name: "Девочка",
-    text: "Ты выбежала из особняка и побежала домой",
-    bg: "/src/assets/bg/mansion.jpg",
-    choices: [
-        { text: "идти дальше", next: "sceneForest", type: "normal" },
-        { text: "Назад", next: "scenerun11", type: "back" },
-    ],
-    },
-    sceneForest: {
-        id: "forest",
-        name: "Девочка",
-        text: "Ты оказалась в лесу",
-        bg: "/src/assets/bg/forest.jpg",
-        choices: [
-            { text: "концовка 3", next: "sceneending3", type: "normal" },
-            { text: "концовка 4", next: "sceneending4", type: "normal" },
-            { text: "Назад", next: "scenerun12", type: "back" },
-        ],
-    },
-    sceneending3: {
-        id: "ending3",
-        name: "Концовка 3",
-        bg: anotherEndingImg,
-        end: true,
+},
 
-    },
-    sceneending4: {
-        id: "ending4",
-        name: "Концовка 4",
-        bg: goodEndingImg,
-        end: true,
-    },
+
+
 };
 export default scenes;  

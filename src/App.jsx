@@ -3,7 +3,6 @@ import Scene from "./components/Scene";
 import MainMenu from "./components/MainMenu/MainMenu";
 import SaveLoadMenu from "./UI/SaveLoadMenuUI";
 import scenes from "./data/scenes";
-import TestCollector from "../src/assets/chars/Test_collector.png";
 import DialogueBar from "./components/Dialoguebox/DialogueBox";
 import CharacterBox from "./components/character-1/CharacterBox";
 import GameUI from "./UI/GameUI";
@@ -12,8 +11,7 @@ import { AudioManager } from "./audioManager";
 import menuMusicFile from "/src/assets/audio/menu.ogg";
 import EndingScreen from "./components/EndingScreen/EndingScreen";
 import HotspotLayer from "./components/HotspotLayer";
-
-
+import './main.css';
 
 
 function App() {
@@ -58,7 +56,15 @@ function App() {
   setPlayerState({ hasFlashlight: false }); 
 
 };  
-
+function App() {
+  return (
+    <div className="app-container">
+      <div className="game-wrapper">
+        <Scene />
+      </div>
+    </div>
+  );
+}
 
 
 useEffect(() => {

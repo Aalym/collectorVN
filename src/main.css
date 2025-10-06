@@ -1,0 +1,145 @@
+/* === ОСНОВНОЙ КОНТЕЙНЕР === */
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === ОБЛАСТЬ ИГРЫ === */
+.game-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  max-height: 720px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+/* === ФОН === */
+.scene-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+/* === ПЕРСОНАЖ === */
+.character-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.character-box img {
+  max-height: 80%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* === ТЕКСТОВОЕ ОКНО === */
+.text-box {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  border-radius: 12px;
+  z-index: 2;
+  font-family: "Inter", sans-serif;
+}
+
+/* === КНОПКИ ВЫБОРА === */
+.choice-container {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.choice-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.choice-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* === АДАПТИВНОСТЬ === */
+
+/* 📱 Маленькие экраны (меньше 640px) */
+@media (max-width: 640px) {
+  .game-wrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .text-box {
+    font-size: 0.9rem;
+    padding: 12px 16px;
+  }
+
+  .choice-btn {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+
+  .character-box img {
+    max-height: 60%;
+  }
+}
+
+/* 💻 Средние экраны (до 960px) */
+@media (max-width: 960px) {
+  .text-box {
+    font-size: 1rem;
+  }
+
+  .choice-btn {
+    font-size: 0.9rem;
+  }
+}
+
+/* 🖥️ Большие экраны (Full HD и выше) */
+@media (min-width: 1280px) {
+  .text-box {
+    font-size: 1.2rem;
+    max-width: 80%;
+  }
+
+  .choice-btn {
+    font-size: 1.1rem;
+    padding: 12px 24px;
+  }
+}
