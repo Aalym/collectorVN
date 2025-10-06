@@ -6,7 +6,7 @@ const scenes = {
     start: {
         id: "start", // scene name/id
         name: "Девочка",
-        text: " Я самая обыкновенная юная девочка, что живет самой простой жизнью.В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
+        text: " Я самая обыкновенная юная девочка, что живет самой простой жизнью. В последнее время вокруг начали ходить слухи о загадочном парне, что похищает души людей, отчего они умирают. Я проследила за ним и нашла его особняк глубоко в чаще леса. Мне надо туда направиться чтоб узнать его тайну.",
         bg: "/src/assets/bg/intro.jpeg",
         char: "",
         music: "",
@@ -262,8 +262,18 @@ const scenes = {
     bg: "/src/assets/bg/ghostroom.jpeg",
     choices: [
         { text: "осмотреться", next: "scene17_left_look", type: "normal" },
-        { text: "Идти дальше в подвал", next: "scene18", type: "normal" },
+        {text: "Идти дальше по комнате с призраками", next: "scene17_right2", type: "normal" },
         { text: "Назад", next: "scene16", type: "back" }
+    ],
+    },
+    scene17_right2: {
+    id: "rightRoom17",
+    name: "Девочка",
+    text: "Ты видишь дверь в подвал",
+    bg: "/src/assets/bg/basementdoor.jpg",
+    choices: [
+        { text: "Идти в подвал", next: "scene19", type: "normal" },
+        { text: "Назад", next: "scene17_left", type: "back" }
     ],
     },
     scene17_left_look: {
@@ -283,7 +293,7 @@ const scenes = {
     char: "/src/assets/chars/girl.png",
     bg: "/src/assets/bg/ghostroom.jpeg",
     choices: [
-        { text: "Идти дальше в подвал", next: "scene17_right", type: "normal" },
+        { text: "Идти дальше по комнате с призраками", next: "scene17_right2", type: "normal" },
         { text: "Назад", next: "scene17_left_look", type: "back" }
     ],
     },
@@ -314,34 +324,34 @@ const scenes = {
     text: "Вы вошли в подвал",
     bg: "/src/assets/bg/basement.jpeg",
     choices: [
-        { text: "Идти дальше", next: "scenerun", type: "normal" },
+        { text: "Бежать", next: "scenerun", type: "normal" },
         { text: "Назад", next: "scene19", type: "back" }
     ],
     },
     scenerun: {
     id: "Room18_back",
     name: "Девочка",
-    text: "Дверь в подвал",
+    text: "Из  подвала в Дверь в подвал",
     bg: "/src/assets/bg/basementdoor.jpg",
     choices: [
-        { text: "Идти дальше(убежать)", next: "scenerun2", type: "normal" },
+        { text: "Бежать дальше", next: "scenerun2", type: "normal" },
         { text: "Назад", next: "scene20", type: "back" }
     ],
     },
     scenerun2: {
     id: "Room15_back",
     name: "Девочка",
-    text: "Ты вернулась в комнату с бабочками побег",
+    text: "Из дверь в подвал в комнату с бабочками",
     bg: "/src/assets/bg/collectorroom.jpeg",
     choices: [
-        { text: "Идти дальше", next: "scenerun3", type: "normal" },
+        { text: "Бежать дальше", next: "scenerun3", type: "normal" },
         { text: "Назад", next: "scenerun", type: "back" }
     ],
     },
     scenerun3: {
     id: "Room14_back",
     name: "Девочка",
-    text: "Ты вернулась в коридор побег",
+    text: "Из комнаты с бабочками в коридор ",
     bg: "/src/assets/bg/corridor.jpg",
     choices: [
         { text: "Идти дальше", next: "scenerun4", type: "normal" },
@@ -535,7 +545,7 @@ const scenes = {
         name: "Концовка 3",
         bg: anotherEndingImg,
         end: true,
-        
+
     },
     sceneending4: {
         id: "ending4",
