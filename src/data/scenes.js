@@ -79,37 +79,45 @@ const scenes = {
         ],
     },
     scene7: {
-        id: "mansion", // custom scene name/id
-        name: "",
-        text: "Вы осмотрелись вокруг и увидели 2 двери",
-        bg: "/src/assets/bg/mansion_interior.jpg",
-        choices: [
-            { text: "Идти в правую дверь", next: "scenedoorright", type: "normal" },
-            { text: "Идти в левую дверь", next: "scenedoorleft", type: "normal" },
-            { text: "Назад", next: "scene6", type: "back" },
-        ],
+    id: "doors_room",
+    name: "",
+    text: "В комнате стояло две двери: одна слева, другая справа. Куда пойти?",
+    bg: "/src/assets/bg/doorsRoom.webp",
+    hotspots: [
+        {
+            id: "leftDoor",
+            x: "35%",
+            y: "60%",
+            width: "15%",
+            height: "40%",
+            next: "scene8_left",
+        },
+        {
+            id: "rightDoor",
+            x: "65%",
+            y: "60%",
+            width: "15%",
+            height: "40%",
+            next: "scene8_right",
+        },
+    ],
+    choices: [{ text: "Назад", next: "scene6", type: "back" }],
+},
+
+    scene8_left: {
+    id: "leftRoom",
+    name: "Девочка",
+    text: "Ты вошла в левую дверь. Холодный воздух ударил в лицо...",
+    bg: "/src/assets/bg/left_room.jpg",
+    choices: [{ text: "Вернуться", next: "scene7", type: "back" }],
     },
-    scenedoorright: {
-        id: "mansion", // ведет к левойдвери2 и к магии/id
-        name: "",
-        text: "Вы пошли в правую дверь и оказались в комнате с еще 2 дверьми.",
-        bg: "/src/assets/bg/mansion_interior.jpg",
-        choices: [
-            { text: "Идти в правую дверь", next: "scenedoorright2", type: "normal" },
-            { text: "Идти в левую дверь", next: "sceneroommagic", type: "normal" },
-            { text: "Назад", next: "scene7", type: "back" },
-        ],
-    },
-    scenedoorleft: {
-        id: "mansion", // ведет к правойдвери2 и к бабочкам/id
-        name: "",
-        text: "Вы пошли в левую дверь и оказались в комнате с еще 2 дверьми.",
-        bg: "/src/assets/bg/mansion_interior.jpg",
-        choices: [
-            { text: "Идти в правую дверь", next: "sceneroombutterfly", type: "normal" },
-            { text: "Идти в левую дверь", next: "scenedoorleft2", type: "normal" },
-            { text: "Назад", next: "scene7", type: "back" },
-        ],
+
+    scene8_right: {
+    id: "rightRoom",
+    name: "Девочка",
+    text: "Ты открыла правую дверь — внутри тихо, лишь слышно капли воды.",
+    bg: "/src/assets/bg/right_room.jpg",
+    choices: [{ text: "Вернуться", next: "scene7", type: "back" }],
     },
     sceneroommagic: {
         id: "mansion", // комната магии/id

@@ -1,5 +1,5 @@
 import styles from "./MainMenu.module.css";
-import { AudioManager } from "D:/Project/collectorVN/src/audioManager.js";
+import { AudioManager } from "/src/audioManager.js";
 
 
 export default function MainMenu({ onStart, onLoad, onExit, onToggleMute, isMuted,  }) {

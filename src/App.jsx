@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { AudioManager } from "./audioManager";
 import menuMusicFile from "/src/assets/audio/menu.ogg";
 import EndingScreen from "./components/EndingScreen/EndingScreen";
+import HotspotLayer from "./components/HotspotLayer";
 
 
 
@@ -23,6 +24,10 @@ function App() {
   const current = scenes[scene] || { bg: "", name: "", text: "", choices: [] };
   const [isMuted, setIsMuted] = useState(AudioManager.getMuted ? AudioManager.getMuted() : false);
   const [showEnding, setShowEnding] = useState(false);
+  
+  const [isHolding, setIsHolding] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   const toggleMute = () => {
     // AudioManager.toggleMute() должен возвращать новое состояние (true/false)
@@ -181,6 +186,43 @@ useEffect(() => {
                   </button>
                 ))}
             </div>
+            {/* 👇 Добавляешь сюда */}
+            {current.hotspots && (
+              <HotspotLayer
+                hotspots={current.hotspots}
+                onHotspotActivate={(nextScene) => setScene(nextScene)}
+                onHoldChange={(holding) => setIsHolding(holding)}
+                onProgressChange={(value) => setProgress(value)}
+                onCursorMove={(pos) => setCursorPos(pos)}
+              />
+            )}
+            {isHolding && (
+              <div
+                style={{
+                  position: "fixed",
+                  left: cursorPos.x - 25,
+                  top: cursorPos.y - 25,
+                  width: 50,
+                  height: 50,
+                  borderRadius: "50%",
+                  border: "3px solid rgba(255,255,255,0.3)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  pointerEvents: "none",
+                }}
+              >
+                <div
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    background: `conic-gradient(#fff ${progress * 3.6}deg, transparent 0deg)`,
+                  }}
+                />
+              </div>
+            )}
+
 
             {/* Слева — кнопка "Назад" */}
             {current.choices
