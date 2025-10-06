@@ -35,63 +35,81 @@ const scenes = {
         bg: "src/assets/bg/mansion.png",
         music: "",
         choices: [
-            { text: "Назад", next: "start", type: "back" },
+            { text: "Назад", next: "scene2", type: "back" },
             { text: "Продолжить", next: "scene2b", type: "next" },
         ],
     },
     scene2b: {
         id: "mansion2b", // custom scene name/id
-        name: "Девочка",
+        name: "",
         text: "Тихий хруст травы под ногами девчонки, стремящейся ко входу в особняк.",
         bg: "src/assets/bg/mansion.png",
         music: "",
         choices: [
-            { text: "Назад", next: "start", type: "back" },
-            { text: "Продолжить", next: "scene2b", type: "next" },
+            { text: "Назад", next: "scene2a", type: "back" },
+            { text: "Продолжить", next: "scene2c", type: "next" },
+        ],
+    },
+    scene2c: {
+        id: "mansion2b", // custom scene name/id
+        name: "",
+        text: "Дверь была открыта… Девочка входит в прихожую особняка. Тень за дверью испаряется.",
+        bg: "src/assets/bg/black.png",
+        music: "",
+        choices: [
+            { text: "Назад", next: "scene2b", type: "back" },
+            { text: "Продолжить", next: "scene3", type: "next" },
         ],
     },
 
+
     scene3: {
-        id: "park", 
-        name: "Девочка", 
-        text: " Мне надо пробраться в особняк.",
-        char: "/src/assets/chars/girl.png",
-        bg: "src/assets/bg/mansion.png",
+        id: "hallway s2", 
+        name: "", 
+        text: "Дом выглядел пустым и мрачным. Он явно угрожал девочке своей внешностью, но её это не пугало. Надо было продвинуться дальше...",
+        char: "",
+        bg: "src/assets/bg/hallway.jpeg",
+        char: girl,
         choices: [
-            { text: "подойти к особняку", next: "scene4", type: "next" },
+            { text: "Продолжить", next: "scene3a", type: "next" },
             { text: "Назад", next: "scene2", type: "back"    },
         ],
     },
+    scene3a: {
+        id: "hallway s2", 
+        name: "", 
+        text: "Девочка сделала свои первые шаги по особняку Коллекционера, внимательно осматриваясь вокруг.",
+        char: girl,
+        bg: "src/assets/bg/hallway.jpeg",
+        choices: [
+            { text: "подойти к особняку", next: "scene4", type: "next" },
+            { text: "Назад", next: "scene3a", type: "back"  },
+        ],
+    },
+
     scene4: {
-        id: "park", 
+        id: "corridor s2", 
         name: "",
-        text: "Тихий хруст травы под ногами девчонки, стремящейся ко входу в особняк.",
-        bg: "/src/assets/bg/mansion.jpg",
+        char: girl,
+        text: "Коридоры зловещего особняка не пугали девочку своим видом,Хоть свет есть только в избраных комнатах особняк гниёт и выглядит заброшенным, а пол где-то проваливается, где-то он целый. На самом деле ей он даже приглянулся...",
+        bg: "/src/assets/bg/corridor.jpg",
         choices: [
             { text: "далее", next: "scene5", type: "next" },
             { text: "Назад", next: "scene3", type: "back" },
         ],
     },
+
     scene5: {
         id: "mansion", 
-        name: "",
-        text: "Подойдя к особняку девочка увидела, что дверь была открыта",
+        name: " ",
+        text: " ",
         bg: "/src/assets/bg/mansion_interior.jpg",
         choices: [
             { text: "Войти в особняк", next: "scene6", type: "normal" },
-            { text: "Уйти", next: "sceneleave", type: "normal" },
             { text: "Назад", next: "scene4", type: "back" },
         ],
     },
-    sceneleave: {
-        id: "leave", 
-        name: "",
-        text: "Вы решили уйти.",
-        bg: "/src/assets/bg/mansion_interior.jpg",
-        choices: [
-            { text: "Назад", next: "scene5", type: "back" },
-        ],
-    },
+
     scene6: {
         id: "mansion", 
         name: "Девочка",
