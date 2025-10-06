@@ -420,7 +420,7 @@ const scenes = {
         id: "photoRoom", 
         name: "Девочка",
         text: " фото семьи",
-        bg: "/src/assets/bg/photo.jpeg",
+        bg: "/src/assets/bg/photo1.jpg",
         char: "",
         music: "",
         choices: [
