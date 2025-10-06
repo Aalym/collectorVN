@@ -10,7 +10,7 @@
   overflow-y: auto;
 
   background: rgba(20, 20, 20, 0.75);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(9, 238, 181, 0.711);
   border-radius: 16px;
 
   display: flex;
@@ -21,7 +21,7 @@
   box-sizing: border-box;
   color: #fff;
   backdrop-filter: blur(6px);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(13, 204, 166, 0.236);
   font-family: 'Noto Sans', sans-serif;
 }
 
