@@ -235,7 +235,7 @@ const scenes = {
         id: "portrait3 s2", 
         name: "",
         char: girl,
-        text: "Вы в коридоре",
+        text: "Вы видите 2 двери",
         bg: doors2,
         hotspots: [
         {
@@ -919,6 +919,8 @@ const scenes = {
 
     sceneFinal14: {
         id: "final14",
+        name: null,
+        text: null,
         char: null,
         bg: black,
         choices: [
@@ -928,6 +930,8 @@ const scenes = {
     },
     sceneFinal15: {
         id: "final13",
+        name:null,
+        text:null,
         char: null,
         bg: badEndingImg,
         choices: [
