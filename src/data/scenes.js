@@ -24,6 +24,10 @@ import lab from "/src/assets/bg/lab.jpeg";
 import livingroom from "/src/assets/bg/livingroom.jpeg";
 import photo from "/src/assets/bg/photo.jpeg";
 import photo1 from "/src/assets/bg/photo1.jpg";
+import collectora from "/src/assets/chars/magician_angry.png";
+import girls from "/src/assets/chars/girl_scared.png";
+import collectorh from "/src/assets/chars/magician_happy.png";
+import girlh from "/src/assets/chars/girl_happy.png";
 
 const scenes = {
     start: {
@@ -186,7 +190,7 @@ const scenes = {
     sceneportrait: {
         id: "portrait s2", 
         name: "",
-        char: girl,
+        char: null,
         text: "Портрет с Коллекционером, неизвестной женщиной и маленькой девочкой между ними…",
         bg: photo,
         choices: [
@@ -223,10 +227,52 @@ const scenes = {
         text: "Вы в коридоре",
         bg: corridor,
         choices: [
-            { text: "Идти дальше", next: "scenemagic", type: "next" },
+            { text: "Идти дальше", next: "scenedoors2", type: "normal" },
             { text: "Назад", next: "sceneportrait3", type:  "back" },
         ],
     },
+    scenedoors2: {
+        id: "portrait3 s2", 
+        name: "",
+        char: girl,
+        text: "Вы в коридоре",
+        bg: doors2,
+        hotspots: [
+        {
+            id: "leftDoor",
+            x: "36.3%",
+            y: "52%",
+            width: "30%",
+            height: "70%",
+            next: "scenemagic",
+            label: "Лаборотория"
+        },
+        {
+            id: "rightDoor",
+            x: "88%",
+            y: "52%",
+            width: "30%",
+            height: "70%",
+            next: "scenebathroom",
+            label: "Ванная"
+        },
+        ],
+        choices: [
+            { text: "Назад", next: "scenecorridor", type:  "back" },
+        ],
+    },
+    scenebathroom: {
+        id: "magic s3", 
+        name: "",
+        char: girl,
+        text: "Девочка осматривает ванную и заглядывает во все шкафчики в поисках зацепок и информации о загадочном колдуне.Она находит большое количество лекарств и различных антидепрессантов в тумбочках. ",
+        bg: bathroom,
+        choices: [
+            { text: "Вернутся", next: "scenedoors2", type: "normal" },
+            { text: "Назад", next: "scenedoors2", type:  "back" },
+        ],
+    },
+
     scenemagic: {
         id: "magic s3", 
         name: "Девочка",
@@ -235,7 +281,7 @@ const scenes = {
         bg: lab,
         choices: [
             { text: "Продолжить", next: "scenemagic2", type: "next" },
-            { text: "Назад", next: "scenecorridor", type:  "back" },
+            { text: "Назад", next: "scenedoors2", type:  "back" },
         ],
     },
     scenemagic2: {
@@ -686,7 +732,6 @@ const scenes = {
         bg: basement,
         choices: [
             { text: "Продолжить", next: "scenecollectorCatch", type: "next" },
-            { text: "Использовать фонарик", next: "sceneflashlight", type: "normal", requiredItem: "hasFlashlight"  },
             { text: "Назад", next: "scenecollectorAppears", type: "back"}
         ],
     },
@@ -695,9 +740,10 @@ const scenes = {
         name: "",
         text: "Коллекционер выбегает и насильно ловит обеих девочек грубой хваткой своих рук.",
         char: collector,
-        bg: "/src/assets/bg/black.jpeg",
+        bg: black,
         choices: [
             { text: "Продолжить", next: "scenecollectorCatch2", type: "next" },
+            { text: "Использовать фонарик", next: "sceneflashlight", type: "normal", requiredItem: "hasFlashlight"  },
             { text: "Назад", next: "scenecollectorAppears2", type: "back"}
         ],
     },
@@ -705,7 +751,7 @@ const scenes = {
         id: "escape",
         name: "Девочка",
         text: "!",
-        char: girl,
+        char: girls,
         bg: black,
         choices: [
             { text: "Продолжить", next: "scenecollectorCatch3", type: "next" },
@@ -715,8 +761,8 @@ const scenes = {
     scenecollectorCatch3: {
         id: "escape",
         name: "Девочка",
-        text: "Кто ты?! Что ты делаешь в моём доме? С моей дочерью?!",
-        char: collector,
+        text: "Кто ты?! Что ты делаешь в моём доме и с моей дочерью?!",
+        char: collectora,
         bg: black,
         choices: [
             { text: "Продолжить", next: "scenecollectorThrow", type: "next" },
@@ -726,9 +772,9 @@ const scenes = {
     scenecollectorThrow: {
         id: "escape",
         name: "",
-        text: "Коллекционер вышвыривает незнакомую девчонку вспышкой света из своего дома, пробивая все стены и потолки под давлением силы телекинеза. ",
-        char: collector,
-        bg: "/src/assets/bg/white_flash.jpeg",
+        text: "Коллекционер с помощью магии вышвыривает незнакомую девчонку из своего дома, пробивая все стены и потолки под давлением силы телекинеза.",
+        char: collectora,
+        bg: null,
         choices: [
             { text: "Продолжить", next: "scenecollectorEnd", type: "next" },
             { text: "Назад", next: "scenecollectorCatch3", type: "back"}
@@ -736,10 +782,10 @@ const scenes = {
     },
     scenecollectorEnd: {
         id: "final",
-        name: "Коллекционер",
-        text: "Ты в порядке? Она с тобой ничего не сделала?",
-        char: collector,
-        bg: "/src/assets/bg/black.jpeg",
+        name: "",
+        text: 'Успокаиваясь от адреналина, Коллекционер поворачивается к своей "дочери" с обеспокоенным лицом.',
+        char: collectora,
+        bg: hallway,
         choices: [
             { text: "Продолжить", next: "scenedaughterFinal", type: "next" },
             { text: "Назад", next: "scenecollectorThrow", type: "back"}
@@ -747,10 +793,10 @@ const scenes = {
     },
     scenedaughterFinal: {
         id: "final",
-        name: "Кукла",
-        text: "Папа, ты плохой. Ты убиваешь людей. Мне с тобой опасно, поэтому я вынуждена отказаться быть твоей дочерью.",
-        char: prototype,
-        bg: "/src/assets/bg/black.jpeg",
+        name: "Коллекционер",
+        text: "Ты в порядке? Кто это был? Она с тобой ничего не сделала?",
+        char: collector,
+        bg: hallway,
         choices: [
             { text: "Продолжить", next: "sceneFinal3", type: "next" },
             { text: "Назад", next: "scenecollectorEnd", type: "back"}
@@ -758,76 +804,76 @@ const scenes = {
     },
     sceneFinal3: {
     id: "final3",
-    name: "Коллекционер",
-    text: "- ...",
-    char: collector,
-    bg: "/src/assets/bg/black.jpg",
+    name: "",
+    text: "Дочь Коллекционера избегает ответов на вопросы отца, презрительно смотря на него своим отсутствующим взглядом.",
+    char: null,
+    bg: hallway,
     choices: [
-            { text: "Далее", next: "sceneFinal4", type: "next" },
+            { text: "Продолжить", next: "sceneFinal4", type: "next" },
             { text: "Назад", next: "scenedaughterFinal", type: "back"}
         ],
     },
     sceneFinal4: {
         id: "final4",
-        name: "Коллекционер",
-        text: "- Что? Что ты такое говоришь? Я твой отец...",
-        char: collector,
-        bg: "/src/assets/bg/black.jpg",
+        name: "Дочь",
+        text: "Папа, ты плохой. Ты убиваешь людей, мне с тобой опасно, поэтому я вынуждена отказаться быть твоей дочерью.",
+        char: prototype,
+        bg: hallway,
         choices: [
-            { text: "Далее", next: "sceneFinal5", type: "next" },
+            { text: "Продолжить", next: "sceneFinal5", type: "next" },
             { text: "Назад", next: "sceneFinal3", type: "back"}
         ],
     },
     sceneFinal5: {
         id: "final5",
-        name: "Дочь",
-        text: "- Я не желаю быть твоей дочерью.",
-        char: prototype,
-        bg: "/src/assets/bg/black.jpg",
+        name: "Коллекционер",
+        text: "...",
+        char: collectora,
+        bg: hallway,
         choices: [
-            { text: "Далее", next: "sceneFinal6", type: "next" },
+            { text: "Продолжить", next: "sceneFinal6", type: "next" },
             { text: "Назад", next: "sceneFinal4", type: "back"}
         ],
     },
     sceneFinal6: {
         id: "final6",
         name: "Коллекционер",
-        text: "...",
-        char: "",
-        bg: "/src/assets/bg/black.jpg",
+        text: "Что? Что ты такое говоришь?",
+        char: collectora,
+        bg: hallway,
         choices: [
-            { text: "Далее", next: "sceneFinal7", type: "next" },
+            { text: "Продолжить", next: "sceneFinal7", type: "next" },
             { text: "Назад", next: "sceneFinal5", type: "back"}
         ],
     },
     sceneFinal7: {
         id: "final7",
-        name: "",
-        text: "",
-        char: "",
-        bg: badEndingImg,
+        name: "Дочь",
+        text: "Я не желаю быть твоей дочерью.",
+        char: prototype,
+        bg: hallway,
         choices: [
-            { text: "Далее", next: "sceneFinal8", type: "next" },
+            { text: "Продолжить", next: "sceneFinal8", type: "next" },
             { text: "Назад", next: "sceneFinal6", type: "back"}
         ],
     },
     sceneFinal8: {
         id: "final8",
         name: "Коллекционер",
-        text: "- ...",
-        char: collector,
-        bg: "/src/assets/bg/collector_kill.jpg",
+        text: " ...",
+        char: collectora,
+        bg: hallway,
         choices: [
-            { text: "Далее", next: "sceneFinal10", type: "next" },
+            { text: "Продолжить", next: "sceneFinal10", type: "next" },
             { text: "Назад", next: "sceneFinal7", type: "back"}
         ],
     },
     sceneFinal10: {
     id: "final10",
     name: "Коллекционер",
-    text: "- Неужели это конец? Такова...моя судьба?",
-    char: collector,
-    bg: black,
+    text: "Ты и вправду отказываешься?",
+    char: collectora,
+    bg: hallway,
     choices: [
         { text: "Продолжить", next: "sceneFinal11", type: "next" },
         { text: "Назад", next: "sceneFinal9", type: "back" }
@@ -836,10 +882,10 @@ const scenes = {
 
     sceneFinal11: {
         id: "final11",
-        name: "Коллекционер",
-        text: "- ...",
-        char: collector,
-        bg: black,
+        name: "Дочь",
+        text: "Да",
+        char: prototype,
+        bg: hallway,
         choices: [
             { text: "Продолжить", next: "sceneFinal12", type: "next" },
             { text: "Назад", next: "sceneFinal10", type: "back" }
@@ -848,9 +894,9 @@ const scenes = {
 
     sceneFinal12: {
         id: "final12",
-        name: "",
+        name: "Коллекционер",
         text: "...",
-        char: null,
+        char: collectora,
         bg: black,
         choices: [
             { text: "Продолжить", next: "sceneFinal13", type: "next" },
@@ -860,9 +906,9 @@ const scenes = {
 
     sceneFinal13: {
         id: "final13",
-        name: "Девочка",
-        text: "- С тех пор Мистера Коллекционера больше не видели. Но а я... так и осталась пустой оболочкой без души. Одной из множеств.",
-        char: null,
+        name: "Коллекционер",
+        text: "Зачем я вообще тогда заново собирал тебя...",
+        char: collectora,
         bg: black,
         choices: [
             { text: "Продолжить", next: "sceneFinal14", type: "next" },
@@ -872,13 +918,86 @@ const scenes = {
 
     sceneFinal14: {
         id: "final14",
-        name: "",
-        text: "Концовка: Пустота",
         char: null,
         bg: black,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal15", type: "next" },
+            { text: "Назад", next: "sceneFinal13", type: "back" }
+        ],
+    },
+    sceneFinal15: {
+        id: "final13",
+        char: null,
+        bg: badEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal16", type: "next" },
+            { text: "Назад", next: "sceneFinal14", type: "back" }
+        ],
+    },
+    sceneFinal16: {
+        id: "final13",
+        name: "Коллекционер",
+        text: "...",
+        char: collectora,
+        bg: badEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal17", type: "next" },
+            { text: "Назад", next: "sceneFinal15", type: "back" }
+        ],
+    },
+    sceneFinal17: {
+        id: "final13",
+        name: "Коллекционер",
+        text: "Неужели всё было напрасно? ",
+        char: collectora,
+        bg: badEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal18", type: "next" },
+            { text: "Назад", next: "sceneFinal16", type: "back" }
+        ],
+    },
+    sceneFinal18: {
+        id: "final13",
+        name: "Коллекционер",
+        text: " Мне судьба не оставляет выбора...",
+        char: collectora,
+        bg: badEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal19", type: "next" },
+            { text: "Назад", next: "sceneFinal17", type: "back" }
+        ],
+    },
+    sceneFinal19: {
+        id: "final13",
+        name: null,
+        text: null,
+        char: null,
+        bg: null,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal20", type: "next" },
+            { text: "Назад", next: "sceneFinal18", type: "back" }
+        ],
+    },
+    sceneFinal20: {
+        id: "final13",
+        name: "Девочка",
+        text: "С тех пор Мистера Коллекционера больше не видели. Но а я...так и осталась пустой оболочкой без души.",
+        char: girlh,
+        bg: badEndingImg,
+        choices: [
+            { text: "Продолжить", next: "sceneFinal21", type: "next" },
+            { text: "Назад", next: "sceneFinal19", type: "back" }
+        ],
+    },
+    sceneFinal21: {
+        id: "final13",
+        name: "Девочка",
+        text: "С тех пор Мистера Коллекционера больше не видели. Но а я...так и осталась пустой оболочкой без души.",
+        char: null,
+        bg: badEndingImg,
         end: true,
         choices: [
-            { text: "Назад", next: "sceneFinal13", type: "back" }
+            { text: "Назад", next: "sceneFinal20", type: "back" }
         ],
     },
 
@@ -890,7 +1009,7 @@ const scenes = {
         bg: black,
         choices: [
             { text: "Продолжить", next: "sceneflashlight2", type: "next" },
-            { text: "Назад", next: "scenecollectorAppears2", type: "back" }
+            { text: "Назад", next: "scenecollectorCatch", type: "back" }
         ],
     },
 
