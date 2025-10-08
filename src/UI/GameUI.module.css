@@ -13,3 +13,18 @@
 .gameuibtn:hover {
     background-color: rgba(0, 255, 200, 0.879);
 }
+
+.hideUIButton {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.hideUIButton:hover {
+    
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "../Dialoguebox/DialogueBox.module.css";
 
-export default function DialogueBar({ name, text }) {
+export default function DialogueBar({ name, text, uiVisible }) {
   const safeText = text || "";
   const [displayedText, setDisplayedText] = useState("");
   const [finished, setFinished] = useState(false);

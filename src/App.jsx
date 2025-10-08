@@ -29,6 +29,8 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
+  const [uiVisible, setUiVisible] = useState(true);
+
   const toggleMute = () => {
     
     const muted = AudioManager.toggleMute ? AudioManager.toggleMute() : !isMuted;
@@ -65,6 +67,13 @@ function App() {
     </div>
   );
 }
+
+
+
+const toggleUI = () => {
+  setUiVisible((prev) => !prev);
+};
+
 
 
 useEffect(() => {
@@ -173,11 +182,30 @@ useEffect(() => {
   return (
     <>
       <div style={{ position: "relative", height: "100vh", backgroundColor: "#000" }}>
-        <GameUI
-          onBackToMenu={handleBackToMenu}
-          onSave={handleSave}
-          onLoad={() => setShowLoadModal(true)}
-        />
+        {uiVisible && (
+          <GameUI
+            onBackToMenu={handleBackToMenu}
+            onSave={handleSave}
+            onLoad={() => setShowLoadModal(true)}
+          />
+        )}
+        <button
+          style={{
+            position: "absolute",
+            bottom: 20,
+            right: 20,
+            padding: "8px 16px",
+            background: "rgba(0,0,0,0.5)",
+            color: "#fff",
+            border: "1px solid #fff",
+            borderRadius: "8px",
+            cursor: "pointer",
+            zIndex: 20
+          }}
+          onClick={toggleUI}
+        >
+          {uiVisible ? "Скрыть интерфейс" : "Показать интерфейс"}
+        </button>
         <div style={{
           position: "relative",
           height: "100vh",
@@ -193,17 +221,18 @@ useEffect(() => {
           {current.char && (
             <CharacterBox src={current.char} alt={current.name || "Персонаж"} />
           )}
-          <DialogueBar name={current.name} text={current.text} />
+          {uiVisible && (
+            <DialogueBar name={current.name} text={current.text} uiVisible={uiVisible} />
+          )}
         </div>
           <div>
-            
+            {uiVisible &&(
             <div className="choice-container">
               {current.choices
                 ?.filter((c) => c.type === "normal")
                 .filter((c) => !c.requiredItem || playerState[c.requiredItem]) 
                 .map((choice, i) => (
-                  <button
-                    key={i}
+                  <button key={i}
                     className="choice-btn"
                     onClick={() => {
                       
@@ -216,7 +245,7 @@ useEffect(() => {
                   </button>
                 ))}
             </div>
-
+            )}
             
             {current.hotspots && (
               <HotspotLayer
