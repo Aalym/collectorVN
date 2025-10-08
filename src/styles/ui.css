@@ -22,9 +22,9 @@
 
 .choice-container {
     position: absolute;
-    top: 45%;
+    top: 35%;
     left: 50%;
-    border-radius: 8px;
+    border-radius: 30px;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
     color: #fff;
     border: 1px solid #fff;
     padding: 10px 16px;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background 0.2s ease;
     font-size: 16px;
@@ -57,12 +57,12 @@ body, html, #root {
 .continue-btn {
   position: absolute;
   bottom: 45px;
-  right: 170px;
+  right: 220px;
   background: rgba(7, 190, 144, 0.408);
   border: 2px solid #fff;
   color: white;
   padding: 10px 24px;
-  border-radius: 12px;
+  border-radius: 30px;
   font-size: 18px;
   cursor: pointer;
   transition: 0.2s;
@@ -74,13 +74,13 @@ body, html, #root {
 /* кнопка "Назад" */
 .back-btn {
   position: absolute;
-  bottom: 160px;
-  left: 170px;
+  bottom: 45px;
+  left: 50px;
   background: rgba(7, 190, 144, 0.408);
   border: 2px solid #fff;
   color: white;
   padding: 10px 24px;
-  border-radius: 12px;
+  border-radius: 30px;
   font-size: 18px;
   cursor: pointer;
   transition: 0.2s;

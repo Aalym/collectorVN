@@ -11,7 +11,7 @@
 
   background: rgba(20, 20, 20, 0.75);
   border: 3px solid rgba(9, 238, 181, 0.711);
-  border-radius: 16px;
+  border-radius: 85px;
 
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   color: #fff;
   backdrop-filter: blur(6px);
   box-shadow: 0 0 20px rgba(13, 204, 166, 0.236);
-  font-family: 'Noto Sans', sans-serif;
+  
 }
 
 .dialogueName {
