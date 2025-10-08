@@ -36,7 +36,6 @@ const scenes = {
         text: " В последнее время вокруг начали ходить слухи о загадочном Мистере Коллекционере, что похищает души людей. Эти слухи показались мне интересными и я решила проследить за ним и нашла его логово - старый особняк глубоко в чаще леса, куда никто не ступал...И я туда направляюсь чтоб узнать его тайну.",
         bg: intro ,
         char: "",
-        music: mus,
         choices: [
             { text: "Продолжить", next: "scene2", type: "next" },
         ],
@@ -81,7 +80,7 @@ const scenes = {
         name: "",
         text: "Дверь была открыта… Девочка входит в прихожую особняка. Мрак за дверью испаряется.",
         bg: "src/assets/bg/black.png",
-        music: "",
+        music: null,
         choices: [
             { text: "Назад", next: "scene2b", type: "back" },
             { text: "Продолжить", next: "scene3", type: "next" },
@@ -95,10 +94,11 @@ const scenes = {
         text: "Дом выглядел пустым и мрачным. Он явно угрожал девочке своей внешностью, но её это не пугало. Желание продвинуться дальше её захватывало...",
         char: "",
         bg: hallway,
+        music: mus,
         char: girl,
         choices: [
             { text: "Продолжить", next: "scene3a", type: "next" },
-            { text: "Назад", next: "scene2", type: "back"    },
+            { text: "Назад", next: "scene2c", type: "back"    },
         ],
     },
     scene3a: {
@@ -225,6 +225,7 @@ const scenes = {
         name: "",
         char: girl,
         text: "Мутно...",
+        music: mus,
         bg: corridor,
         choices: [
             { text: "Идти дальше", next: "scenedoors2", type: "normal" },
