@@ -1005,7 +1005,7 @@ const scenes = {
         id: "flashlight",
         name: "Коллекционер",
         text: "Арргх!",
-        char: collector,
+        char: collectora,
         bg: black,
         choices: [
             { text: "Продолжить", next: "sceneflashlight2", type: "next" },
@@ -1061,7 +1061,7 @@ const scenes = {
         id: "flashlight",
         name: "Девочка",
         text: "...",
-        char: girl,
+        char: girlh,
         bg: forest,
         choices: [
             { text: "Продолжить", next: "sceneforest5", type: "next" },
@@ -1071,9 +1071,9 @@ const scenes = {
     sceneforest5: {
         id: "flashlight",
         name: "",
-        text: "*Девочка внезапно хватает прототип дочери*  ",
+        text: "Настроение девочки внезапно меняется. От неё исходит зловещая аура и чувство напряжения нарастает. Та внезапно хватает прототип дочери, поймав её в свою хватку.",
         char: null,
-        bg: anotherEndingImg,
+        bg: forest,
         choices: [
             { text: "Продолжить", next: "sceneforest6", type: "next" },
             { text: "Назад", next: "sceneforest4", type: "back" }
@@ -1082,9 +1082,9 @@ const scenes = {
     sceneforest6: {
         id: "flashlight",
         name: "Девочка",
-        text: "Теперь...наконец-то у меня будет душа... ",
+        text: "Теперь наконец-то у меня будет душа... ",
         char: null,
-        bg: anotherEndingImg,
+        bg: forest,
         choices: [
             { text: "Продолжить", next: "sceneforest7", type: "next" },
             { text: "Назад", next: "sceneforest5", type: "back" }
@@ -1092,8 +1092,8 @@ const scenes = {
     },
     sceneforest7: {
         id: "flashlight",
-        name: "Девочка",
-        text: "Девочка поглощает душу прототипа дочери в себя.",
+        name: "",
+        text: "Девочка разрывает лицо прототипа и поглощает все его души в себя.",
         char: null,
         bg: anotherEndingImg,
         choices: [

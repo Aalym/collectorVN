@@ -32,14 +32,6 @@ export default function MainMenu({ onStart, onLoad, onExit, onToggleMute, isMute
         </button>
 
         <button
-          onClick={onExit}
-          className={styles.mainMenuBtn}
-          style={{ backgroundImage: `url(${buttonBg})` }}
-        >
-          Выйти
-        </button>
-
-        <button
           onClick={() => {
             const muted = AudioManager.toggleMute();
             (muted ? "🔇 Музыка выключена" : "🔊 Музыка включена");
