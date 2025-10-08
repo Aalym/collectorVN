@@ -28,7 +28,7 @@ import collectora from "/src/assets/chars/magician_angry.png";
 import girls from "/src/assets/chars/girl_scared.png";
 import collectorh from "/src/assets/chars/magician_happy.png";
 import girlh from "/src/assets/chars/girl_happy.png";
-
+import mus from "/src/assets/audio/untitled2.mp3";
 const scenes = {
     start: {
         id: "start", 
@@ -36,7 +36,7 @@ const scenes = {
         text: " В последнее время вокруг начали ходить слухи о загадочном Мистере Коллекционере, что похищает души людей. Эти слухи показались мне интересными и я решила проследить за ним и нашла его логово - старый особняк глубоко в чаще леса, куда никто не ступал...И я туда направляюсь чтоб узнать его тайну.",
         bg: intro ,
         char: "",
-        music: "",
+        music: mus,
         choices: [
             { text: "Продолжить", next: "scene2", type: "next" },
         ],
@@ -877,7 +877,7 @@ const scenes = {
     bg: hallway,
     choices: [
         { text: "Продолжить", next: "sceneFinal11", type: "next" },
-        { text: "Назад", next: "sceneFinal9", type: "back" }
+        { text: "Назад", next: "sceneFinal8", type: "back" }
     ],
 },
 
@@ -977,7 +977,7 @@ const scenes = {
         name: null,
         text: null,
         char: null,
-        bg: null,
+        bg: black,
         choices: [
             { text: "Продолжить", next: "sceneFinal20", type: "next" },
             { text: "Назад", next: "sceneFinal18", type: "back" }
