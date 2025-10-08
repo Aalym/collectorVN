@@ -10,7 +10,7 @@ export default function HotspotLayer({
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [progress, setProgress] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState(null);
-  const [hoveredHotspot, setHoveredHotspot] = useState(null); // 🆕
+  const [hoveredHotspot, setHoveredHotspot] = useState(null); 
   const intervalRef = useRef(null);
 
   const updateCursor = (e) => {
