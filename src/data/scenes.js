@@ -4,10 +4,10 @@ import neutralEndingImg from "../assets/endings/ending1.jpg";
 import anotherEndingImg from "../assets/endings/ending3.jpg";
 import girl from "/src/assets/chars/girl.png";
 import intro from "/src/assets/bg/intro.jpeg";
-import mansion from "/src/assets/bg/mansion.png";
+import mansion from "/src/assets/bg/mansion.jpeg";
 import basement from "/src/assets/bg/basement.jpeg";
 import basementdoor from "/src/assets/bg/basementdoor.jpg";
-import bathroom from "/src/assets/bg/bathroom.jpeg";
+import bathroom from "/src/assets/bg/bathroom.jpg";
 import black from "/src/assets/bg/black.png";
 import collectorroom from "/src/assets/bg/collectorroom.jpeg";
 import corridor from "/src/assets/bg/corridor.jpg";
@@ -20,7 +20,7 @@ import ghostroom from "/src/assets/bg/ghostroom.jpeg";
 import hallway from "/src/assets/bg/hallway.jpeg";
 import forest from "/src/assets/bg/forest.jpeg";
 import kitchen from "/src/assets/bg/kitchen.jpg";
-import lab from "/src/assets/bg/lab.jpeg";
+import lab from "/src/assets/bg/lab.jpg";
 import livingroom from "/src/assets/bg/livingroom.jpeg";
 import photo from "/src/assets/bg/photo.jpeg";
 import photo1 from "/src/assets/bg/photo1.jpg";
@@ -603,11 +603,12 @@ const scenes = {
     },
     scenepodvalleave: {
     id: "podval",
-    name: "",
+    name: "Девочка",
     text: "Она очень странная и подозрительная. ",
-    char: prototype, 
+    char: girl, 
     bg: basement,
     choices: [
+        { text:"Продолжить", next:"scenepodvalleave2", type:"next" },
         { text: "Назад", next: "scenepodvalname3", type: "back" }
     ],
     },
@@ -991,8 +992,8 @@ const scenes = {
     },
     sceneFinal21: {
         id: "final13",
-        name: "Девочка",
-        text: "С тех пор Мистера Коллекционера больше не видели. Но а я...так и осталась пустой оболочкой без души.",
+        name: "",
+        text: "Концовка: Пустота",
         char: null,
         bg: badEndingImg,
         end: true,
@@ -1112,6 +1113,250 @@ const scenes = {
             { text: "Назад", next: "sceneforest7", type: "back" }
         ],
     },
+    scenepodvalleave2: {
+    id: "podval",
+    name: "",
+    text: "Неподалеку послышались шорохи. Вероятно, из прихожей… Это могло значить лишь одно.",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave3", type:"next" },
+        { text: "Назад", next: "scenepodvalleave", type: "back" }
+        ],
+    },
+    scenepodvalleave3: {
+    id: "podval",
+    name: "Девочка",
+    text: "(О нет, он вернулся...Надо сбежать отсюда как можно скорее.)",
+    char: girl, 
+    bg: basement,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave4", type:"next" },
+        { text: "Назад", next: "scenepodvalleave2", type: "back" }
+        ],
+    },
+    scenepodvalleave4: {
+    id: "podval",
+    name: "Девочка",
+    text: "Коллекционер насильно хватает девочку и отводит ту в зал для хранения душ чужих людей…",
+    char: null, 
+    bg: basement,
+    choices: [
+        { text:"Использовать фонарик", next:"scenepodvalleaveflash", type:"normal", requiredItem: "hasFlashlight" },
+        { text:"Продолжить", next:"scenepodvalleave5", type:"next" },
+        { text: "Назад", next: "scenepodvalleave3", type: "back" }
+        ],
+    },
+    scenepodvalleave5: {
+    id: "podval",
+    name: "Коллекционер",
+    text: "Маленькая глупая девочка...ты даже не понимаешь куда забрела. ",
+    char: collectora, 
+    bg: collectorroom,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave6", type:"next" },
+        { text: "Назад", next: "scenepodvalleave4", type: "back" }
+        ],
+    },
+    scenepodvalleave6: {
+    id: "podval",
+    name: "Коллекционер",
+    text: "Я украду твою душу за твою непоседливость...и ты станешь одной из этих бабочек в рамочках!",
+    char: collectorh, 
+    bg: collectorroom,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave7", type:"next" },
+        { text: "Назад", next: "scenepodvalleave5", type: "back" }
+        ],
+    },
+    scenepodvalleave7: {
+    id: "podval",
+    name: "",
+    text: "Коллекционер тяжело дышит. Хруст, мотор запускающейся машины…",
+    char: null, 
+    bg: collectorroom,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave8", type:"next" },
+        { text: "Назад", next: "scenepodvalleave6", type: "back" }
+        ],
+    },
+    scenepodvalleave8: {
+    id: "podval",
+    name: "Коллекционер",
+    text: "…",
+    char: collector, 
+    bg: collectorroom,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave9", type:"next" },
+        { text: "Назад", next: "scenepodvalleave7", type: "back" }
+        ],
+    },
+    scenepodvalleave9: {
+    id: "podval",
+    name: "Коллекционер",
+    text: "…Почему не работает?",
+    char: collectora, 
+    bg: collectorroom,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave10", type:"next" },
+        { text: "Назад", next: "scenepodvalleave8", type: "back" }
+        ],
+    },
+    scenepodvalleave10: {
+    id: "podval",
+    name: "",
+    text: "Девочка жутко хихикает прямо под носом Коллекционера.",
+    char: girlh, 
+    bg: black,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave11", type:"next" },
+        { text: "Назад", next: "scenepodvalleave9", type: "back" }
+        ],
+    },
+    scenepodvalleave11: {
+    id: "podval",
+    name: "Девочка",
+    text: "У меня нет души.",
+    char: girlh, 
+    bg: black,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave12", type:"next" },
+        { text: "Назад", next: "scenepodvalleave10", type: "back" }
+        ],
+    },
+    scenepodvalleave12: {
+    id: "podval",
+    name: "Девочка",
+    text: "Ты попал в мою ловушку.",
+    char: girlh, 
+    bg: black,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave13", type:"next" },
+        { text: "Назад", next: "scenepodvalleave11", type: "back" }
+        ],
+    },
+    scenepodvalleave13: {
+    id: "podval",
+    name: "Девочка",
+    text: "Теперь ты будешь моей душой и утолишь мою вечную пустоту…",
+    char: girlh, 
+    bg: black,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave14", type:"next" },
+        { text: "Назад", next: "scenepodvalleave12", type: "back" }
+        ],
+    },
+    scenepodvalleave14: {
+    id: "podval",
+    name: null,
+    text: null,
+    char: null, 
+    bg: black,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalleave15", type:"next" },
+        { text: "Назад", next: "scenepodvalleave13", type: "back" }
+        ],
+    },
+    scenepodvalleave15: {
+    id: "podval",
+    name: null,
+    text: "Концовка: Коллекционер",
+    char: null, 
+    bg: neutralEndingImg,
+    end: true,
+    choices: [
+        { text: "Назад", next: "scenepodvalleave14", type: "back" }
+        ],
+    },
+    scenepodvalleaveflash: {
+    id: "flash2",
+    name: "Коллекционер",
+    text: "Арргх!",
+    char: collectora, 
+    bg: collectorroom,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash2", type:"next" },
+        { text: "Назад", next: "scenepodvalleave4", type: "back" }
+        ],
+    },
+    scenepodvalflash2: {
+    id: "flash2",
+    name: "",
+    text: "Коллекционер от света фонаря оглушительно падает на скрипящий пол. Раздался грохот. Она смогла выиграть для себя время, и девочка мигом выбегает из особняка Коллекционера.",
+    char: collectora, 
+    bg: black,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash3", type:"next" },
+        { text: "Назад", next: "scenepodvalleaveflash", type: "back" }
+        ],
+    },
+    scenepodvalflash3: {
+    id: "flash3",
+    name: null,
+    text: "Тяжелое дыхание, быстро-сменяющиеся изображения леса пробегают мимо ее глаз. Она бежала прямо без остановки, пока особняк сзади не превратился в совсем мутный силуэт.",
+    char: null, 
+    bg: forest,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash4", type:"next" },
+        { text: "Назад", next: "scenepodvalflash2", type: "back" }
+        ],
+    },
+    scenepodvalflash4: {
+    id: "flash3",
+    name: 'Девочка',
+    text: "Я…я сбежала…мне удалось…",
+    char: girls, 
+    bg: forest,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash5", type:"next" },
+        { text: "Назад", next: "scenepodvalflash3", type: "back" }
+        ],
+    },
+    scenepodvalflash5: {
+    id: "flash3",
+    name: null,
+    text: "Та бездыханно лежит на мокрой траве, а затем её рука тянется к нижнему карману, где было что-то спрятано...",
+    char: null, 
+    bg: forest,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash6", type:"next" },
+        { text: "Назад", next: "scenepodvalflash4", type: "back" }
+        ],
+    },
+    scenepodvalflash6: {
+    id: "flash3",
+    name: null,
+    text: "Девочка оттуда достает стеклянную банку с порхающими бабочками внутри - отчаянными душами несчастных жертв…",
+    char: null, 
+    bg: forest,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash7", type:"next" },
+        { text: "Назад", next: "scenepodvalflash5", type: "back" }
+        ],
+    },
+    scenepodvalflash7: {
+    id: "flash3",
+    name: "Девочка",
+    text: "Наконец-то…я не буду пустой оболочкой без души…",
+    char: girlh, 
+    bg: forest,
+    choices: [
+        { text:"Продолжить", next:"scenepodvalflash8", type:"next" },
+        { text: "Назад", next: "scenepodvalflash6", type: "back" }
+        ],
+    },
+    scenepodvalflash8: {
+    id: "flash3",
+    name: null,
+    text: "Концовка: Бабочка",
+    char: null, 
+    bg: goodEndingImg,
+    end: true,
+    choices: [
+        { text: "Назад", next: "scenepodvalflash7", type: "back" }
+        ],
+    },
+
 
 };
 

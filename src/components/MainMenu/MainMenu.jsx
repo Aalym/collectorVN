@@ -30,7 +30,6 @@ export default function MainMenu({ onStart, onLoad, onExit, onToggleMute, isMute
         >
           Загрузить игру
         </button>
-
         <button
           onClick={() => {
             const muted = AudioManager.toggleMute();
