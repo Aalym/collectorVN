@@ -29,6 +29,7 @@ import girls from "/src/assets/chars/girl_scared.png";
 import collectorh from "/src/assets/chars/magician_happy.png";
 import girlh from "/src/assets/chars/girl_happy.png";
 import mus from "/src/assets/audio/untitled2.mp3";
+import muse from "/src/assets/audio/Project_29.ogg";
 const scenes = {
     start: {
         id: "start", 
@@ -225,7 +226,7 @@ const scenes = {
         name: "",
         char: girl,
         text: "Мутно...",
-        music: mus,
+        music: "",
         bg: corridor,
         choices: [
             { text: "Идти дальше", next: "scenedoors2", type: "normal" },
@@ -1001,6 +1002,7 @@ const scenes = {
         text: "Концовка: Пустота",
         char: null,
         bg: badEndingImg,
+        music: muse,
         end: true,
         choices: [
             { text: "Назад", next: "sceneFinal20", type: "back" }
@@ -1113,6 +1115,7 @@ const scenes = {
         text: "Концовка: Прототип Дочери",
         char: null,
         bg: anotherEndingImg,
+        music: muse,
         end: true,
         choices: [
             { text: "Назад", next: "sceneforest7", type: "back" }
@@ -1268,6 +1271,7 @@ const scenes = {
     text: "Концовка: Коллекционер",
     char: null, 
     bg: neutralEndingImg,
+    music: muse,
     end: true,
     choices: [
         { text: "Назад", next: "scenepodvalleave14", type: "back" }
@@ -1356,6 +1360,7 @@ const scenes = {
     text: "Концовка: Бабочка",
     char: null, 
     bg: goodEndingImg,
+    music: muse,
     end: true,
     choices: [
         { text: "Назад", next: "scenepodvalflash7", type: "back" }
